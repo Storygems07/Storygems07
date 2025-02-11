@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Sai Aashish </title>
+  <style>
+    /* General styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Parallax Background */
+    .parallax {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://source.unsplash.com/1920x1080/?army,soldier') no-repeat center center/cover;
+      z-index: -1;
+      opacity: 0.7;
+    }
+
+    /* Main container */
+    .container {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffcc00;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    /* Floating Stars */
+    .floating-star {
+      position: absolute;
+      font-size: 2rem;
+      color: #ffcc00;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Button */
+    .play-music-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 1.2rem;
+      color: #fff;
+      background: #ffcc00;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .play-music-btn:hover {
+      background: #ff9900;
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="parallax"></div>
+
+  <div class="container">
+    <h1>The Brave Soldier</h1>
+    <p>
+      There was a soldier who stood tall and proud. He was known for his courage and loyalty to his country.
+    </p>
+    <p>
+      He woke up early every day, ready to serve. Whether it was hot, cold, or rainy, he never complained. 
+      His mission was to protect the people of his nation.
+    </p>
+    <p>
+      One day, his unit was sent to a dangerous mission. The road was tough, and they faced many challenges. But the soldier never gave up. 
+      His determination inspired everyone around him.
+    </p>
+    <p>
+      During the mission, he saved his teammates and kept everyone safe. His bravery became a story everyone admired.
+    </p>
+    <p>
+      When he returned home, the people clapped and cheered for him. But the soldier simply smiled and said, "I was just doing my duty."
+    </p>
+    <p>
+      He showed the true meaning of bravery, dedication, and love for the country. Even today, his story reminds us to be strong and never give up.
+    </p>
+    <button class="play-music-btn" onclick="toggleMusic()">Play Patriotic Music 🎵</button>
+    <div class="footer">Made to honor every brave soldier. 🇮🇳</div>
+  </div>
+
+  <!-- Floating Stars -->
+  <div class="floating-star" style="top: 10%; left: 20%;">⭐</div>
+  <div class="floating-star" style="top: 30%; right: 15%;">🌟</div>
+  <div class="floating-star" style="bottom: 20%; left: 25%;">✨</div>
+  <div class="floating-star" style="bottom: 40%; right: 10%;">⭐</div>
+
+  <!-- Background Music -->
+  <audio id="patriotic-music" loop>
+    <source src="https://www.fesliyanstudios.com/play-mp3/6771" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const music = document.getElementById('patriotic-music');
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+    h1 {Thank You}
+  </script>
+</body>
+</html> 

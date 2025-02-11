@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product and Division of Two Numbers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    <script>
+        function calculate() {
+            // Get input values
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+
+            // Check if the second number is zero to avoid division by zero
+            if (num2 === 0) {
+                alert("Division by zero is not allowed.");
+                return;
+            }
+
+            // Calculate product and division
+            var product = num1 * num2;
+            var division = num1 / num2;
+
+            // Display the results
+            document.getElementById("product").innerHTML = "Product: " + product;
+            document.getElementById("division").innerHTML = "Division: " + division;
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Enter Two Numbers to Calculate Product and Division</h2>
+
+    <!-- Input fields for two numbers -->
+    <input type="number" id="num1" placeholder="Enter first number">
+    <input type="number" id="num2" placeholder="Enter second number">
+    <br><br>
+
+    <!-- Button to trigger the calculation -->
+    <button onclick="calculate()">Calculate</button>
+
+    <!-- Placeholder for displaying results -->
+    <p id="product"></p>
+    <p id="division"></p>
+
+</body>
+</html>
