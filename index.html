@@ -1,153 +1,3279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Sai Aashish </title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>StoryGems - Monthly Book Surprise!</title>
   <style>
-    /* General styles */
-    * {
+    /* ========== FULL PAGE BACKGROUND ========== */
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      overflow-x: hidden;
-      line-height: 1.6;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffffff, #f9f9ff); /* clean and clear */
+      color: #333;
     }
 
-    /* Parallax Background */
-    .parallax {
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* ========== BOOK LIST GRID ========== */
+    #books-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* Exactly 4 books per row */
+      gap: 50px;
+      padding: 3rem 4rem;
+      margin: 0 auto; /* Center horizontally */
+      justify-items: center;
+      background: rgba(255, 255, 255, 0.85); /* light background with slight transparency */
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      max-width: 1150px; /* Optional: control grid width */
+    }
+
+    /* ========== BOOK CARD ========== */
+    .book-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      width: 160px;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .book-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ========== BOOK IMAGE ========== */
+    .book-card img {
       width: 100%;
-      height: 100%;
-      background: url('https://source.unsplash.com/1920x1080/?army,soldier') no-repeat center center/cover;
-      z-index: -1;
-      opacity: 0.7;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
 
-    /* Main container */
-    .container {
-      max-width: 800px;
-      margin: 100px auto;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    /* ========== TITLE & PRICE ========== */
+    .book-info h4 {
+      font-size: 0.95rem;
+      margin: 0.5rem 0 0.3rem;
+      color: #2c2c2c;
+      font-weight: 500;
+      line-height: 1.3;
+      word-break: break-word;
+      max-height: 2.8em;
       overflow: hidden;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 20px;
-      color: #ffcc00;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    .small-price {
+      font-size: 0.88rem;
+      color: #d32f2f;
+      font-weight: bold;
+    }
+    /* ========== BOOK DETAIL WRAPPER ========== */
+    #book-detail-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(to bottom right, #ffffff, #f4f4fc);
+      min-height: 100vh;
     }
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-      text-align: justify;
-    }
-
-    /* Floating Stars */
-    .floating-star {
-      position: absolute;
-      font-size: 2rem;
-      color: #ffcc00;
-      animation: float 5s infinite ease-in-out;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-
-    /* Button */
-    .play-music-btn {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      font-size: 1.2rem;
+    /* ========== BACK BUTTON ========== */
+    #back-button {
+      align-self: flex-start;
+      margin-left: 3rem;
+      margin-bottom: 1.5rem;
+      background: #5a48e6;
       color: #fff;
-      background: #ffcc00;
+      padding: 8px 18px;
       border: none;
-      border-radius: 5px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: background 0.2s;
+    }
+    #back-button:hover {
+      background: #4838c6;
+    }
+
+    /* ========== BOOK DETAIL CARD ========== */
+    .book-detail-card {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    /* ========== BOOK IMAGE ========== */
+    .book-detail-card img {
+      width: 240px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    /* ========== BOOK TEXT INFO ========== */
+    .book-detail-info {
+      flex: 1;
+    }
+
+    .book-detail-info h3 {
+      font-size: 1.3rem;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .book-detail-info .price {
+      font-size: 1.1rem;
+      color: #d32f2f;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .book-detail-info p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #444;
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+    }
+
+    /* ========== ACTION BUTTONS ========== */
+    .detail-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .detail-buttons button {
+      background: #ffcc00;
+      color: #000;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .detail-buttons button:hover {
+      background: #f7b500;
+    }
+
+/* ============ GLOBAL STYLES ============ */
+body{
+  font-family:'Segoe UI',sans-serif;margin:0;padding:0;
+  background:#f4f4f9;color:#333;line-height:1.6;
+}
+header{
+  background:#6c5ce7;padding:1rem 3rem;position:sticky;top:0;z-index:1000;
+  box-shadow:0 4px 8px rgba(0,0,0,.1);
+}
+.header-content{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+header h1{color:#fff;font-size:2rem;margin:0;}
+nav a{margin:0 15px;color:#fff;text-decoration:none;font-weight:bold;font-size:1.1rem;position:relative;cursor:pointer;}
+nav a:hover{color:#ffeaa7;}
+nav a::after{content:'';position:absolute;bottom:-5px;left:0;width:100%;height:2px;background:#ffeaa7;transform:scaleX(0);transition:transform .3s;transform-origin:bottom right;}
+nav a:hover::after{transform:scaleX(1);transform-origin:bottom left;}
+
+/* ============ SEARCH BAR ============ */
+.search-bar input{
+  padding:.55rem 1.1rem;border-radius:25px;border:1px solid #ddd;font-size:1rem;
+  min-width:200px;outline:none;
+}
+.search-bar input:focus{box-shadow:0 0 0 2px rgba(255,234,167,.8);}
+@media(max-width:600px){ .search-bar input{width:140px;font-size:.85rem;} }
+
+/* ============ HERO ============ */
+.hero{
+  text-align:center;padding:6rem 2rem;color:#fff;
+  background-image:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1950&q=80');
+  background-size:cover;background-position:center;background-attachment:fixed;
+}
+@media(max-width:768px){.hero{padding:4rem 1.5rem;background-attachment:scroll;}}
+.hero h2{font-size:3rem;margin-bottom:1rem;}
+.hero p{font-size:1.2rem;margin-bottom:2rem;}
+.btn{background:#6c5ce7;color:#fff;padding:.8rem 1.5rem;border:none;border-radius:25px;font-size:1rem;cursor:pointer;text-decoration:none;}
+.btn:hover{background:#ffeaa7;color:#6c5ce7;}
+
+section{padding:4rem 2rem;text-align:center;}
+
+/* ============ PLANS & CONTACT ============ */
+.plans,.contact{background:#dff9fb;border-radius:15px;padding:2rem;}
+.plan-option{background:#fff;margin:1rem auto;max-width:400px;padding:1.5rem;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);}
+.plan-option:hover{transform:translateY(-5px);transition:.3s;}
+.contact form{max-width:500px;margin:0 auto;}
+.contact input,.contact textarea{width:100%;padding:.8rem;margin:.5rem 0;border-radius:10px;border:1px solid #ccc;}
+.contact button{background:#6c5ce7;color:#fff;padding:.8rem 1.5rem;border:none;border-radius:25px;font-size:1rem;cursor:pointer;}
+.contact button:hover{background:#ffeaa7;}
+
+/* ============ CATEGORY & TOPIC ============ */
+.book-screen,.topics-screen,.books-list-screen{display:none;padding:4rem 2rem;background:#fff;text-align:center;}
+.category{background:#fff;margin:1rem auto;padding:2rem;max-width:600px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);cursor:pointer;text-align:left;}
+.category:hover{transform:scale(1.05);transition:.3s;}
+.topic-btn{display:inline-block;margin:.7rem 1rem;padding:1rem 1.5rem;background:#6c5ce7;color:#fff;border-radius:25px;font-size:1.2rem;cursor:pointer;}
+.topic-btn:hover{background:#ffeaa7;color:#6c5ce7;}
+
+/* ============ AMAZON‑STYLE BOOK LIST ============ */
+.book-list{
+  display:flex;flex-direction:column;gap:22px;max-width:900px;margin:0 auto;
+  padding:0;list-style: none;
+}
+.book-card{
+  display:flex;gap:18px;background:#fff;border:1px solid #d8d8d8;border-radius:4px;
+  padding:16px;box-shadow:0 2px 6px rgba(0,0,0,.06);cursor:pointer;
+}
+.book-card img{width:90px;height:135px;object-fit:cover;border:1px solid #ccc;}
+.book-info{display:flex;flex-direction:column;justify-content:center;}
+.book-info h4{font-size:1rem;font-weight:600;margin:0;color:#111;}
+.book-info .small-price{margin-top:4px;font-size:.95rem;font-weight:600;color:#b12704;}
+
+.back-btn{margin-top:2rem;display:inline-block;background:#6c5ce7;color:#fff;padding:.7rem 1.5rem;border-radius:25px;text-decoration:none;cursor:pointer;}
+.back-btn:hover{background:#ffeaa7;color:#6c5ce7;}
+
+/* ============ DETAIL VIEW ============ */
+.book-detail-wrapper{
+  display:flex;gap:30px;flex-wrap:wrap;border:1px solid #d8d8d8;
+  padding:20px;border-radius:6px;box-shadow:0 3px 8px rgba(0,0,0,.08);
+  max-width:1000px;margin-inline:auto;
+}
+.book-detail-wrapper img{width:180px;height:270px;object-fit:cover;border:1px solid #ccc;}
+.book-detail-info h3{margin:0 0 10px;font-size:1.3rem;}
+.book-detail-info p{margin:6px 0;}
+.price-tag{font-size:1.4rem;font-weight:700;color:#b12704;margin:10px 0;}
+.action-btn{
+  background:#ffd814;color:#111;padding:.7rem 1.5rem;border:none;border-radius:8px;
+  font-weight:600;cursor:pointer;margin-right:10px;
+}
+.action-btn:hover{background:#f7ca00;}
+  </style>
+  </head>
+  <body>
+
+    <header>
+      <div class="header-content">
+        <h1>StoryGems</h1>
+        <nav>
+          <a href="#" onclick="event.preventDefault(); showHome()">Home</a>
+          <a href="#" onclick="event.preventDefault(); showBooks()">Books</a>
+          <a href="#" onclick="event.preventDefault(); showPlans()">Plans</a>
+          <a href="#" onclick="event.preventDefault(); showContact()">Contact</a>
+          <a href="#" onclick="event.preventDefault(); showBox()">Your Cart 🛒</a>
+        </nav>
+        
+
+        <div class="search-bar">
+          <input type="search" id="search-input" placeholder="Search books…" oninput="handleSearch(event)" />
+        </div>
+      </div>
+    </header>
+    <!-- HOME SCREEN -->
+    <div id="home-screen">
+      <section class="hero">
+        <h2>Your Monthly Book Adventure Awaits!</h2>
+        <p>Get a new book, a bookmark, a mug, and a surprise gift delivered to your door every month!</p>
+      </section>
+
+      <section class="info-section" style="display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2rem;">
+
+        <!-- About Us -->
+        <div class="info-card" style="flex:1 1 250px;max-width:320px;background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,.1);padding:1rem;cursor:pointer;" onclick="toggleAbout()">
+          <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="About Us" style="width:100px;margin:0 auto;display:block;">
+          <h3 style="margin-top:1rem;">About Us</h3>
+          <p>Click here to know who we are, what we offer, and how your child can benefit!</p>
+        </div>
+
+        <!-- Current Offers -->
+        <div class="info-card" style="flex:1 1 250px;max-width:320px;background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,.1);padding:1rem;cursor:pointer;" onclick="showBooks()">
+          <img src="https://cdn-icons-png.flaticon.com/512/3771/3771417.png" alt="Offers" style="width:100px;margin:0 auto;display:block;">
+          <h3 style="margin-top:1rem;">Current Offers</h3>
+          <p>Special deals and limited edition gift boxes for all age groups. Explore now!</p>
+        </div>
+
+        <!-- Limited Time Deals -->
+        <div class="info-card" style="flex:1 1 250px;max-width:320px;background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,.1);padding:1rem;cursor:pointer;" onclick="showBooks()">
+          <img src="https://cdn-icons-png.flaticon.com/512/595/595067.png" alt="Deals" style="width:100px;margin:0 auto;display:block;">
+          <h3 style="margin-top:1rem;">Limited Time Deals</h3>
+          <p>Grab surprise bundles, free gifts, and discounts before time runs out!</p>
+        </div>
+
+      </section>
+
+      <!-- About Us Popup Box -->
+      <div id="about-box" style="display:none;max-width:500px;margin:2rem auto;background:#fff;padding:1.5rem;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:left;">
+        <h3>About StoryGems 💎</h3>
+        <p>StoryGems is India’s most loved monthly book subscription box for kids, teens, and families. Every month, we surprise our readers with handpicked books, bookmarks, personalized mugs, and mystery goodies!</p>
+        <p>Our goal? To build curiosity and imagination in every home — one magical book at a time.</p>
+        <button onclick="document.getElementById('about-box').style.display='none'" class="back-btn">Close</button>
+      </div>
+    </div>
+
+
+
+    <!-- ======== PLANS PAGE ======== -->
+    <!-- 🌟 Plans Page -->
+    <div id="plans-screen" style="display:none; padding: 2rem; background: linear-gradient(135deg, #6a11cb, #2575fc); min-height: 100vh;">
+
+      <h1 style="text-align:center; color: #fff; font-size: 2.5rem; margin-bottom: 2rem; animation: fadeInDown 1s ease;">Choose Your Plan</h1>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+
+        <!-- Basic Plan -->
+        <div class="plan-card" style="animation: fadeInUp 1s ease;">
+          <h2>Basic</h2>
+          <p class="price">₹299/month</p>
+          <ul>
+            <li>1 Surprise Book</li>
+            <li>Kids Category Only</li>
+            <li>Standard Packaging</li>
+          </ul>
+          <button>Choose Plan</button>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="plan-card featured" style="animation: fadeInUp 1.3s ease;">
+          <h2>Premium</h2>
+          <p class="price">₹499/month</p>
+          <ul>
+            <li>2 Surprise Books</li>
+            <li>All Categories Access</li>
+            <li>Gift Packaging</li>
+          </ul>
+          <button>Choose Plan</button>
+        </div>
+
+        <!-- Ultimate Plan -->
+        <div class="plan-card" style="animation: fadeInUp 1.6s ease;">
+          <h2>Ultimate</h2>
+          <p class="price">₹799/month</p>
+          <ul>
+            <li>4 Surprise Books</li>
+            <li>All Categories Access</li>
+            <li>Exclusive Goodies</li>
+          </ul>
+          <button>Choose Plan</button>
+        </div>
+
+      </div>
+    </div>
+
+    <style>
+    /* Card Styles */
+    .plan-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 16px;
+      text-align: center;
+      width: 280px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .plan-card h2 {
+      color: #6a11cb;
+      font-size: 1.5rem;
+    }
+    .plan-card .price {
+      font-size: 1.4rem;
+      color: #2575fc;
+      font-weight: bold;
+    }
+    .plan-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+    .plan-card li {
+      margin: 8px 0;
+    }
+    .plan-card button {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
       cursor: pointer;
       transition: background 0.3s ease;
-      margin-top: 20px;
+    }
+    .plan-card button:hover {
+      background: linear-gradient(90deg, #2575fc, #6a11cb);
+    }
+    .plan-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    .featured {
+      border: 3px solid gold;
+      transform: scale(1.05);
     }
 
-    .play-music-btn:hover {
-      background: #ff9900;
-    }
-
-    .footer {
-      margin-top: 30px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-  </style>
-</head>
-<body>
-  <div class="parallax"></div>
-
-  <div class="container">
-    <h1>The Brave Soldier</h1>
-    <p>
-      There was a soldier who stood tall and proud. He was known for his courage and loyalty to his country.
-    </p>
-    <p>
-      He woke up early every day, ready to serve. Whether it was hot, cold, or rainy, he never complained. 
-      His mission was to protect the people of his nation.
-    </p>
-    <p>
-      One day, his unit was sent to a dangerous mission. The road was tough, and they faced many challenges. But the soldier never gave up. 
-      His determination inspired everyone around him.
-    </p>
-    <p>
-      During the mission, he saved his teammates and kept everyone safe. His bravery became a story everyone admired.
-    </p>
-    <p>
-      When he returned home, the people clapped and cheered for him. But the soldier simply smiled and said, "I was just doing my duty."
-    </p>
-    <p>
-      He showed the true meaning of bravery, dedication, and love for the country. Even today, his story reminds us to be strong and never give up.
-    </p>
-    <button class="play-music-btn" onclick="toggleMusic()">Play Patriotic Music 🎵</button>
-    <div class="footer">Made to honor every brave soldier. 🇮🇳</div>
-  </div>
-
-  <!-- Floating Stars -->
-  <div class="floating-star" style="top: 10%; left: 20%;">⭐</div>
-  <div class="floating-star" style="top: 30%; right: 15%;">🌟</div>
-  <div class="floating-star" style="bottom: 20%; left: 25%;">✨</div>
-  <div class="floating-star" style="bottom: 40%; right: 10%;">⭐</div>
-
-  <!-- Background Music -->
-  <audio id="patriotic-music" loop>
-    <source src="https://www.fesliyanstudios.com/play-mp3/6771" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    const music = document.getElementById('patriotic-music');
-
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
-      } else {
-        music.pause();
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
-    h1 {Thank You}
-  </script>
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    </style>
+
+    
+    <!-- CONTACT PAGE -->
+    <div id="contact-screen" style="display:none; padding: 2rem;">
+
+      <!-- Contact Info Boxes -->
+      <div class="contact-info-container">
+        <div class="contact-box" onclick="window.location.href='mailto:your@email.com'">
+          <i class="fas fa-envelope"></i>
+          <h3>Email</h3>
+          <p>storygems07@gmail.com</p>
+        </div>
+
+        <div class="contact-box" onclick="window.location.href='tel:+1234567890'">
+          <i class="fas fa-phone-alt"></i>
+          <h3>Phone</h3>
+          <p>+91 90143923</p>
+        </div>
+
+        <div class="contact-box" onclick="window.open('https://www.instagram.com/story_gems_official/')">
+          <i class="fab fa-instagram"></i>
+          <h3>Instagram</h3>
+          <p>@story_gems_official</p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <h2 class="form-title">Send us a Message</h2>
+      <form id="contact-form" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+        <p id="response-msg"></p>
+      </form>
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+      .contact-info-container {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease-in-out;
+      }
+
+      .contact-box {
+        background: linear-gradient(135deg, #7b2ff7, #f107a3);
+        padding: 1.5rem;
+        text-align: center;
+        border-radius: 15px;
+        cursor: pointer;
+        flex: 1 1 250px;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: popUp 0.6s ease-in-out;
+      }
+
+      .contact-box:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      }
+
+      .contact-box i {
+        font-size: 2rem;
+        color: #ffd700;
+        margin-bottom: 0.5rem;
+        animation: pulse 2s infinite;
+      }
+
+      .form-title {
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 2rem;
+        color: #6a1b9a;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .contact-form {
+        max-width: 500px;
+        margin: 2rem auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        animation: fadeInUp 1.2s ease-in-out;
+      }
+
+      .contact-form input, .contact-form textarea {
+        padding: 0.75rem;
+        border: none;
+        border-radius: 10px;
+        width: 100%;
+        background: #f0f0f0;
+        font-size: 1rem;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .contact-form input:focus, .contact-form textarea:focus {
+        background: #fff;
+        box-shadow: 0 0 8px #7b2ff7;
+        outline: none;
+      }
+
+      .contact-form button {
+        background: linear-gradient(135deg, #7b2ff7, #f107a3);
+        color: white;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .contact-form button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+
+      #response-msg {
+        text-align: center;
+        margin-top: 0.5rem;
+        font-weight: bold;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes fadeInUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+
+      @keyframes popUp {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.15); }
+      }
+    </style>
+
+    
+    <!-- CATEGORY PAGE (Beautiful Age Group Selection) -->
+    <div id="book-screen" class="book-screen" style="text-align:center; padding:80px; background: linear-gradient(135deg, #6a11cb, #2575fc); color:white; min-height:100vh;">
+
+      <h2 style="font-size:3rem; margin-bottom:60px; font-weight:800; letter-spacing:1px;">✨ Choose Your Age Group ✨</h2>
+
+      <div style="display:flex; justify-content:center; gap:50px; flex-wrap:wrap;">
+
+        <!-- Kids -->
+        <div class="category" onclick="showTopics('kids')" 
+             style="background:white; color:#6a11cb; padding:50px 40px; border-radius:25px; width:300px; text-align:center; 
+                    box-shadow:0 15px 35px rgba(0,0,0,0.25); transition:all 0.3s ease; cursor:pointer; border:4px solid transparent;">
+          <h3 style="margin-bottom:20px; font-size:1.8rem; font-weight:700;">Kids</h3>
+          <p style="font-size:16px; color:#444; line-height:1.6;">Fun stories and magical adventures<br>for young readers! 🌟</p>
+          <button style="margin-top:30px; padding:14px 28px; border:none; border-radius:12px; font-size:1rem; font-weight:bold;
+                         background:linear-gradient(90deg,#6a11cb,#2575fc); color:white; cursor:pointer; box-shadow:0 6px 18px rgba(106,17,203,0.4);">
+            Explore
+          </button>
+        </div>
+
+        <!-- Teens -->
+        <div class="category" onclick="showTopics('teens')" 
+             style="background:white; color:#6a11cb; padding:50px 40px; border-radius:25px; width:300px; text-align:center; 
+                    box-shadow:0 15px 35px rgba(0,0,0,0.25); transition:all 0.3s ease; cursor:pointer; border:4px solid transparent;">
+          <h3 style="margin-bottom:20px; font-size:1.8rem; font-weight:700;">Teens</h3>
+          <p style="font-size:16px; color:#444; line-height:1.6;">Fantasy, mystery, and thrilling<br>journeys for teenagers ⚡</p>
+          <button style="margin-top:30px; padding:14px 28px; border:none; border-radius:12px; font-size:1rem; font-weight:bold;
+                         background:linear-gradient(90deg,#6a11cb,#2575fc); color:white; cursor:pointer; box-shadow:0 6px 18px rgba(106,17,203,0.4);">
+            Explore
+          </button>
+        </div>
+
+        <!-- Adults -->
+        <div class="category" onclick="showTopics('adults')" 
+             style="background:white; color:#6a11cb; padding:50px 40px; border-radius:25px; width:300px; text-align:center; 
+                    box-shadow:0 15px 35px rgba(0,0,0,0.25); transition:all 0.3s ease; cursor:pointer; border:4px solid transparent;">
+          <h3 style="margin-bottom:20px; font-size:1.8rem; font-weight:700;">Adults</h3>
+          <p style="font-size:16px; color:#444; line-height:1.6;">Engaging novels, self-help, and<br>mature reads for adults 📖</p>
+          <button style="margin-top:30px; padding:14px 28px; border:none; border-radius:12px; font-size:1rem; font-weight:bold;
+                         background:linear-gradient(90deg,#6a11cb,#2575fc); color:white; cursor:pointer; box-shadow:0 6px 18px rgba(106,17,203,0.4);">
+            Explore
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Back Button -->
+      <button class="back-btn" onclick="showHome()" 
+              style="margin-top:70px; padding:14px 36px; border:none; border-radius:12px; background:white; 
+                     color:#6a11cb; font-weight:700; font-size:1rem; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,0.25); transition:0.3s;">
+        ⬅ Back to Home
+      </button>
+
+    </div>
+
+    <!-- Hover Effect Styling -->
+    <style>
+      .category:hover {
+        transform: translateY(-12px) scale(1.05);
+        box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+        border:4px solid #ffd700; /* golden glow */
+      }
+      .back-btn:hover {
+        background:linear-gradient(90deg,#6a11cb,#2575fc);
+        color:white;
+      }
+    </style>
+
+<!-- TOPICS -->
+<div id="topics-screen" class="topics-screen">
+  <h2>Select a Topic</h2>
+  <div id="topics-container"></div>
+  <button class="back-btn" onclick="showBooks()">Back to Categories</button>
+</div>
+  <style>
+    .topics-screen {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #8360c3, #2ebf91);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .topics-screen h2 {
+      font-size: 3rem;
+      margin-bottom: 40px;
+      color: #fff;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Topic Card */
+    .topic-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(14px);
+      padding: 28px;
+      border-radius: 22px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid transparent;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin: 15px;
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      transition: all 0.35s ease;
+      text-transform: capitalize;
+    }
+
+    /* Gradient text per topic */
+    .topic-card:nth-child(1) { /* Epics */
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      border-color: #ff9a9e;
+    }
+    .topic-card:nth-child(2) { /* Panchatantra */
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      border-color: #a1c4fd;
+    }
+    .topic-card:nth-child(3) { /* Hitopadesh */
+      background: linear-gradient(135deg, #f6d365, #fda085);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      border-color: #f6d365;
+    }
+    .topic-card:nth-child(4) { /* Arabian Nights */
+      background: linear-gradient(135deg, #84fab0, #8fd3f4);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      border-color: #84fab0;
+    }
+    .topic-card:nth-child(5) { /* Animal Stories */
+      background: linear-gradient(135deg, #fccb90, #d57eeb);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      border-color: #d57eeb;
+    }
+
+    /* Hover Effect */
+    .topic-card:hover {
+      transform: translateY(-10px) scale(1.07);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      border-color: #fff;
+    }
+
+      </style>
+
+<!-- BOOKS LIST -->
+<div id="books-list-screen" class="books-list-screen">
+  <h2 id="list-heading">Books List</h2>
+  <!-- Search results will also render here -->
+  <div class="book-list" id="books-list"></div>
+  <button class="back-btn" id="list-back-btn" onclick="showTopics(currentCategory)">Back</button>
+</div>
+    <style>
+      /* ---------- BOOKS LIST SCREEN (SUPER NICE) ---------- */
+      .books-list-screen {
+        padding: 60px 20px;
+        text-align: center;
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        min-height: 100vh;
+      }
+
+      /* Heading */
+      .books-list-screen h2 {
+        font-size: 2.8rem;
+        margin-bottom: 50px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: #fff; /* 👈 White color */
+        text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      }
+
+      /* Book list grid */
+      .book-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 35px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Book card */
+      .book-list .book-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.35s ease;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Book cover */
+      .book-list .book-card img {
+        width: 100%;
+        max-height: 260px;
+        object-fit: contain;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        transition: transform 0.3s ease;
+      }
+
+      /* Hover effects */
+      .book-list .book-card:hover {
+        transform: translateY(-12px) scale(1.05);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      }
+      .book-list .book-card:hover img {
+        transform: scale(1.1);
+      }
+
+      /* Book title */
+      .book-list .book-card h3 {
+        font-size: 1.2rem;
+        color: #fff;
+        font-weight: 600;
+        margin-bottom: 10px;
+        line-height: 1.4;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      }
+
+      /* Price tag */
+      .book-list .book-card .price {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #ffe259;
+        background: rgba(0,0,0,0.5);
+        padding: 6px 14px;
+        border-radius: 12px;
+        display: inline-block;
+        margin-top: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      }
+
+      
+    </style>
+
+<!-- BOOK DETAIL -->
+<div id="book-detail-screen" style="display:none;padding:4rem 2rem;background:#fff;">
+  <button class="back-btn" onclick="backToList()">← Back to List</button>
+  <div id="book-detail" style="margin-top:2rem;"></div>
+</div>
+    
+    <!-- CART SCREEN -->
+    <div id="cart-screen" style="display:none; padding:4rem 2rem; background:#fff;">
+      <h2>📦 Your Book Box</h2>
+      <div id="cart-items" class="cart-grid"></div>
+      <div style="text-align:center; margin-top:2rem;">
+        <button onclick="backToList()" class="back-btn">← Back to List</button>
+      </div>
+    </div>
+
+<script>
+  
+/* ---------- DATA ---------- */
+let currentCategory='', currentTopic='';
+
+/* Topics */
+const topicsData = {
+  kids:[
+    "Hindu Mythology & Epics",
+    "Panchatantra",
+    "Hitopadesh & Jataka Tales",
+    "Arabian Nights & Islamic Tales",
+    "Animal Stories"
+  ],
+  teens:[
+    "Fantasy & Adventure",
+    "Mystery & Thriller",
+    "Romance",
+    "Science Fiction",
+    "Historical Fiction",
+    "Poetry & Drama",
+    "Self Help & Motivation",
+    "Manga",
+    "Comic"
+  ],
+  adults:[
+    "Literary Fiction","Biography & Memoir","Business & Economics",
+    "Health & Wellness","Philosophy & Spirituality","Science & Technology","Politics & Society"
+  ]
+};
+
+/* ---------- Book arrays ---------- */
+const mythBooks = [
+
+  
+  { title: "Krishna: The Cowherd God Hardcover", price: 499, 
+   image: "images/1.jpg",
+   desc: "The naughtiest kid ever—Krishna who, despite his mischiefs is loved and worshipped by all. A divine child in human form, he is one of the ten incarnations of Lord Vishnu. Besides restoring dharma, he fights demons, tends to cows, is friends with the shepherds, plays flute, and does whatnot. Krishna—The Cowherd God is a beautifully illustrated book to introduce your little ones to the mesmerizing stories of Krishna. Rich in wisdom and knowledge from the Indian mythology, this book is a must-have in your child’s library.A timeless treasury of stories for children!Vibrant and captivating illustrations expand imagination Introduces kids to epic tales and culture of India Simple language makes the stories easy to understand Encourages kids to read Builds a robust vocabulary" },
+    { title: "365 Tales of Ganesh", price: 559, image: "images/3.1.jpg",
+ desc: "Description coming soon..." },
+  
+
+    { title: "365 Tales of Hanuman", price: 699, image: "images/4.jpg", 
+     desc: "Description coming soon..." },
+
+  
+    { title: "365 Krishna Stories: Lord Krishna’s Miracles, Wisdom & Devotion", price: 699, image: "images/5.jpg", 
+     desc: "Description coming soon..." },
+
+  
+    { title: "My First Mythology Tale (Illustrated) (Set of 5 Books)", price: 399, image: "images/6.jpg",
+     desc: "Description coming soon..." },
+
+  
+    { title: "108 Indian Mythology Stories (Illustrated)", price: 399, image: "images/7.jpg", 
+     desc: "Description coming soon..." },
+
+  
+    { title: "Story Book: Krishna The Adorable God (Large Print)", price: 499, image: "images/8.jpg", 
+     desc: "Description coming soon..." },
+
+  
+    { title: "My First Shaped Board Book: Goddess Durga", price: 399, image: "images/9.jpg",
+     desc: "Description coming soon..." },
+
+  
+    { title: "My First Shaped Board Book: Lord Ganesha", price: 399, image: "images/9.jpg",
+     desc: "Description coming soon..." },
+
+  
+    { title: "Mythology Books for Kids (Set of 10 Books)", price: 399, image: "images/10.jpg", 
+     desc: "Description coming soon..." },
+
+  
+    { title: "Tales from Indian Mythology [Collection of 10 Books]", price: 619, image: "images/11.jpg" ,
+     desc: "Description coming soon..." },
+
+  
+    { title: "365 Stories from the Vedas The Upanishads and the Puranas", price: 650, image: "images/2.jpg", 
+     desc: "Description coming soon..." },
+
+  
+    { title: "My First Shaped Board Book: Kali", price: 399, image: "images/12.jpg", desc: "Description coming soon..." },
+
+  
+    { title: "My First Shaped Board Book: Saraswati", price: 399, image: "images/13.jpg",
+      desc: "Description coming soon..." },
+
+  
+    { title: "My First Shaped Board Book: Lord Shiva", price: 399, image: "images/14.jpg", 
+     desc: "Description coming soon..." },
+
+  
+    { title: "My First Shaped Board Book: Lord Hanuman", price: 399, image: "images/15.jpg",
+     desc: "Description coming soon..." },
+
+  
+    { title: "My First Shaped Board Book: Ram", price: 399, image: "images/16.jpg",    desc: "Description coming soon..." },
+
+  
+    { title: "My First Library of Hindu Gods and Goddesses (Boxed Set)", price: 629, image: "images/17.jpg",
+  desc: "Description coming soon..." }, 
+
+  
+    { title: "Shlokas and Mantras For Kids (Padded Board)", price: 399, image: "images/18.jpg",
+     desc: "Description coming soon..." },
+
+  
+    { title: "Shlokas and Mantras - Activity Book", price: 399, image: "images/19.jpg", 
+     desc: "Description coming soon..." },
+
+  
+    { title: "Shlokas & Mantras for Kids (AWEJOY)", price: 499, image: "images/20.jpg" ,
+     desc: "Description coming soon..." },
+
+  
+    { title: "108 Festival Stories for Kids (Illustrated)", price: 399, image: "images/21.jpg",
+     desc: "Description coming soon..." },
+
+  
+    { title: "Mahabharata: Stories of Valor and Virtue", price: 499, image: "images/22.jpg", 
+     desc: "Description coming soon..." },
+
+  
+    { title: "108 Krishna Stories for Children (Illustrated)", price: 449, image: "images/23.jpg", 
+     desc: "Description coming soon..." },
+
+  
+    { title: "My First Shaped Board Book: Sai Baba", price: 399, image: "images/24.jpg",
+     desc: "Description coming soon..." },
+
+  
+    { title: "My First Shaped Board Book: Buddha", price: 399, image: "images/25.jpg",
+     desc: "Description coming soon..." },
+
+  
+    { title: "Shlokas and Mantras for kids | Padded Board + Sticker Activity Book", price: 499, image: "images/26.jpg" , 
+     desc: "Description coming soon..." },
+
+  
+    { title: "Illustrated Bhagavad Gita for Children", price: 899, image: "images/27.jpg" , 
+     desc: "Description coming soon..." },
+
+  
+    { title: "Little Krishna – Illustrated Untold Stories from Childhood", price: 559, image: "images/28.jpg",
+     desc: "Description coming soon..." },
+
+  
+    { title: "Ganesha: The Elephant Headed God", price: 499, image: "images/29.jpg", desc: "Description coming soon..." },
+
+  
+    { title: "Nava Durga: The Nine Forms Of The Goddess", price: 499, image: "images/30.jpg",
+     desc: "Description coming soon..." },
+
+  
+    { title: "Shiva: The Three‑Eyed God", price: 519, image: "images/31.jpg", 
+     desc: "Description coming soon..." },
+  ];
+
+/* Helper to ensure every book has an image */
+function withImg(obj){
+  const fallback = 'https://via.placeholder.com/90x135?text=Cover';
+  return { ...obj, image: obj.image || fallback };
+}
+
+  const booksData = {
+    kids: {
+      "Hindu Mythology & Epics": mythBooks,
+
+      "Panchatantra": [
+        {title:"101 Tales The Great Panchatantra Collection",price:519, image: "images/Panchatantra 2.1.jpg",
+desc: "Description coming soon..."},
+
+                   
+       {title:"Pandit Vishnu Sharma's Panchatantra",price:999, image: "images/Panchatantra 2.2.jpg",
+ desc: "Description coming soon..."},
+
+                   
+        {title:"Animals Tales From Panchtantra",price:499, image: "images/Panchatantra 2.3.jpg",
+ desc: "Description coming soon..."},
+
+                   
+       {title:"Panchatantra Most Loved Tales",price:599, image: "images/Panchatantra 2.4.jpg",
+ desc: "Description coming soon..."},
+
+          
+        {title:"101 Panchatantra Stories",price:499, image: "images/Panchatantra 2.5.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+        {title:"Illustrated 5 Minutes Read Aloud Panchatantra Stories",price:499, image: "images/Panchatantra 2.6.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+        {title:"Panchatantra Treasury Tales",price:449, image: "images/Panchatantra 2.7.jpg",
+                 desc: "Description coming soon..."},
+ ],
+                 
+      "Hitopadesh & Jataka Tales": [
+        
+       {title:"Jataka Panchatantra And Hitopadesha Collection", price:1999, image: "Hitopadesh & Jataka Tales Books/Jataka Panchatantra And Hitopadesha Collection 1.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+        {title:"The Illustrated Jataka Tales", price:499 , image: "Hitopadesh & Jataka Tales Books/The Illustrated Jataka Tales 1.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+       {title:"151 Jataka Tales", price:450, image: "Hitopadesh & Jataka Tales Books/151 Jataka Tales 1.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+    {title:"Jataka Tales (Set of 3 Books with 51 Moral Stories)", price:520, image: "Hitopadesh & Jataka Tales Books/Jataka Tales (Set of 3 Books with 51 Moral Stories) 1.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+       {title:"The Jataka Tales", price:599, image: "Hitopadesh & Jataka Tales Books/The Jataka Tales 1.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+      {title:"The Complete Hitopadesh Omnibus (38 in 1)", price:599, image: "Hitopadesh & Jataka Tales Books/The Complete Hitopadesh Omnibus (38 in 1) 1.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+      ],
+
+      "Arabian Nights & Islamic Tales": [
+       {title:"Story Book - Short Stories from Islam", price:400, image: "images/Arabian Nights & Islamic Tales/Arabian Nights & Islamic Tales 1.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+        {title:"My First Book About Prophet Muhammad", price:1199, image: "images/Arabian Nights & Islamic Tales/My First Book About Prophet Muhammad 1.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+     {title:"The Prophet of Mankind – Life of Prophet Muhammad (SAW)", price:599, image: "images/Arabian Nights & Islamic Tales/he Prophet of Mankind – Life of Prophet Muhammad (SAW).jpg",
+                 desc: "Description coming soon..."},
+
+                   
+        {title:"Learning 40 Hadiths and 56 Inspired Stories for Kids", price:550, image: "images/Arabian Nights & Islamic Tales/Learning 40 Hadiths and 56 Inspired Stories for Kids 1.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+        {title:"Amazing Muslims Who Changed the World", price:1119, image: "images/Arabian Nights & Islamic Tales/Amazing Muslims Who Changed the World.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+        {title:"The Proudest Blue", price:799, image: "images/Arabian Nights & Islamic Tales/The Proudest Blue.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+        {title:"Best Quran Stories - Set of 5 Board Books", price:1449, image: "images/Arabian Nights & Islamic Tales/Best Quran Stories - Set of 5 Board Books.jpg",
+                desc: "Description coming soon..."},
+
+                
+        {title:"The Great Four Rashidun Caliphs of Islam", price:1900, image: "images/Arabian Nights & Islamic Tales/The Great Four Rashidun Caliphs of Islam.jpg",
+          desc: "Description coming soon..."},
+
+                 
+      {title:"The Arabian Nights: Tales of Thousand Nights and a Night (Vol.1)", price:699, image: "images/Arabian Nights & Islamic Tales/The Arabian Nights Tales of Thousand Nights and a Night (Vol.1).jpg",
+                 desc: "Description coming soon..."},
+
+                   
+    {title:"The Arabian Nights: Illustrated Book For Children", price:599, image: "images/Arabian Nights & Islamic Tales/The Arabian Nights Illustrated Book For Children.jpg",
+                 desc: "Description coming soon..."},
+
+                   
+       {title:"Tales From The Arabian Nights (Unabridged Classics)", price:499, image: "images/Arabian Nights & Islamic Tales/Tales From The Arabian Nights (Unabridged Classics).jpg",
+         desc: "Description coming soon..."},
+
+        
+        {title:"Arabian Nights (Deluxe Hardbound Edition)", price:699, image: "images/Arabian Nights & Islamic Tales/Arabian Nights (Deluxe Hardbound Edition).jpg",
+          desc: "Description coming soon..."},
+
+        
+      
+        {title:"Usborne Illustrated Arabian Nights Paperback ", price:1399, image: "images/Arabian Nights & Islamic Tales/Illustrated Arabian Nights (Illustrated Story Collections).jpg",
+          desc: "Description coming soon..."},
+        
+        
+        {title:"The Arabian Nights Children's Collection (Easy Classics): 10 Book Box Set", price:600, image: "images/Arabian Nights & Islamic Tales/The Arabian Nights Children's Collection (Easy Classics) 10 Book Box Set.jpg",
+          desc: "Description coming soon..."},
+        
+       
+        {title:"Moonlight Magic of Arabian Nights for Children", price:1120, image: "images/Arabian Nights & Islamic Tales/Moonlight Magic of Arabian Nights for Children.jpg",
+          desc: "Description coming soon..."},
+        
+       
+        {title:"Arabian Nights for Children ", price:599, image: "images/Arabian Nights & Islamic Tales/Arabian Nights for Children.jpg", desc: "Description coming soon..."},
+      ],
+
+      "Animal Stories": [
+        
+        {title:"108 Short Stories for Kids", price:459, image: "Animal Stories/108 Short Stories for Kids 1.jpg",
+         desc: "Description coming soon..."},
+        
+        {title:"101 Animal Stories", price:499, image: "Animal Stories/101 Animal Stories 1.jpg",
+         desc: "Description coming soon..."},
+        
+        
+      {title:"Usborne Illustrated Animal Stories", price:650, image: "Animal Stories/Usborne Illustrated Animal Stories 1.jpg",
+       desc: "Description coming soon..."},
+
+        
+      {title:"101 Animal Stories (GO WOO)", price:499, image: "Animal Stories/101 Animal Stories (GO WOO) 1.jpg",
+       desc: "Description coming soon..."},
+
+        
+        {title:"My First Board Book Animals (Set of 5)", price:699, image: "Animal Stories/My First Board Book Animals (Set of 5) 1.jpg",
+         desc: "Description coming soon..."},
+        
+        
+       {title:"Animal Stories for Children - Premium", price:599, image: "Animal Stories/Animal Stories for Children - Premium 1.jpg",
+        desc:"Description coming soon..."},
+
+        
+      {title:"Moral Story Book - Illustrated Bedtime", price:450, image: "Animal Stories/Moral Story Book - Illustrated Bedtime 1.jpg",
+        desc:"Description coming soon..."},
+
+        
+        {title:"PW Moral Story Books (Set of 10)", price:499, image: "Animal Stories/PW Moral Story Books (Set of 10) 1.jpg",
+          desc:"Description coming soon..."},
+
+        
+       {title:"My First Shaped Board Book: Lion", price:499, image: "Animal Stories/My First Shaped Board Book Lion 1.jpg",
+         desc:"Description coming soon..."},
+
+        
+       {title:"My First Shaped Board Book: Elephant", price:499, image: "Animal Stories/My First Shaped Board Book Elephant 1.jpg",
+         desc:"Description coming soon..."},
+
+        
+        {title:"My First Shaped Board Book: Monkey", price:499, image: "Animal Stories/My First Shaped Board Book Monkey 1.jpg",
+          desc:"Description coming soon..."},
+        
+      ]
+    },
+
+    teens: {
+      
+      "Fantasy & Adventure": [
+      /* ---------- SEQUENCE BOOKS (20) ---------- */
+        
+      /* Percy Jackson (5) */
+        
+      { title: "Percy Jackson: The Lightning Thief", price: 399, image: "images/teens/Percy Jackson The Lightning Thief 1.jpg",
+        desc: "Percy discovers he is a demigod and begins his adventures tied to Greek mythology." },
+      { title: "Percy Jackson: Sea of Monsters", price: 399, image: "images/teens/Percy Jackson Sea of Monsters 2.jpg",
+        desc: "Percy embarks on a quest to retrieve the Golden Fleece to save Camp Half-Blood." },
+
+        
+      { title: "Percy Jackson: The Titan’s Curse", price: 429, image: "images/teens/Percy Jackson The Titan’s Curse 3.jpg",
+        desc: "Percy faces new dangers as the prophecy of the child of the Big Three looms closer." },
+
+        
+      { title: "Percy Jackson: The Battle of the Labyrinth", price: 449, image: "images/teens/Percy Jackson The Battle of the Labyrinth 4.jpg",
+        desc: "Percy and friends journey through Daedalus’s maze to stop Kronos’s rising army." },
+
+        
+      { title: "Percy Jackson: The Last Olympian", price: 479, image: "images/teens/Percy Jackson The Last Olympian 4.jpg",
+        desc: "The epic finale as Percy leads the final stand to protect Olympus from Kronos." },
+
+      /* Harry Potter (7) */
+        
+      { title: "Harry Potter : The Complete Collection (Set of 7 Books) ", price: 3229, image: "images/teens/Harry Potter The Complete Collection (Set of 7 Books) 1.jpg",
+        desc: "." },
+
+        
+      { title: "Harry Potter and the Chamber of Secrets Children's Hardcover ", price: 499, image: "images/teens/Harry Potter and the Chamber of Secrets Children's Hardcover 1.jpg",
+        desc: "Harry returns to Hogwarts and uncovers the secret of the Chamber of Secrets." },
+
+        
+      { title: "Harry Potter and the Prisoner of Azkaban", price: 529, image: "images/teens/Harry Potter and the Prisoner of Azkaban.jpg",
+        desc: "A mysterious prisoner escapes Azkaban and Harry learns shocking truths about his past." },
+
+        
+      { title: "Harry Potter and the Goblet of Fire", price: 549, image: "images/teens/Harry Potter and the Goblet of Fire.jpg",
+        desc: "Harry is unexpectedly entered into the dangerous Triwizard Tournament." },
+
+        
+      { title: "Harry Potter and the Order of the Phoenix", price: 559, image: "images/teens/Harry Potter and the Order of the Phoenix.jpg",
+        desc: "Harry forms Dumbledore’s Army as Voldemort’s return threatens the wizarding world." },
+
+        
+      { title: "Harry Potter and the Half-Blood Prince", price: 579, image: "images/teens/Harry Potter and the Half-Blood Prince.jpg",
+        desc: "Harry discovers Voldemort’s dark past and the secret of Horcruxes." },
+
+        
+      { title: "Harry Potter and the Deathly Hallows", price: 599, image: "images/teens/Harry Potter and the Deathly Hallows.jpg",
+        desc: "Harry, Ron, and Hermione go on a dangerous mission to destroy Voldemort’s Horcruxes." },
+
+      /* Lord of the Rings Trilogy (3) */
+        
+      { title: "The Hobbit & The Lord of the Rings Boxed Set Paperback ", price: 549, image: "images/teens/The Hobbit & The Lord of the Rings Boxed Set Paperback.jpg",
+        desc: "Frodo begins his quest to destroy the One Ring, aided by the Fellowship." },
+
+        
+      { title: "The Two Towers", price: 559, image: "images/teens/The Two Towers.jpg",
+        desc: "The Fellowship is divided as battles erupt and Frodo moves closer to Mordor." },
+
+        
+      { title: "The Return of the King", price: 579, image: "images/teens/The Return of the King.jpg",
+        desc: "The final battle for Middle-earth takes place as Frodo struggles to destroy the Ring." },
+        
+
+      /* Narnia (3) */
+
+        
+      { title: "The Lion, the Witch and the Wardrobe", price: 379, image: "images/teens/The Lion, the Witch and the Wardrobe.jpg",
+        desc: "Four siblings step into a magical wardrobe and discover the enchanted land of Narnia." },
+
+        
+      { title: "Prince Caspian", price: 389, image: "images/teens/Prince Caspian.jpg",
+        desc: "The Pevensie children return to Narnia to help Prince Caspian reclaim his throne." },
+      { title: "The Voyage of the Dawn Treader", price: 399, image: "images/teens/The Voyage of the Dawn Treader.jpg",
+        desc: "Lucy, Edmund, and Eustace sail with Caspian on a perilous voyage to the world’s edge." },
+
+        /* ---------- NON-SEQUENCE STANDALONE / MIX (24) ---------- */
+
+        
+          { title: "The Hobbit", price: 459, image: "images/teens/The Hobbit.jpg",
+            desc: "Bilbo Baggins embarks on a grand adventure with dwarves and a dragon." },
+
+        
+          { title: "Eragon", price: 459, image: "images/teens/Eragon.jpg",
+            desc: "A young farm boy discovers a dragon egg, sparking a destiny of magic and rebellion." },
+
+        
+          { title: "Howl’s Moving Castle", price: 379, image: "images/teens/Howl’s Moving Castle.jpg",
+            desc: "A young girl cursed into an old woman’s body meets a powerful wizard in a moving castle." },
+
+        
+          { title: "The Girl Who Drank the Moon", price: 399, image: "images/teens/The Girl Who Drank the Moon.jpg",
+            desc: "A magical girl raised by a witch must unlock her destiny." },
+
+        
+          { title: "Stardust", price: 429, image: "images/teens/Stardust.jpg",
+            desc: "A young man ventures into a magical realm to retrieve a fallen star." },
+
+        
+          { title: "The Neverending Story", price: 449, image: "images/teens/The Neverending Story.jpg",
+            desc: "A boy discovers a magical book that pulls him into the land of Fantastica." },
+
+        
+          { title: "City of Bones (Mortal Instruments)", price: 469, image: "images/teens/City of Bones (Mortal Instruments).jpg",
+            desc: "Clary Fray discovers she belongs to a secret world of Shadowhunters." },
+
+
+        
+          { title: "The Shadow and Bone Trilogy Boxed Set: Shadow and Bone, Siege and Storm, Ruin and Rising Paperback", price: 459, image: "images/teens/Shadow and Bone.jpg",
+            desc: "A girl discovers her hidden power that could save her war-torn world." },
+
+        
+          { title: "SIX OF CROWS: CROOKED KINGDOM(COLLECTOR'S EDITION)", price: 469, image: "images/teens/SIX OF CROWS CROOKED KINGDOM(COLLECTOR'S EDITION).jpg",
+            desc: "Six dangerous outcasts attempt a nearly impossible heist." },
+
+        
+          { title: "Caraval", price: 439, image: "images/teens/Caraval.jpg",
+            desc: "A magical competition blurs the line between illusion and reality." },
+
+        
+          { title: "Simon & Schuster Legendborn Paperback ", price: 449, image: "images/teens/Simon & Schuster Legendborn Paperback.jpg",
+            desc: "A teen discovers a secret society descended from King Arthur’s knights." },
+
+        
+          { title: "An Ember In The Ashes - Ember Quartet (1) Paperback ", price: 459, image: "images/teens/An Ember in the Ashes.jpg",
+            desc: "A slave girl and a soldier fight against a brutal empire." },
+
+        
+          { title: "Children of Blood and Bone", price: 479, image: "images/teens/Children of Blood and Bone.jpg",
+            desc: "Zélie fights to restore magic to her people in a world of oppression." },
+
+        
+          { title: "Seraphina", price: 429, image: "images/teens/Seraphina.jpg",
+            desc: "In a land where dragons and humans coexist, a girl hides a dangerous secret." },
+          { title: "The Priory of the Orange Tree", price: 599, image: "images/teens/The Priory of the Orange Tree.jpg",
+            desc: "A queen, a dragon rider, and a mage must unite to stop an ancient evil." },
+
+        
+          { title: "The Graveyard Book", price: 389, image: "images/teens/The Graveyard Book.jpg",
+            desc: "A boy raised by ghosts in a graveyard grows up among the supernatural." },
+
+        
+          { title: "Coraline", price: 349, image: "images/teens/Coraline.jpg",
+            desc: "A girl discovers a dark parallel world behind a hidden door." },
+
+        
+          { title: "The Night Circus", price: 479, image: "images/teens/The Night Circus.jpg",
+            desc: "Two magicians’ apprentices battle in a mysterious traveling circus." },
+
+        
+          { title: "The House in the Cerulean Sea", price: 459, image: "images/teens/The House in the Cerulean Sea.jpg",
+            desc: "A caseworker meets magical children who change his life forever." },
+
+        
+          { title: "A Wizard of Earthsea (A Puffin Book) Paperback", price: 389, image: "images/teens/A Wizard of Earthsea.jpg",
+            desc: "A young wizard struggles with his own dark mistakes." },
+
+        
+          { title: "The Dark is Rising", price: 399, image: "images/teens/The Dark is Rising.jpg",
+            desc: "A boy learns he is an immortal destined to fight the Dark." },
+
+        
+          { title: "Inkheart", price: 399, image: "images/teens/Inkheart.jpg",
+            desc: "A girl discovers her father can bring book characters to life." },
+
+        
+          { title: "The School for Good and Evil", price: 389, image: "images/teens/The School for Good and Evil.jpg",
+            desc: "Best friends are taken to a school where heroes and villains are trained." },
+
+        
+          { title: "Nevermoor: The Trials of Morrigan Crow", price: 379, image: "images/teens/Nevermoor The Trials of Morrigan Crow.jpg",
+            desc: "A cursed girl is whisked away to a magical society where she must prove her worth." },
+
+        
+          { title: "The Silver Chair (Narnia standalone)", price: 399, image: "images/teens/The Silver Chair (Narnia standalone).jpg",
+            desc: "Eustace and Jill return to Narnia to rescue Prince Rilian." },
+
+        
+          { title: "The Golden Compass", price: 429, image: "images/teens/The Golden Compass.jpg",
+            desc: "Lyra Belacqua embarks on a dangerous journey through parallel worlds." }
+],
+
+        "Mystery & Thriller": [
+          
+          /* ---- Series / Sequels (30) ---- */
+          
+          { title: "Nancy Drew: The Secret of the Old Clock (Vol. 1)", price: 299, image: "images/teens-mystery1.jpg", desc: "Nancy Drew’s very first case where she uncovers a hidden will." },
+          
+          { title: "Nancy Drew: The Hidden Staircase (Vol. 2)", price: 299, image: "images/teens-mystery2.jpg", desc: "Nancy solves the eerie mystery of a haunted mansion." },
+
+          
+          { title: "Nancy Drew: The Bungalow Mystery (Vol. 3)", price: 299, image: "images/teens-mystery3.jpg", desc: "Nancy’s vacation turns into a thrilling investigation." },
+
+          
+          { title: "Nancy Drew: The Mystery at Lilac Inn (Vol. 4)", price: 299, image: "images/teens-mystery4.jpg", desc: "Nancy faces impersonation and burglary at Lilac Inn." },
+
+          
+          { title: "Hardy Boys: The Tower Treasure (Vol. 1)", price: 299, image: "images/teens-mystery5.jpg", desc: "Frank and Joe Hardy search for stolen valuables." },
+
+          
+          { title: "Hardy Boys: The House on the Cliff (Vol. 2)", price: 299, image: "images/teens-mystery6.jpg", desc: "The Hardy brothers uncover smuggling operations." },
+
+          
+          { title: "Hardy Boys: The Secret of the Old Mill (Vol. 3)", price: 299, image: "images/teens-mystery7.jpg", desc: "A counterfeit money scheme puts the brothers in danger." },
+
+          
+          { title: "Hardy Boys: The Missing Chums (Vol. 4)", price: 299, image: "images/teens-mystery8.jpg", desc: "Frank and Joe investigate their missing friends." },
+
+          
+          { title: "A Good Girl’s Guide to Murder (Book 1)", price: 399, image: "images/teens-mystery9.jpg", desc: "Pip investigates a supposedly solved murder in her town." },
+
+          
+          { title: "Good Girl, Bad Blood (Book 2)", price: 399, image: "images/teens-mystery10.jpg", desc: "Pip is pulled back into detective work when a boy goes missing." },
+
+          
+          { title: "As Good As Dead (Book 3)", price: 399, image: "images/teens-mystery11.jpg", desc: "Pip’s final case becomes more personal and dangerous than ever." },
+
+          
+          { title: "Truly Devious (Book 1)", price: 399, image: "images/teens-mystery15.jpg", desc: "Stevie Bell joins a school with a deadly unsolved case." },
+
+          
+          { title: "The Vanishing Stair (Book 2)", price: 399, image: "images/teens-mystery16.jpg", desc: "Stevie continues her hunt for the Ellingham murderer." },
+
+          
+          { title: "The Hand on the Wall (Book 3)", price: 399, image: "images/teens-mystery17.jpg", desc: "The mystery of Truly Devious comes to a shocking end." },
+
+          
+          { title: "The Box in the Woods (Book 4)", price: 399, image: "images/teens-mystery18.jpg", desc: "Stevie investigates a summer camp murder case." },
+
+          
+          { title: "One of Us Is Lying (Book 1)", price: 399, image: "images/teens-mystery19.jpg", desc: "Five students walk into detention, only four walk out alive." },
+
+          
+          { title: "One of Us Is Next (Book 2)", price: 399, image: "images/teens-mystery20.jpg", desc: "A new game of truth or dare ends in tragedy." },
+
+          
+          { title: "The Cousins Karen M. McManus (The Cousins, Two Can Keep a Secret, You will be the Death of Me) ", price: 399, image: "images/teens-mystery21.jpg", desc: "Family secrets unravel in this suspenseful mystery." },
+
+          
+          { title: "Pretty Little Liars (Book 1)", price: 399, image: "images/teens-mystery22.jpg", desc: "Four girls are haunted by secrets after a friend’s disappearance." },
+
+          
+          { title: "Flawless (PLL Book 2)", price: 399, image: "images/teens-mystery23.jpg", desc: "The lies get deeper and deadlier." },
+
+          
+          { title: "Perfect (PLL Book 3)", price: 399, image: "images/teens-mystery24.jpg", desc: ",BHV The girls face blackmail, betrayal, and deadly games." },
+
+          
+          { title: "Unbelievable (PLL Book 4)", price: 399, image: "images/teens-mystery25.jpg", desc: "The shocking truth about ‘A’ is revealed." },
+
+          
+          { title: "Murder Most Unladylike (Book 1)", price: 349, image: "images/teens-mystery26.jpg", desc: "Daisy and Hazel investigate a murder at their boarding school." },
+
+          
+          { title: "Arsenic for Tea (Book 2)", price: 349, image: "images/teens-mystery27.jpg", desc: "A country house party turns deadly." },
+
+          
+          { title: "First Class Murder (Book 3)", price: 349, image: "images/teens-mystery28.jpg", desc: "Murder strikes on a train journey." },
+
+          
+          { title: "Jolly Foul Play (Book 4)", price: 349, image: "images/teens-mystery29.jpg", desc: "The girls solve a case involving a cruel prank gone wrong." },
+
+          
+          { title: "Mistletoe and Murder (Book 5)", price: 349, image: "images/teens-mystery30.jpg", desc: "Christmas at Cambridge turns sinister." },
+          
+
+          /* ---- Standalone (14) ---- */
+          { title: "We Were Liars", price: 399, image: "images/teens-mystery31.jpg", desc: "A wealthy family’s summer secrets unravel in tragedy." },
+
+          
+          { title: "Thirteen Reasons Why", price: 399, image: "images/teens-mystery32.jpg", desc: "A girl leaves behind tapes explaining her suicide." },
+
+          
+          { title: "One of Us Is Back", price: 399, image: "images/teens-mystery33.jpg", desc: "The Bayview crew faces their darkest secrets yet." },
+
+          
+          { title: "A Study in Charlotte", price: 399, image: "images/teens-mystery34.jpg", desc: "Descendants of Holmes and Watson team up at school." },
+
+          
+          { title: "Death Cloud (Young Sherlock Holmes)", price: 349, image: "images/teens-mystery35.jpg", desc: "A teenage Sherlock Holmes faces his first big case." },
+
+          
+          { title: "The Girl in the Locked Room", price: 299, image: "images/teens-mystery36.jpg", desc: "A haunting ghost story mixed with mystery." },
+
+          
+          { title: "Dead Girls Can’t Tell Secrets", price: 399, image: "images/teens-mystery37.jpg", desc: "A girl investigates her sister’s suspicious accident." },
+
+          
+          { title: "The Twin", price: 399, image: "images/teens-mystery38.jpg", desc: "A girl’s twin moves in after their mother’s death, but things feel off." },
+
+          
+          { title: "You’ll Be the Death of Me", price: 399, image: "images/teens-mystery39.jpg", desc: "Three students skip school and witness a murder." },
+
+          
+          { title: "Two Can Keep a Secret", price: 399, image: "images/teens-mystery40.jpg", desc: "In a town full of secrets, someone always ends up dead." },
+
+          
+          { title: "The Inheritance Games", price: 399, image: "images/teens-mystery41.jpg", desc: "A girl inherits a billionaire’s fortune and a deadly puzzle." },
+
+          
+          { title: "The Final Gambit", price: 399, image: "images/teens-mystery42.jpg", desc: "The shocking conclusion to the inheritance puzzle." },
+
+          
+          { title: "The Agathas", price: 399, image: "images/teens-mystery43.jpg", desc: "Two unlikely friends solve a classmate’s disappearance." },
+
+          
+          { title: "Nothing More to Tell", price: 399, image: "images/teens-mystery44.jpg", desc: "A girl investigates the murder of her teacher." }
+          
+        ],
+
+        "Romance": [
+          { title: "To All the Boys I’ve Loved Before", price: 450, image: "images/teens-romance1.jpg",
+            desc: "A sweet high-school romance about Lara Jean’s secret letters getting unexpectedly revealed." },
+
+          
+          { title: "Five Feet Apart", price: 499, image: "images/teens-romance2.jpg",
+            desc: "A heart-touching story about love, distance, and hope." }
+        ],
+       "Science Fiction":[  
+         { title: "Ender’s Game", price: 399, image: "images/teens-scifi1.jpg",
+           desc: "A young boy is trained through war games to save humanity from alien invasion." },
+
+         { title: "The Hunger Games", price: 349, image: "images/teens-scifi2.jpg",
+           desc: "Katniss Everdeen must fight for survival in a deadly televised competition." },
+
+         { title: "Catching Fire", price: 349, image: "images/teens-scifi3.jpg",
+           desc: "Katniss becomes a symbol of rebellion as the Hunger Games take a darker turn." },
+
+         { title: "Mockingjay", price: 349, image: "images/teens-scifi4.jpg",
+           desc: "The final battle against the Capitol begins with Katniss leading the revolution." },
+
+         { title: "Divergent", price: 349, image: "images/teens-scifi5.jpg",
+           desc: "In a divided society, Tris discovers she doesn’t fit into any single faction." },
+
+         { title: "Insurgent", price: 349, image: "images/teens-scifi6.jpg",
+           desc: "Tris and Four uncover dangerous secrets about their world." },
+
+         { title: "Allegiant", price: 349, image: "images/teens-scifi7.jpg",
+           desc: "The shocking truth about their society is finally revealed." },
+
+         { title: "The Maze Runner", price: 349, image: "images/teens-scifi8.jpg",
+           desc: "A group of teens must escape a deadly maze filled with secrets." },
+
+         { title: "The Scorch Trials", price: 349, image: "images/teens-scifi9.jpg",
+           desc: "Thomas and the Gladers face new deadly challenges outside the maze." },
+
+         { title: "The Death Cure", price: 349, image: "images/teens-scifi10.jpg",
+           desc: "The fight against WICKED reaches its final stage." },
+
+         { title: "The Kill Order", price: 349, image: "images/teens-scifi11.jpg",
+           desc: "A prequel revealing how the deadly Flare virus was unleashed." },
+
+         { title: "The Fever Code", price: 349, image: "images/teens-scifi12.jpg",
+           desc: "Secrets of the maze and Thomas’s past are uncovered." },
+
+         { title: "Cinder (The Lunar Chronicles)", price: 399, image: "images/teens-scifi13.jpg",
+           desc: "A cyborg girl discovers her destiny in a futuristic retelling of Cinderella." },
+
+         { title: "Scarlet (The Lunar Chronicles)", price: 399, image: "images/teens-scifi14.jpg",
+           desc: "A retelling of Red Riding Hood with a sci-fi twist." },
+
+         { title: "Cress (The Lunar Chronicles)", price: 399, image: "images/teens-scifi15.jpg",
+           desc: "A Rapunzel-inspired tale of a hacker trapped in a satellite." },
+
+         { title: "Winter (The Lunar Chronicles)", price: 399, image: "images/teens-scifi16.jpg",
+           desc: "The epic finale where rebels fight against the evil Queen Levana." },
+
+         { title: "Illuminae", price: 449, image: "images/teens-scifi17.jpg",
+           desc: "A found-footage-style story of two teens surviving an alien attack in space." },
+
+         { title: "Gemina", price: 449, image: "images/teens-scifi18.jpg",
+           desc: "Two new heroes fight to survive aboard a space station under siege." },
+
+         { title: "Obsidio", price: 449, image: "images/teens-scifi19.jpg",
+           desc: "The epic conclusion to the Illuminae Files trilogy." },
+
+         { title: "Aurora Rising", price: 449, image: "images/teens-scifi20.jpg",
+           desc: "A misfit crew of space cadets embark on a dangerous mission." },
+
+         { title: "Aurora Burning", price: 449, image: "images/teens-scifi21.jpg",
+           desc: "The squad faces even bigger dangers as enemies close in." },
+
+         { title: "Aurora’s End", price: 449, image: "images/teens-scifi22.jpg",
+           desc: "The thrilling finale of the Aurora Cycle trilogy." },
+
+         { title: "Skyward", price: 449, image: "images/teens-scifi23.jpg",
+           desc: "Spensa dreams of becoming a pilot to defend humanity from alien threats." },
+
+         { title: "Starsight", price: 449, image: "images/teens-scifi24.jpg",
+           desc: "Spensa infiltrates an alien empire to uncover the truth." },
+
+         { title: "Cytonic", price: 449, image: "images/teens-scifi25.jpg",
+           desc: "Spensa enters a strange realm to fight cosmic enemies." },
+
+         { title: "Defy the Stars", price: 449, image: "images/teens-scifi26.jpg",
+           desc: "A soldier and an AI team up to save their worlds." },
+
+         { title: "Defy the Worlds", price: 449, image: "images/teens-scifi27.jpg",
+           desc: "The bond between a girl and an android is tested." },
+
+         { title: "Defy the Fates", price: 449, image: "images/teens-scifi28.jpg",
+           desc: "The battle for humanity’s survival reaches its climax." },
+
+         { title: "Legend", price: 349, image: "images/teens-scifi29.jpg",
+           desc: "Two teens from opposite sides of a dystopian society collide." },
+
+         { title: "Prodigy", price: 349, image: "images/teens-scifi30.jpg",
+           desc: "June and Day uncover corruption and betrayal." },
+
+         { title: "Champion", price: 349, image: "images/teens-scifi31.jpg",
+           desc: "The explosive finale of the Legend trilogy." },
+
+         { title: "Rebel", price: 349, image: "images/teens-scifi32.jpg",
+           desc: "A return to the world of Legend, years later." },
+
+         { title: "Warcross", price: 399, image: "images/teens-scifi33.jpg",
+           desc: "A teenage hacker enters a virtual reality game and uncovers a conspiracy." },
+
+         { title: "Wildcard", price: 399, image: "images/teens-scifi34.jpg",
+           desc: "The stakes rise as secrets about Warcross are revealed." },
+
+         { title: "Renegades", price: 399, image: "images/teens-scifi35.jpg",
+           desc: "In a world of superheroes, a girl seeks revenge against the Renegades." },
+
+         { title: "Archenemies", price: 399, image: "images/teens-scifi36.jpg",
+           desc: "Nova and Adrian struggle with love, loyalty, and secrets." },
+
+         { title: "Supernova", price: 399, image: "images/teens-scifi37.jpg",
+           desc: "The explosive conclusion of the Renegades trilogy." },
+
+         { title: "Ready Player One", price: 449, image: "images/teens-scifi38.jpg",
+           desc: "A gamer races to solve puzzles in a virtual world for ultimate power." },
+
+         { title: "Ready Player Two", price: 449, image: "images/teens-scifi39.jpg",
+           desc: "The OASIS faces a new deadly challenge." },
+
+         { title: "Across the Universe", price: 399, image: "images/teens-scifi40.jpg",
+           desc: "A girl wakes up early from cryo-sleep on a spaceship hiding dark secrets." }
+    ],
+
+      " Historical Fiction ":[
+        { title: "The Book Thief", price: 399, image: "images/teens-hist1.jpg",
+          desc: "A young girl in Nazi Germany finds solace in stealing books and sharing stories." },
+
+        { title: "Number the Stars", price: 299, image: "images/teens-hist2.jpg",
+          desc: "A Danish girl helps her Jewish friend escape the Nazis during WWII." },
+
+        { title: "Code Name Verity", price: 399, image: "images/teens-hist3.jpg",
+          desc: "Two girls—a spy and a pilot—struggle for survival in Nazi-occupied France." },
+
+        { title: "Rose Under Fire", price: 399, image: "images/teens-hist4.jpg",
+          desc: "A young pilot is captured and imprisoned in a Nazi concentration camp." },
+
+        { title: "Salt to the Sea", price: 399, image: "images/teens-hist5.jpg",
+          desc: "Refugees flee as WWII closes in, facing tragedy on the Baltic Sea." },
+
+        { title: "Between Shades of Gray", price: 349, image: "images/teens-hist6.jpg",
+          desc: "A Lithuanian girl is deported to a Siberian work camp under Stalin’s regime." },
+
+        { title: "Ashes in the Snow", price: 349, image: "images/teens-hist7.jpg",
+          desc: "Based on true events, survival in the harsh conditions of exile." },
+
+        { title: "The War That Saved My Life", price: 299, image: "images/teens-hist8.jpg",
+          desc: "A disabled girl finds freedom and courage during WWII evacuation." },
+
+        { title: "The War I Finally Won", price: 299, image: "images/teens-hist9.jpg",
+          desc: "The sequel continues Ada’s journey of hope during wartime England." },
+
+        { title: "Prisoner of Night and Fog", price: 349, image: "images/teens-hist10.jpg",
+          desc: "A girl close to Hitler uncovers dangerous truths about his regime." },
+
+        { title: "Conspiracy of Blood and Smoke", price: 349, image: "images/teens-hist11.jpg",
+          desc: "A sequel of espionage and danger in Nazi Germany." },
+
+        { title: "The Boy in the Striped Pajamas", price: 349, image: "images/teens-hist12.jpg",
+          desc: "A German boy befriends a Jewish child across a concentration camp fence." },
+
+        { title: "Chains", price: 349, image: "images/teens-hist13.jpg",
+          desc: "An enslaved girl fights for her freedom during the American Revolution." },
+
+        { title: "Forge", price: 349, image: "images/teens-hist14.jpg",
+          desc: "The struggle for liberty continues during the Revolutionary War." },
+
+        { title: "Ashes", price: 349, image: "images/teens-hist15.jpg",
+          desc: "The conclusion to Isabel and Curzon’s journey for freedom." },
+
+        { title: "Fever 1793", price: 299, image: "images/teens-hist16.jpg",
+          desc: "A teenager fights to survive during the yellow fever epidemic in Philadelphia." },
+
+        { title: "Refugee", price: 399, image: "images/teens-hist17.jpg",
+          desc: "Three refugee kids from different eras flee danger and seek hope." },
+
+        { title: "Grenade", price: 349, image: "images/teens-hist18.jpg",
+          desc: "Two boys—one American, one Okinawan—face the battle of Okinawa in WWII." },
+
+        { title: "Ground Zero", price: 399, image: "images/teens-hist19.jpg",
+          desc: "Told from two perspectives, one during 9/11 and another in Afghanistan." },
+
+        { title: "Prisoner B-3087", price: 349, image: "images/teens-hist20.jpg",
+          desc: "Based on the true story of a boy surviving ten concentration camps." },
+
+        { title: "Resistance", price: 349, image: "images/teens-hist21.jpg",
+          desc: "A Jewish girl joins the French Resistance to fight the Nazis." },
+
+        { title: "Projekt 1065", price: 349, image: "images/teens-hist22.jpg",
+          desc: "An Irish boy spies inside Hitler Youth during WWII." },
+
+        { title: "Allies", price: 399, image: "images/teens-hist23.jpg",
+          desc: "Multiple perspectives tell the story of D-Day invasion." },
+
+        { title: "Blood on the River", price: 299, image: "images/teens-hist24.jpg",
+          desc: "A boy witnesses the founding of Jamestown in early America." },
+
+        { title: "My Name is Not Easy", price: 299, image: "images/teens-hist25.jpg",
+          desc: "Native Alaskan children face hardships at a Catholic boarding school." },
+
+        { title: "Copper Sun", price: 349, image: "images/teens-hist26.jpg",
+          desc: "A girl is kidnapped from Africa and sold into slavery in America." },
+
+        { title: "Chains of Gold", price: 349, image: "images/teens-hist27.jpg",
+          desc: "A story of endurance and hope set during turbulent colonial times." },
+
+        { title: "The Red Badge of Courage", price: 349, image: "images/teens-hist28.jpg",
+          desc: "A young soldier’s inner battle during the American Civil War." },
+
+        { title: "Across Five Aprils", price: 349, image: "images/teens-hist29.jpg",
+          desc: "A boy comes of age during the American Civil War." },
+
+        { title: "Chains of Fire", price: 349, image: "images/teens-hist30.jpg",
+          desc: "A gripping tale of war, survival, and friendship." },
+
+        { title: "Out of the Dust", price: 299, image: "images/teens-hist31.jpg",
+          desc: "A novel in verse about a girl living through the Dust Bowl." },
+
+        { title: "Roll of Thunder, Hear My Cry", price: 349, image: "images/teens-hist32.jpg",
+          desc: "A Black family struggles with racism and injustice in 1930s Mississippi." },
+
+        { title: "Let the Circle Be Unbroken", price: 349, image: "images/teens-hist33.jpg",
+          desc: "The Logan family continues to face challenges of racism and survival." },
+
+        { title: "Fire from the Rock", price: 349, image: "images/teens-hist34.jpg",
+          desc: "A girl experiences the struggles of school integration in 1950s Arkansas." },
+
+        { title: "Hidden Figures (Young Readers Edition)", price: 399, image: "images/teens-hist35.jpg",
+          desc: "The true story of Black women mathematicians at NASA." },
+
+        { title: "The Watsons Go to Birmingham – 1963", price: 299, image: "images/teens-hist36.jpg",
+          desc: "A Black family’s trip to the South during the Civil Rights Movement." },
+
+        { title: "Chains of Honor", price: 349, image: "images/teens-hist37.jpg",
+          desc: "Courage and resilience during times of historical turmoil." },
+
+        { title: "Esperanza Rising", price: 299, image: "images/teens-hist38.jpg",
+          desc: "A rich Mexican girl’s life changes when she must work as a farm laborer." },
+
+        { title: "Inside Out and Back Again", price: 299, image: "images/teens-hist39.jpg",
+          desc: "A Vietnamese girl flees war and resettles in America." },
+
+        { title: "Echo", price: 399, image: "images/teens-hist40.jpg",
+          desc: "A magical harmonica links children across different historical times." }
+      ],
+
+      "Poetry & Drama": 
+        [
+          { title: "Shakespeare’s Sonnets", price: 349, image: "images/teens-poetry1.jpg",
+            desc: "A collection of William Shakespeare’s timeless sonnets exploring love and life." },
+
+          { title: "Romeo and Juliet", price: 349, image: "images/teens-poetry2.jpg",
+            desc: "Shakespeare’s tragic tale of star-crossed lovers." },
+
+          { title: "Hamlet", price: 349, image: "images/teens-poetry3.jpg",
+            desc: "The Prince of Denmark seeks revenge in Shakespeare’s classic tragedy." },
+
+          { title: "Macbeth", price: 349, image: "images/teens-poetry4.jpg",
+            desc: "A Scottish lord is driven by ambition and prophecy into tragedy." },
+
+          { title: "Othello", price: 349, image: "images/teens-poetry5.jpg",
+            desc: "A powerful drama of jealousy, love, and betrayal." },
+
+          { title: "A Midsummer Night’s Dream", price: 349, image: "images/teens-poetry6.jpg",
+            desc: "A magical Shakespearean comedy of love and enchantment." },
+
+          { title: "Twelfth Night", price: 349, image: "images/teens-poetry7.jpg",
+            desc: "A lighthearted play about mistaken identity and love." },
+
+          { title: "Much Ado About Nothing", price: 349, image: "images/teens-poetry8.jpg",
+            desc: "A witty romantic comedy filled with banter and schemes." },
+
+          { title: "Julius Caesar", price: 349, image: "images/teens-poetry9.jpg",
+            desc: "A tragic drama of power, betrayal, and political ambition." },
+
+          { title: "The Tempest", price: 349, image: "images/teens-poetry10.jpg",
+            desc: "A story of magic, forgiveness, and reconciliation." },
+
+          { title: "The Merchant of Venice", price: 349, image: "images/teens-poetry11.jpg",
+            desc: "A tale of justice, mercy, and human greed." },
+
+          { title: "King Lear", price: 349, image: "images/teens-poetry12.jpg",
+            desc: "A tragic story of family, power, and madness." },
+
+          { title: "The Taming of the Shrew", price: 349, image: "images/teens-poetry13.jpg",
+            desc: "A comedic battle of the sexes in Elizabethan England." },
+
+          { title: "As You Like It", price: 349, image: "images/teens-poetry14.jpg",
+            desc: "A romantic comedy set in the Forest of Arden." },
+
+          { title: "Love’s Labour’s Lost", price: 349, image: "images/teens-poetry15.jpg",
+            desc: "A witty play about vows, love, and misunderstandings." },
+
+          { title: "Measure for Measure", price: 349, image: "images/teens-poetry16.jpg",
+            desc: "A drama balancing justice, morality, and mercy." },
+
+          { title: "Antony and Cleopatra", price: 349, image: "images/teens-poetry17.jpg",
+            desc: "A tale of passion and political intrigue." },
+
+          { title: "The Comedy of Errors", price: 349, image: "images/teens-poetry18.jpg",
+            desc: "A hilarious play of mistaken identities." },
+
+          { title: "Henry V", price: 349, image: "images/teens-poetry19.jpg",
+            desc: "The story of a king’s rise to leadership and glory." },
+
+          { title: "Richard III", price: 349, image: "images/teens-poetry20.jpg",
+            desc: "The Machiavellian rise and fall of a ruthless king." },
+
+          { title: "Paradise Lost (John Milton)", price: 399, image: "images/teens-poetry21.jpg",
+            desc: "An epic poem retelling the biblical story of the Fall of Man." },
+
+          { title: "The Iliad (Homer)", price: 399, image: "images/teens-poetry22.jpg",
+            desc: "An epic poem about the Trojan War and the wrath of Achilles." },
+
+          { title: "The Odyssey (Homer)", price: 399, image: "images/teens-poetry23.jpg",
+            desc: "The adventurous journey of Odysseus returning home from Troy." },
+
+          { title: "Metamorphoses (Ovid)", price: 399, image: "images/teens-poetry24.jpg",
+            desc: "A narrative poem weaving Greek and Roman myths together." },
+
+          { title: "Inferno (Dante’s Divine Comedy)", price: 399, image: "images/teens-poetry25.jpg",
+            desc: "A journey through Hell in Dante’s epic trilogy." },
+
+          { title: "Purgatorio (Dante’s Divine Comedy)", price: 399, image: "images/teens-poetry26.jpg",
+            desc: "The second part of Dante’s allegorical journey." },
+
+          { title: "Paradiso (Dante’s Divine Comedy)", price: 399, image: "images/teens-poetry27.jpg",
+            desc: "The conclusion of Dante’s spiritual epic." },
+
+          { title: "Leaves of Grass (Walt Whitman)", price: 399, image: "images/teens-poetry28.jpg",
+            desc: "A groundbreaking poetry collection celebrating life and democracy." },
+
+          { title: "The Raven and Other Poems (Edgar Allan Poe)", price: 349, image: "images/teens-poetry29.jpg",
+            desc: "Dark and haunting poems from Poe, master of Gothic literature." },
+
+          { title: "Annabel Lee (Edgar Allan Poe)", price: 299, image: "images/teens-poetry30.jpg",
+            desc: "A lyrical ballad of eternal love and sorrow." },
+
+          { title: "Emily Dickinson: Selected Poems", price: 349, image: "images/teens-poetry31.jpg",
+            desc: "A collection of thought-provoking and innovative poetry." },
+
+          { title: "Sylvia Plath: Ariel", price: 349, image: "images/teens-poetry32.jpg",
+            desc: "Powerful poems expressing emotion, struggle, and identity." },
+
+          { title: "Robert Frost: The Road Not Taken", price: 299, image: "images/teens-poetry33.jpg",
+            desc: "Classic poetry about choices and life’s journey." },
+
+          { title: "Langston Hughes: The Collected Poems", price: 399, image: "images/teens-poetry34.jpg",
+            desc: "Poems about race, culture, and identity in America." },
+
+          { title: "Maya Angelou: Phenomenal Woman", price: 349, image: "images/teens-poetry35.jpg",
+            desc: "Inspirational poetry celebrating strength and beauty." },
+
+          { title: "Rumi: Selected Poems", price: 349, image: "images/teens-poetry36.jpg",
+            desc: "Mystical poems about love, life, and spirituality." },
+
+          { title: "Tagore: Gitanjali", price: 349, image: "images/teens-poetry37.jpg",
+            desc: "Nobel Prize-winning collection of devotional poems." },
+
+          { title: "Khalil Gibran: The Prophet", price: 349, image: "images/teens-poetry38.jpg",
+            desc: "Philosophical prose poetry about love, work, and freedom." },
+
+          { title: "Howl and Other Poems (Allen Ginsberg)", price: 349, image: "images/teens-poetry39.jpg",
+            desc: "A defining collection of Beat Generation poetry." },
+
+          { title: "The Waste Land (T.S. Eliot)", price: 349, image: "images/teens-poetry40.jpg",
+            desc: "A modernist masterpiece exploring despair and hope." }
+        ],
+
+      "Self Help & Motivation":
+        [
+          { title: "The 7 Habits of Highly Effective Teens", price: 349, image: "images/teens-self1.jpg",
+            desc: "A teen-friendly adaptation of Covey’s principles for success and leadership." },
+
+          { title: "The Power of Positive Thinking", price: 349, image: "images/teens-self2.jpg",
+            desc: "Norman Vincent Peale’s classic guide to optimism and confidence." },
+
+          { title: "You Are a Badass", price: 349, image: "images/teens-self3.jpg",
+            desc: "Jen Sincero’s empowering book about confidence and self-love." },
+
+          { title: "Think and Grow Rich (Young Readers Edition)", price: 349, image: "images/teens-self4.jpg",
+            desc: "Napoleon Hill’s timeless principles of success adapted for youth." },
+
+          { title: "Don’t Sweat the Small Stuff for Teens", price: 299, image: "images/teens-self5.jpg",
+            desc: "Simple ways to manage stress and build confidence." },
+
+          { title: "Chicken Soup for the Teenage Soul", price: 349, image: "images/teens-self6.jpg",
+            desc: "Inspirational true stories written for teens." },
+
+          { title: "Daring Greatly", price: 349, image: "images/teens-self7.jpg",
+            desc: "Brené Brown’s guide to courage, vulnerability, and growth." },
+
+          { title: "The Gifts of Imperfection", price: 349, image: "images/teens-self8.jpg",
+            desc: "Encouragement to embrace authenticity and self-acceptance." },
+
+          { title: "Make Your Bed", price: 299, image: "images/teens-self9.jpg",
+            desc: "Admiral McRaven’s life lessons from Navy SEAL training." },
+
+          { title: "Atomic Habits", price: 399, image: "images/teens-self10.jpg",
+            desc: "James Clear’s guide to building good habits and breaking bad ones." },
+
+          { title: "The Subtle Art of Not Giving a F*ck", price: 399, image: "images/teens-self11.jpg",
+            desc: "Mark Manson’s blunt yet motivating approach to life’s challenges." },
+
+          { title: "Can’t Hurt Me", price: 399, image: "images/teens-self12.jpg",
+            desc: "David Goggins shares his story of mental toughness and resilience." },
+
+          { title: "Born a Crime (Young Readers Edition)", price: 349, image: "images/teens-self13.jpg",
+            desc: "Trevor Noah’s inspiring memoir of growing up under apartheid." },
+
+          { title: "I Am Malala (Young Readers Edition)", price: 349, image: "images/teens-self14.jpg",
+            desc: "Malala’s story of courage, education, and hope." },
+
+          { title: "The Confidence Code for Girls", price: 349, image: "images/teens-self15.jpg",
+            desc: "A guide to building confidence and embracing strengths." },
+
+          { title: "Mindset: The New Psychology of Success", price: 399, image: "images/teens-self16.jpg",
+            desc: "Carol Dweck explains the power of a growth mindset." },
+
+          { title: "The Magic of Thinking Big", price: 349, image: "images/teens-self17.jpg",
+            desc: "David Schwartz’s classic on ambition and confidence." },
+
+          { title: "Awaken the Giant Within", price: 399, image: "images/teens-self18.jpg",
+            desc: "Tony Robbins’ strategies for personal power and motivation." },
+
+          { title: "Unlimited Power", price: 399, image: "images/teens-self19.jpg",
+            desc: "Tony Robbins’ techniques for achieving success and confidence." },
+
+          { title: "Start with Why", price: 399, image: "images/teens-self20.jpg",
+            desc: "Simon Sinek’s guide to finding purpose and inspiring others." },
+
+          { title: "Leaders Eat Last", price: 399, image: "images/teens-self21.jpg",
+            desc: "Building leadership, trust, and teamwork." },
+
+          { title: "The Monk Who Sold His Ferrari", price: 399, image: "images/teens-self22.jpg",
+            desc: "Robin Sharma’s story of balance, purpose, and happiness." },
+
+          { title: "Who Will Cry When You Die?", price: 299, image: "images/teens-self23.jpg",
+            desc: "Life lessons on leaving a legacy and living with meaning." },
+
+          { title: "The Greatness Guide", price: 349, image: "images/teens-self24.jpg",
+            desc: "Robin Sharma’s motivational insights for success and balance." },
+
+          { title: "Wings of Fire", price: 299, image: "images/teens-self25.jpg",
+            desc: "APJ Abdul Kalam’s inspiring autobiography." },
+
+          { title: "Ignited Minds", price: 299, image: "images/teens-self26.jpg",
+            desc: "Kalam’s vision for youth empowerment and progress." },
+
+          { title: "My Journey: Transforming Dreams into Actions", price: 299, image: "images/teens-self27.jpg",
+            desc: "Stories and lessons from APJ Abdul Kalam’s life." },
+
+          { title: "Dreams from My Father (Young Readers Edition)", price: 349, image: "images/teens-self28.jpg",
+            desc: "Barack Obama’s story of identity and hope." },
+
+          { title: "The Audacity of Hope", price: 399, image: "images/teens-self29.jpg",
+            desc: "Obama’s reflections on leadership and vision." },
+
+          { title: "Becoming (Young Readers Edition)", price: 399, image: "images/teens-self30.jpg",
+            desc: "Michelle Obama’s inspiring journey of resilience and hope." },
+
+          { title: "Girl, Stop Apologizing", price: 349, image: "images/teens-self31.jpg",
+            desc: "Rachel Hollis’s call for women to live unapologetically." },
+
+          { title: "Girl, Wash Your Face", price: 349, image: "images/teens-self32.jpg",
+            desc: "Overcoming lies and building confidence." },
+
+          { title: "Brave, Not Perfect", price: 349, image: "images/teens-self33.jpg",
+            desc: "Reshma Saujani encourages courage over perfection." },
+
+          { title: "The 5 AM Club", price: 399, image: "images/teens-self34.jpg",
+            desc: "Robin Sharma’s guide to productivity and personal growth." },
+
+          { title: "Ikigai: The Japanese Secret to a Long and Happy Life", price: 349, image: "images/teens-self35.jpg",
+            desc: "A Japanese philosophy for finding purpose and joy." },
+
+          { title: "Happiness Advantage", price: 349, image: "images/teens-self36.jpg",
+            desc: "Shawn Achor explains how happiness fuels success." },
+
+          { title: "The Alchemist", price: 349, image: "images/teens-self37.jpg",
+            desc: "Paulo Coelho’s fable about dreams, destiny, and courage." },
+
+          { title: "Brida", price: 349, image: "images/teens-self38.jpg",
+            desc: "A story of love, destiny, and spiritual growth." },
+
+          { title: "Man’s Search for Meaning", price: 399, image: "images/teens-self39.jpg",
+            desc: "Viktor Frankl’s reflections on resilience and purpose." },
+
+          { title: "Life Without Limits", price: 399, image: "images/teens-self40.jpg",
+            desc: "Nick Vujicic’s inspiring story of living without arms and legs." }
+        ],
+      
+
+        "Manga": [
+
+          { title: "Naruto Vol. 1", price: 399, image: "images/manga1.jpg",
+            desc: "The story of Naruto Uzumaki, a ninja with dreams of becoming the strongest Hokage." },
+
+          
+          { title: "Death Note Vol. 1", price: 399, image: "images/manga2.jpg",
+            desc: "Light Yagami discovers a notebook with deadly powers, sparking a battle of wits with the mysterious detective L." }
+        ],
+       "Comic":[
+      { title: "Spider-Man: Into the Spider-Verse", price: 349, image: "images/comic-spiderman.jpg",
+        desc: "Miles Morales becomes Spider-Man and explores the multiverse." },
+
+      { title: "Batman: Year One", price: 349, image: "images/comic-batman1.jpg",
+        desc: "The origin story of Batman as he begins his fight against crime in Gotham." },
+
+      { title: "Superman: Red Son", price: 349, image: "images/comic-supermanredson.jpg",
+        desc: "An alternate universe where Superman lands in the Soviet Union instead of Kansas." },
+
+      { title: "Wonder Woman: Blood", price: 349, image: "images/comic-wonderwoman.jpg",
+        desc: "Diana of Themyscira faces gods and monsters in this thrilling reboot." },
+
+      { title: "The Flash: Rebirth", price: 349, image: "images/comic-flash.jpg",
+        desc: "Barry Allen returns to reclaim his mantle as the Fastest Man Alive." },
+
+      { title: "Green Lantern: Rebirth", price: 349, image: "images/comic-greenlantern.jpg",
+        desc: "Hal Jordan returns as Green Lantern to restore order to the Corps." },
+
+      { title: "Iron Man: Extremis", price: 349, image: "images/comic-ironman.jpg",
+        desc: "Tony Stark faces a deadly new virus that changes the Iron Man legacy forever." },
+
+      { title: "Captain America: Winter Soldier", price: 349, image: "images/comic-captainamerica.jpg",
+        desc: "Cap faces an enemy from his past in this action-packed spy thriller." },
+
+      { title: "Thor: God of Thunder", price: 349, image: "images/comic-thor.jpg",
+        desc: "Thor battles across time to stop the God Butcher from destroying the universe." },
+
+      { title: "Avengers: Disassembled", price: 349, image: "images/comic-avengers.jpg",
+        desc: "The Avengers face one of their darkest days when a teammate turns against them." },
+
+      { title: "X-Men: Dark Phoenix Saga", price: 349, image: "images/comic-xmen.jpg",
+        desc: "Jean Grey transforms into the powerful Dark Phoenix, threatening the galaxy." },
+
+      { title: "Deadpool: Secret Invasion", price: 349, image: "images/comic-deadpool.jpg",
+        desc: "Deadpool gets involved in the Skrull invasion with his hilarious antics." },
+
+      { title: "Doctor Strange: The Oath", price: 349, image: "images/comic-doctorstrange.jpg",
+        desc: "Doctor Strange seeks a cure for Wong while facing magical enemies." },
+
+      { title: "Black Panther: A Nation Under Our Feet", price: 349, image: "images/comic-blackpanther.jpg",
+        desc: "T’Challa must defend Wakanda against rebellion and internal conflict." },
+
+      { title: "Guardians of the Galaxy Vol. 1", price: 349, image: "images/comic-guardians.jpg",
+        desc: "A misfit group of space adventurers come together to protect the galaxy." },
+
+      { title: "Justice League: Origin", price: 349, image: "images/comic-justiceleague.jpg",
+        desc: "The world's greatest heroes unite to face Darkseid and save Earth." },
+
+      { title: "Aquaman: The Trench", price: 349, image: "images/comic-aquaman.jpg",
+        desc: "Aquaman defends the surface world from monstrous deep-sea creatures." },
+
+      { title: "Shazam!: Origins", price: 349, image: "images/comic-shazam.jpg",
+        desc: "Billy Batson discovers his magical powers and becomes Shazam." },
+
+      { title: "Hawkeye: My Life as a Weapon", price: 349, image: "images/comic-hawkeye.jpg",
+        desc: "Clint Barton takes on street-level crime while juggling everyday struggles." },
+
+      { title: "Black Widow: Itsy-Bitsy Spider", price: 349, image: "images/comic-blackwidow.jpg",
+        desc: "Natasha Romanoff battles espionage and betrayal in her solo adventure." },
+
+      { title: "Daredevil: The Man Without Fear", price: 349, image: "images/comic-daredevil.jpg",
+        desc: "The origin of Daredevil as Matt Murdock embraces his heroic destiny." },
+
+      { title: "Luke Cage: Avenger", price: 349, image: "images/comic-lukecage.jpg",
+        desc: "Luke Cage fights for Harlem and justice as a bulletproof hero." },
+
+      { title: "Jessica Jones: Alias", price: 349, image: "images/comic-jessicajones.jpg",
+        desc: "A hard-hitting detective story about Jessica Jones uncovering dark secrets." },
+
+      { title: "Teen Titans: Raven", price: 349, image: "images/comic-teentitans.jpg",
+        desc: "Raven struggles with her mysterious powers and a dangerous legacy." },
+
+      { title: "Nightwing: Year One", price: 349, image: "images/comic-nightwing.jpg",
+        desc: "Dick Grayson leaves Batman’s shadow to become Nightwing." },
+
+      { title: "Batgirl: Year One", price: 349, image: "images/comic-batgirl.jpg",
+        desc: "Barbara Gordon’s transformation into Gotham’s Batgirl hero." },
+
+      { title: "Harley Quinn: Mad Love", price: 349, image: "images/comic-harleyquinn.jpg",
+        desc: "The twisted romance of Harley Quinn and the Joker." },
+
+      { title: "Suicide Squad: Kicked in the Teeth", price: 349, image: "images/comic-suicidesquad.jpg",
+        desc: "A team of villains is forced to do dangerous missions for the government." },
+
+      { title: "Hellboy: Seed of Destruction", price: 349, image: "images/comic-hellboy.jpg",
+        desc: "Hellboy discovers his origins while battling supernatural threats." },
+
+      { title: "Watchmen", price: 349, image: "images/comic-watchmen.jpg",
+        desc: "A gritty, realistic tale of heroes facing moral dilemmas in a dark world." },
+
+      { title: "V for Vendetta", price: 349, image: "images/comic-v.jpg",
+        desc: "A masked vigilante fights against a dystopian regime in England." },
+
+      { title: "Kick-Ass", price: 349, image: "images/comic-kickass.jpg",
+        desc: "A regular teenager becomes a superhero, facing both comedy and brutality." },
+
+      { title: "The Umbrella Academy Vol. 1", price: 349, image: "images/comic-umbrella.jpg",
+        desc: "Adopted superhero siblings reunite to stop the apocalypse." },
+
+      { title: "Saga Vol. 1", price: 349, image: "images/comic-saga.jpg",
+        desc: "A sci-fi fantasy epic about two lovers from warring races." },
+
+      { title: "Sandman Vol. 1", price: 349, image: "images/comic-sandman.jpg",
+        desc: "Neil Gaiman’s classic tale of Dream and the Endless." },
+
+      { title: "Fables Vol. 1: Legends in Exile", price: 349, image: "images/comic-fables.jpg",
+        desc: "Fairy tale characters live in secret exile in modern New York." },
+
+      { title: "Scott Pilgrim Vol. 1", price: 349, image: "images/comic-scottpilgrim.jpg",
+        desc: "Scott Pilgrim must defeat seven evil exes to win Ramona’s heart." },
+
+      { title: "Archie Comics: The New Riverdale", price: 349, image: "images/comic-archie.jpg",
+        desc: "A modern retelling of Archie, Betty, Veronica, and Jughead’s lives." },
+
+      { title: "Calvin and Hobbes: The Essential", price: 349, image: "images/comic-calvinhobbes.jpg",
+        desc: "A hilarious and heartwarming comic strip collection about Calvin and his tiger Hobbes." }
+      ]
+      
+      },
+    
+    adults: {
+        "Literary Fiction": [
+
+          { title: "To Kill a Mockingbird", price: 399, image: "images/lit-tkam.jpg",
+            desc: "Harper Lee's timeless classic exploring race, justice, and morality in the Deep South." },
+
+          { title: "1984", price: 349, image: "images/lit-1984.jpg",
+            desc: "George Orwell’s chilling dystopia about surveillance, truth, and authoritarianism." },
+
+          { title: "Pride and Prejudice", price: 299, image: "images/lit-pride.jpg",
+            desc: "Jane Austen’s romantic satire of manners, love, and class in 19th-century England." },
+
+          { title: "The Great Gatsby", price: 349, image: "images/lit-gatsby.jpg",
+            desc: "F. Scott Fitzgerald’s tragic tale of wealth, love, and the elusive American Dream." },
+
+          { title: "Jane Eyre", price: 349, image: "images/lit-janeeyre.jpg",
+            desc: "Charlotte Brontë’s gothic tale of independence, morality, and romance." },
+
+          { title: "Wuthering Heights", price: 349, image: "images/lit-wuthering.jpg",
+            desc: "Emily Brontë’s dark and passionate story of love and revenge." },
+
+          { title: "Beloved", price: 399, image: "images/lit-beloved.jpg",
+            desc: "Toni Morrison’s haunting novel of slavery, memory, and motherhood." },
+
+          { title: "The Catcher in the Rye", price: 349, image: "images/lit-catcher.jpg",
+            desc: "J.D. Salinger’s coming-of-age story of teenage rebellion and alienation." },
+
+          { title: "One Hundred Years of Solitude", price: 449, image: "images/lit-solitude.jpg",
+            desc: "Gabriel García Márquez’s masterpiece of magical realism spanning generations." },
+
+          { title: "The Kite Runner", price: 399, image: "images/lit-kiterunner.jpg",
+            desc: "Khaled Hosseini’s powerful tale of friendship, betrayal, and redemption in Afghanistan." },
+
+          { title: "Life of Pi", price: 399, image: "images/lit-lifeofpi.jpg",
+            desc: "Yann Martel’s allegorical survival story of a boy stranded with a tiger." },
+
+          { title: "The Road", price: 349, image: "images/lit-road.jpg",
+            desc: "Cormac McCarthy’s bleak yet tender tale of a father and son’s survival." },
+
+          { title: "A Fine Balance", price: 449, image: "images/lit-finebalance.jpg",
+            desc: "Rohinton Mistry’s sweeping novel set during India’s Emergency period." },
+
+          { title: "The God of Small Things", price: 399, image: "images/lit-godsmall.jpg",
+            desc: "Arundhati Roy’s Booker Prize–winning novel about love, caste, and family secrets." },
+
+          { title: "The Namesake", price: 349, image: "images/lit-namesake.jpg",
+            desc: "Jhumpa Lahiri’s moving story of identity, family, and cultural belonging." },
+
+          { title: "The Alchemist", price: 349, image: "images/lit-alchemist.jpg",
+            desc: "Paulo Coelho’s allegorical journey of following one’s dreams." },
+
+          { title: "Norwegian Wood", price: 399, image: "images/lit-norwegian.jpg",
+            desc: "Haruki Murakami’s bittersweet tale of love, loss, and coming-of-age." },
+
+          { title: "Kafka on the Shore", price: 399, image: "images/lit-kafka.jpg",
+            desc: "Murakami’s surreal novel blending fate, parallel worlds, and self-discovery." },
+
+          { title: "A Passage to India", price: 349, image: "images/lit-passage.jpg",
+            desc: "E.M. Forster’s exploration of colonial tensions and cross-cultural friendship." },
+
+          { title: "Middlemarch", price: 399, image: "images/lit-middlemarch.jpg",
+            desc: "George Eliot’s panoramic study of love, ambition, and society in a small town." },
+
+          { title: "Great Expectations", price: 349, image: "images/lit-expectations.jpg",
+            desc: "Charles Dickens’ coming-of-age tale of ambition, love, and redemption." },
+
+          { title: "Crime and Punishment", price: 399, image: "images/lit-crime.jpg",
+            desc: "Fyodor Dostoevsky’s psychological novel of guilt, morality, and redemption." },
+
+          { title: "Anna Karenina", price: 449, image: "images/lit-anna.jpg",
+            desc: "Leo Tolstoy’s tragic romance exploring love, society, and choices." },
+
+          { title: "War and Peace", price: 599, image: "images/lit-warpeace.jpg",
+            desc: "Tolstoy’s monumental epic of love, war, and history in Russia." },
+
+          { title: "Les Misérables", price: 499, image: "images/lit-lesmis.jpg",
+            desc: "Victor Hugo’s sweeping novel of justice, redemption, and revolution." },
+
+          { title: "The Brothers Karamazov", price: 499, image: "images/lit-karamazov.jpg",
+            desc: "Dostoevsky’s profound exploration of morality, faith, and free will." },
+
+          { title: "The Bell Jar", price: 349, image: "images/lit-belljar.jpg",
+            desc: "Sylvia Plath’s semi-autobiographical novel of mental health and identity." },
+
+          { title: "Frankenstein", price: 299, image: "images/lit-frankenstein.jpg",
+            desc: "Mary Shelley’s gothic tale of ambition, creation, and responsibility." },
+
+          { title: "Dracula", price: 299, image: "images/lit-dracula.jpg",
+            desc: "Bram Stoker’s classic vampire novel of fear, desire, and survival." },
+
+          { title: "Brave New World", price: 349, image: "images/lit-brave.jpg",
+            desc: "Aldous Huxley’s dystopian vision of technology, control, and happiness." },
+
+          { title: "Things Fall Apart", price: 349, image: "images/lit-things.jpg",
+            desc: "Chinua Achebe’s groundbreaking novel about tradition, colonialism, and change." },
+
+          { title: "The Old Man and the Sea", price: 299, image: "images/lit-oldman.jpg",
+            desc: "Ernest Hemingway’s tale of courage, persistence, and human spirit." },
+
+          { title: "The Sun Also Rises", price: 349, image: "images/lit-sun.jpg",
+            desc: "Hemingway’s novel of love, disillusionment, and the post-war generation." },
+
+          { title: "Mrs. Dalloway", price: 349, image: "images/lit-dalloway.jpg",
+            desc: "Virginia Woolf’s stream-of-consciousness novel set in a single day in London." },
+
+          { title: "Orlando", price: 349, image: "images/lit-orlando.jpg",
+            desc: "Virginia Woolf’s playful exploration of gender, identity, and time." },
+
+          { title: "Song of Solomon", price: 399, image: "images/lit-solomon.jpg",
+            desc: "Toni Morrison’s exploration of family, identity, and African-American heritage." },
+
+          { title: "The Handmaid’s Tale", price: 399, image: "images/lit-handmaid.jpg",
+            desc: "Margaret Atwood’s dystopian vision of oppression, power, and resistance." },
+
+          { title: "The Blind Assassin", price: 399, image: "images/lit-blind.jpg",
+            desc: "Atwood’s layered tale of love, betrayal, and storytelling." },
+
+          { title: "White Teeth", price: 349, image: "images/lit-whiteteeth.jpg",
+            desc: "Zadie Smith’s witty debut exploring multiculturalism and family in London." }
+        ],
+
+        "Biography & Memoir": [
+
+          { title: "The Diary of a Young Girl", price: 299, image: "images/adults-bio1.jpg",
+              desc: "Anne Frank's moving diary of her life in hiding during WWII." },
+
+            { title: "Long Walk to Freedom", price: 399, image: "images/adults-bio2.jpg",
+              desc: "Nelson Mandela’s inspiring autobiography of his struggle for freedom." },
+
+            { title: "Becoming", price: 499, image: "images/adults-bio3.jpg",
+              desc: "Michelle Obama’s memoir about her journey from Chicago to the White House." },
+
+            { title: "Wings of Fire", price: 349, image: "images/adults-bio4.jpg",
+              desc: "A.P.J. Abdul Kalam’s inspiring autobiography of his life and career." },
+
+            { title: "Steve Jobs", price: 399, image: "images/adults-bio5.jpg",
+              desc: "Walter Isaacson’s biography of Apple co-founder Steve Jobs." },
+
+            { title: "Educated", price: 349, image: "images/adults-bio6.jpg",
+              desc: "Tara Westover’s memoir about her journey from isolation to Cambridge University." },
+
+            { title: "The Story of My Experiments with Truth", price: 299, image: "images/adults-bio7.jpg",
+              desc: "Mahatma Gandhi’s autobiography sharing his philosophy of truth and non-violence." },
+
+            { title: "I Am Malala", price: 349, image: "images/adults-bio8.jpg",
+              desc: "Malala Yousafzai’s story of courage in standing up for education." },
+
+            { title: "Bossypants", price: 299, image: "images/adults-bio9.jpg",
+              desc: "Tina Fey’s witty and humorous memoir of her life and career." },
+
+            { title: "The Glass Castle", price: 349, image: "images/adults-bio10.jpg",
+              desc: "Jeannette Walls’ memoir of resilience growing up in a dysfunctional family." },
+
+            { title: "My Life in Full", price: 349, image: "images/adults-bio11.jpg",
+              desc: "Indra Nooyi’s journey from India to becoming PepsiCo’s CEO." },
+
+            { title: "Open", price: 299, image: "images/adults-bio12.jpg",
+              desc: "Tennis legend Andre Agassi’s brutally honest autobiography." },
+
+            { title: "The Wright Brothers", price: 399, image: "images/adults-bio13.jpg",
+              desc: "David McCullough’s biography of the brothers who invented the airplane." },
+
+            { title: "A Promised Land", price: 499, image: "images/adults-bio14.jpg",
+              desc: "Barack Obama’s memoir of his early political life and presidency." },
+
+            { title: "Night", price: 299, image: "images/adults-bio15.jpg",
+              desc: "Elie Wiesel’s haunting memoir of surviving the Holocaust." },
+
+            { title: "Kitchen Confidential", price: 349, image: "images/adults-bio16.jpg",
+              desc: "Anthony Bourdain’s behind-the-scenes memoir of the culinary world." },
+
+            { title: "When Breath Becomes Air", price: 349, image: "images/adults-bio17.jpg",
+              desc: "Paul Kalanithi’s memoir about facing death as a neurosurgeon." },
+
+            { title: "The Snowball: Warren Buffett and the Business of Life", price: 499, image: "images/adults-bio18.jpg",
+              desc: "Alice Schroeder’s biography of Warren Buffett’s extraordinary life." },
+
+            { title: "Hit Refresh", price: 349, image: "images/adults-bio19.jpg",
+              desc: "Satya Nadella’s story of transforming Microsoft and his vision for the future." },
+
+            { title: "Leonardo da Vinci", price: 399, image: "images/adults-bio20.jpg",
+              desc: "Walter Isaacson’s biography exploring the genius of Leonardo da Vinci." }
+
+        ],
+
+        "Business & Economics": [
+
+          
+          { title: "Rich Dad Poor Dad", price: 299, image: "images/business-richdad.jpg",
+            desc: "Robert Kiyosaki contrasts the money lessons from his rich dad and poor dad, changing how people view wealth." },
+
+          { title: "The Intelligent Investor", price: 599, image: "images/business-intelligentinvestor.jpg",
+            desc: "Benjamin Graham’s timeless guide on value investing and long-term financial security." },
+
+          { title: "Think and Grow Rich", price: 249, image: "images/business-thinkgrowrich.jpg",
+            desc: "Napoleon Hill reveals success principles learned from studying the greatest minds of his era." },
+
+          { title: "Principles: Life and Work", price: 499, image: "images/business-principles.jpg",
+            desc: "Ray Dalio shares the principles behind his success as an investor and entrepreneur." },
+
+          { title: "Atomic Habits", price: 349, image: "images/business-atomichabits.jpg",
+            desc: "James Clear explains how tiny changes can create remarkable results in life and business." },
+
+          { title: "The Lean Startup", price: 399, image: "images/business-leanstartup.jpg",
+            desc: "Eric Ries introduces a method for building businesses and products more efficiently." },
+
+          { title: "Zero to One", price: 299, image: "images/business-zerotoone.jpg",
+            desc: "Peter Thiel shares lessons on startups and creating unique innovations." },
+
+          { title: "Good to Great", price: 449, image: "images/business-goodtogreat.jpg",
+            desc: "Jim Collins explores why some companies make the leap to greatness while others don’t." },
+
+          { title: "The 7 Habits of Highly Effective People", price: 399, image: "images/business-7habits.jpg",
+            desc: "Stephen Covey’s classic guide to personal and professional effectiveness." },
+
+          { title: "The Psychology of Money", price: 349, image: "images/business-psychologyofmoney.jpg",
+            desc: "Morgan Housel explores how behavior shapes financial decisions more than knowledge." },
+
+          { title: "Start with Why", price: 299, image: "images/business-startwithwhy.jpg",
+            desc: "Simon Sinek explains how great leaders inspire people by starting with purpose." },
+
+          { title: "Dare to Lead", price: 349, image: "images/business-daretolead.jpg",
+            desc: "Brené Brown teaches leadership through courage, vulnerability, and trust." },
+
+          { title: "The Innovator’s Dilemma", price: 499, image: "images/business-innovatorsdilemma.jpg",
+            desc: "Clayton Christensen explains why big companies fail when faced with disruptive innovations." },
+
+          { title: "The 4-Hour Workweek", price: 349, image: "images/business-4hourworkweek.jpg",
+            desc: "Tim Ferriss shows how to escape the 9-to-5 grind and design a life of freedom." },
+
+          { title: "Outliers", price: 399, image: "images/business-outliers.jpg",
+            desc: "Malcolm Gladwell explores the hidden factors that contribute to extraordinary success." },
+
+          { title: "Purple Cow", price: 299, image: "images/business-purplecow.jpg",
+            desc: "Seth Godin explains how to make products and businesses truly remarkable." },
+
+          { title: "Delivering Happiness", price: 349, image: "images/business-deliveringhappiness.jpg",
+            desc: "Zappos CEO Tony Hsieh shares lessons on building a business around happiness." },
+
+          { title: "Rework", price: 299, image: "images/business-rework.jpg",
+            desc: "Jason Fried and David Heinemeier Hansson offer unconventional advice for startups." },
+
+          { title: "Blue Ocean Strategy", price: 399, image: "images/business-blueocean.jpg",
+            desc: "How companies can break away from competition and create new markets." },
+
+          { title: "The Hard Thing About Hard Things", price: 449, image: "images/business-hardthing.jpg",
+            desc: "Ben Horowitz provides tough lessons on building and running a startup." },
+
+          { title: "Crushing It!", price: 299, image: "images/business-crushingit.jpg",
+            desc: "Gary Vaynerchuk shows how entrepreneurs build their brand in the digital age." },
+
+          { title: "The E-Myth Revisited", price: 349, image: "images/business-emyth.jpg",
+            desc: "Michael Gerber explains why most small businesses fail and how to avoid it." },
+
+          { title: "The Personal MBA", price: 499, image: "images/business-personalmba.jpg",
+            desc: "Josh Kaufman provides essential business knowledge without the cost of an MBA." },
+
+          { title: "Built to Last", price: 399, image: "images/business-builttolast.jpg",
+            desc: "Jim Collins and Jerry Porras reveal why visionary companies succeed long-term." },
+
+          { title: "How to Win Friends and Influence People", price: 249, image: "images/business-winfriends.jpg",
+            desc: "Dale Carnegie’s classic guide on communication and influence." },
+
+          { title: "Leaders Eat Last", price: 349, image: "images/business-leaderseatlast.jpg",
+            desc: "Simon Sinek explores how great leaders build trust and cooperation." },
+
+          { title: "The $100 Startup", price: 299, image: "images/business-100startup.jpg",
+            desc: "Chris Guillebeau shows how to build businesses with small investments." },
+
+          { title: "Originals", price: 349, image: "images/business-originals.jpg",
+            desc: "Adam Grant explains how nonconformists drive innovation and change." },
+
+          { title: "Measure What Matters", price: 399, image: "images/business-measurewhatmatters.jpg",
+            desc: "John Doerr explains how OKRs drive Google and other companies to success." },
+
+          { title: "Who Moved My Cheese?", price: 199, image: "images/business-cheese.jpg",
+            desc: "Spencer Johnson’s fable about embracing change in work and life." },
+
+          { title: "The Art of War", price: 249, image: "images/business-artofwar.jpg",
+            desc: "Sun Tzu’s ancient strategies adapted for modern business." },
+
+          { title: "The Warren Buffett Way", price: 399, image: "images/business-buffett.jpg",
+            desc: "Robert Hagstrom explains Warren Buffett’s legendary investing strategies." },
+
+          { title: "Made to Stick", price: 349, image: "images/business-madetostick.jpg",
+            desc: "Chip and Dan Heath explore why some ideas survive and others fade." },
+
+          { title: "Drive", price: 349, image: "images/business-drive.jpg",
+            desc: "Daniel Pink explains what truly motivates people in work and business." },
+
+          { title: "Competing Against Luck", price: 399, image: "images/business-competingluck.jpg",
+            desc: "Clayton Christensen’s framework for creating successful innovations." },
+
+          { title: "The Everything Store", price: 449, image: "images/business-everythingstore.jpg",
+            desc: "Brad Stone tells the story of Jeff Bezos and Amazon’s rise." },
+
+          { title: "Principles for Dealing with the Changing World Order", price: 499, image: "images/business-worldorder.jpg",
+            desc: "Ray Dalio explores how economic and political shifts shape the world." },
+
+          { title: "Business Adventures", price: 399, image: "images/business-adventures.jpg",
+            desc: "John Brooks’ stories from Wall Street loved by Warren Buffett and Bill Gates." },
+
+          { title: "The Effective Executive", price: 299, image: "images/business-effectiveexec.jpg",
+            desc: "Peter Drucker’s timeless lessons on management effectiveness." },
+
+          { title: "The Millionaire Next Door", price: 349, image: "images/business-millionaire.jpg",
+            desc: "Thomas Stanley and William Danko reveal the habits of wealthy Americans." }
+          
+        ],
+
+        "Health & Wellness": [
+
+          
+          { title: "The Power of Now", price: 399, image: "images/health-now.jpg",
+            desc: "Eckhart Tolle’s guide to spiritual enlightenment and mental well-being." },
+          { title: "Atomic Habits", price: 499, image: "images/health-habits.jpg",
+            desc: "James Clear shows how small habits create big life changes." },
+          { title: "Ikigai: The Japanese Secret to a Long and Happy Life", price: 349, image: "images/health-ikigai.jpg",
+            desc: "Exploring the Japanese philosophy of purpose, balance, and longevity." },
+          { title: "Why We Sleep", price: 449, image: "images/health-sleep.jpg",
+            desc: "Matthew Walker explains the science of sleep and its role in health." },
+          { title: "The Body Keeps the Score", price: 599, image: "images/health-body.jpg",
+            desc: "A powerful book on trauma and healing through mind-body connections." },
+
+          { title: "How Not to Die", price: 499, image: "images/health-notdie.jpg",
+            desc: "Michael Greger reveals how diet can prevent and reverse disease." },
+          { title: "Breath: The New Science of a Lost Art", price: 399, image: "images/health-breath.jpg",
+            desc: "James Nestor explores the power of breathing techniques for health." },
+          { title: "The 4-Hour Body", price: 549, image: "images/health-4hour.jpg",
+            desc: "Tim Ferriss experiments with fitness, diet, and body optimization." },
+          { title: "Spark: The Revolutionary New Science of Exercise and the Brain", price: 449, image: "images/health-spark.jpg",
+            desc: "John Ratey shows how exercise transforms mental performance." },
+          { title: "In Defense of Food", price: 399, image: "images/health-food.jpg",
+            desc: "Michael Pollan’s simple guide to eating wisely and living longer." },
+
+          { title: "Gut: The Inside Story of Our Body’s Most Underrated Organ", price: 429, image: "images/health-gut.jpg",
+            desc: "Giulia Enders explains the role of the gut in overall health." },
+          { title: "The Longevity Diet", price: 499, image: "images/health-longevity.jpg",
+            desc: "Valter Longo explores diet strategies for living longer and healthier." },
+          { title: "Mindfulness in Plain English", price: 299, image: "images/health-mindfulness.jpg",
+            desc: "Bhante Henepola Gunaratana introduces practical meditation techniques." },
+          { title: "Deep Nutrition", price: 499, image: "images/health-deep.jpg",
+            desc: "Catherine Shanahan shows how ancestral eating improves modern health." },
+          { title: "Daring Greatly", price: 449, image: "images/health-daring.jpg",
+            desc: "Brené Brown explores vulnerability as strength for mental wellness." },
+
+          { title: "The Happiness Advantage", price: 399, image: "images/health-happy.jpg",
+            desc: "Shawn Achor explains how happiness fuels success and health." },
+          { title: "The Plant Paradox", price: 499, image: "images/health-plant.jpg",
+            desc: "Steven Gundry on hidden toxins in ‘healthy’ foods and how to avoid them." },
+          { title: "Waking Up: A Guide to Spirituality Without Religion", price: 399, image: "images/health-waking.jpg",
+            desc: "Sam Harris blends neuroscience and mindfulness for self-discovery." },
+          { title: "Lifespan: Why We Age – and Why We Don’t Have To", price: 599, image: "images/health-lifespan.jpg",
+            desc: "David Sinclair explores groundbreaking science of aging reversal." },
+          { title: "The Omnivore’s Dilemma", price: 449, image: "images/health-omnivore.jpg",
+            desc: "Michael Pollan examines what we should eat and why." },
+
+          { title: "Anticancer: A New Way of Life", price: 499, image: "images/health-anticancer.jpg",
+            desc: "David Servan-Schreiber shares lifestyle advice to fight cancer." },
+          { title: "The Joy of Movement", price: 399, image: "images/health-joy.jpg",
+            desc: "Kelly McGonigal reveals how physical activity enhances well-being." },
+          { title: "You Are Your Own Best Medicine", price: 349, image: "images/health-bestmedicine.jpg",
+            desc: "Claire Gillman explores natural healing methods for health." },
+          { title: "Eat to Beat Disease", price: 499, image: "images/health-eatdisease.jpg",
+            desc: "William Li reveals how foods can prevent and heal illness." },
+          { title: "The Telomere Effect", price: 549, image: "images/health-telomere.jpg",
+            desc: "Elizabeth Blackburn explains the science of cellular aging." },
+
+          { title: "Nutrition and Physical Degeneration", price: 599, image: "images/health-degeneration.jpg",
+            desc: "Weston Price’s classic study on traditional diets and health." },
+          { title: "Rest: Why You Get More Done When You Work Less", price: 349, image: "images/health-rest.jpg",
+            desc: "Alex Pang explores the power of deliberate rest and recovery." },
+          { title: "Women’s Health Matters", price: 399, image: "images/health-women.jpg",
+            desc: "A comprehensive guide to women’s health and wellness." },
+          { title: "Healing with Whole Foods", price: 599, image: "images/health-wholefoods.jpg",
+            desc: "Paul Pitchford blends nutrition and Eastern medicine for healing." },
+          { title: "The Stress Solution", price: 449, image: "images/health-stress.jpg",
+            desc: "Rangan Chatterjee shows simple steps to reduce stress daily." },
+
+          { title: "Ultrametabolism", price: 499, image: "images/health-ultra.jpg",
+            desc: "Mark Hyman’s plan for natural weight loss and healthy living." },
+          { title: "Silence: The Power of Quiet in a World Full of Noise", price: 349, image: "images/health-silence.jpg",
+            desc: "Thich Nhat Hanh’s teachings on mindfulness and inner peace." },
+          { title: "The Mind-Gut Connection", price: 449, image: "images/health-mindgut.jpg",
+            desc: "Emeran Mayer reveals how gut health impacts emotions and brain." },
+          { title: "Becoming Supernatural", price: 599, image: "images/health-supernatural.jpg",
+            desc: "Joe Dispenza explores meditation and science of self-healing." },
+          { title: "The Art of Happiness", price: 399, image: "images/health-art.jpg",
+            desc: "Dalai Lama’s timeless wisdom on finding joy and peace in life." },
+
+          { title: "You Can Heal Your Life", price: 349, image: "images/health-heal.jpg",
+            desc: "Louise Hay’s classic on the mind-body connection for healing." },
+          { title: "Boundless", price: 699, image: "images/health-boundless.jpg",
+            desc: "Ben Greenfield’s guide to health, energy, and performance." },
+          { title: "The Self-Care Prescription", price: 349, image: "images/health-selfcare.jpg",
+            desc: "Robyn Gobin’s toolkit for reducing stress and boosting wellness." },
+          { title: "Every Body Yoga", price: 299, image: "images/health-yoga.jpg",
+            desc: "Jessamyn Stanley inspires with accessible yoga for all bodies." },
+          { title: "Light on Yoga", price: 499, image: "images/health-lightyoga.jpg",
+            desc: "B.K.S. Iyengar’s classic on yoga postures, breathing, and philosophy." }
+          
+        ],
+
+        "Philosophy & Spirituality": [
+
+          
+      { title: "Meditations", price: 349, image: "images/adults-philosophy1.jpg",
+          desc: "Marcus Aurelius’ timeless reflections on Stoic philosophy and self-mastery." },
+
+        { title: "The Republic", price: 399, image: "images/adults-philosophy2.jpg",
+          desc: "Plato’s influential dialogue on justice, politics, and the ideal state." },
+
+        { title: "Beyond Good and Evil", price: 349, image: "images/adults-philosophy3.jpg",
+          desc: "Nietzsche challenges traditional morality and explores individual freedom." },
+
+        { title: "Critique of Pure Reason", price: 449, image: "images/adults-philosophy4.jpg",
+          desc: "Kant’s groundbreaking work on human understanding and metaphysics." },
+
+        { title: "Tao Te Ching", price: 299, image: "images/adults-philosophy5.jpg",
+          desc: "Lao Tzu’s classic Taoist wisdom on harmony, humility, and balance." },
+
+        { title: "The Art of War", price: 299, image: "images/adults-philosophy6.jpg",
+          desc: "Sun Tzu’s ancient strategies on leadership, conflict, and discipline." },
+
+        { title: "Thus Spoke Zarathustra", price: 349, image: "images/adults-philosophy7.jpg",
+          desc: "Nietzsche’s poetic philosophy on the ‘Übermensch’ and human progress." },
+
+        { title: "Bhagavad Gita", price: 349, image: "images/adults-philosophy8.jpg",
+          desc: "The Hindu scripture on duty, devotion, and self-realization." },
+
+        { title: "The Analects", price: 299, image: "images/adults-philosophy9.jpg",
+          desc: "Confucius’ teachings on ethics, morality, and social harmony." },
+
+        { title: "The Prince", price: 349, image: "images/adults-philosophy10.jpg",
+          desc: "Machiavelli’s political philosophy on power and leadership." },
+
+        { title: "Upanishads", price: 399, image: "images/adults-philosophy11.jpg",
+          desc: "Ancient Indian spiritual texts exploring self and ultimate reality." },
+
+        { title: "Letters from a Stoic", price: 349, image: "images/adults-philosophy12.jpg",
+          desc: "Seneca’s practical wisdom on life, resilience, and virtue." },
+
+        { title: "Being and Time", price: 499, image: "images/adults-philosophy13.jpg",
+          desc: "Heidegger’s exploration of human existence and meaning." },
+
+        { title: "The Tao of Philosophy", price: 349, image: "images/adults-philosophy14.jpg",
+          desc: "Alan Watts’ insights into Taoism and Eastern wisdom." },
+
+        { title: "Fear and Trembling", price: 349, image: "images/adults-philosophy15.jpg",
+          desc: "Kierkegaard’s classic on faith, ethics, and the individual." },
+
+        { title: "The Dhammapada", price: 299, image: "images/adults-philosophy16.jpg",
+          desc: "Buddhist verses on mindfulness, compassion, and wisdom." },
+
+        { title: "Nicomachean Ethics", price: 399, image: "images/adults-philosophy17.jpg",
+          desc: "Aristotle’s analysis of virtue, happiness, and the good life." },
+
+        { title: "The Power of Now", price: 349, image: "images/adults-philosophy18.jpg",
+          desc: "Eckhart Tolle’s spiritual guide to living in the present moment." },
+
+        { title: "The Book of Five Rings", price: 349, image: "images/adults-philosophy19.jpg",
+          desc: "Miyamoto Musashi’s strategy text blending philosophy and martial arts." },
+
+        { title: "Zen Mind, Beginner’s Mind", price: 349, image: "images/adults-philosophy20.jpg",
+          desc: "Shunryu Suzuki’s Zen teachings on mindfulness and simplicity." },
+
+        { title: "Man’s Search for Meaning", price: 399, image: "images/adults-philosophy21.jpg",
+          desc: "Viktor Frankl’s reflections on finding purpose even in suffering." },
+
+        { title: "The Essence of Christianity", price: 349, image: "images/adults-philosophy22.jpg",
+          desc: "Feuerbach’s philosophical critique of religion." },
+
+        { title: "The Ethics", price: 399, image: "images/adults-philosophy23.jpg",
+          desc: "Spinoza’s rational approach to God, nature, and human freedom." },
+
+        { title: "The Courage to Be", price: 349, image: "images/adults-philosophy24.jpg",
+          desc: "Paul Tillich’s reflections on anxiety, courage, and spirituality." },
+
+        { title: "Zen and the Art of Motorcycle Maintenance", price: 399, image: "images/adults-philosophy25.jpg",
+          desc: "Pirsig’s philosophical journey on quality, life, and existence." },
+
+        { title: "The Story of Philosophy", price: 399, image: "images/adults-philosophy26.jpg",
+          desc: "Will Durant’s engaging survey of great philosophers." },
+
+        { title: "The Seat of the Soul", price: 349, image: "images/adults-philosophy27.jpg",
+          desc: "Gary Zukav’s work on consciousness and spiritual evolution." },
+
+        { title: "Sophie's World", price: 399, image: "images/adults-philosophy28.jpg",
+          desc: "A novel that introduces the history of philosophy through storytelling." },
+
+        { title: "The Laws of Human Nature", price: 449, image: "images/adults-philosophy29.jpg",
+          desc: "Robert Greene’s guide to psychology and power dynamics." },
+
+        { title: "Bhakti Sutras", price: 299, image: "images/adults-philosophy30.jpg",
+          desc: "Teachings on devotion and spiritual love from Indian philosophy." },
+
+        { title: "The World as Will and Representation", price: 449, image: "images/adults-philosophy31.jpg",
+          desc: "Schopenhauer’s analysis of existence and suffering." },
+
+        { title: "Discourse on Method", price: 349, image: "images/adults-philosophy32.jpg",
+          desc: "Descartes’ work on skepticism and rational thought." },
+
+        { title: "The Varieties of Religious Experience", price: 399, image: "images/adults-philosophy33.jpg",
+          desc: "William James’ study of faith, mysticism, and spirituality." },
+
+        { title: "The Consolation of Philosophy", price: 349, image: "images/adults-philosophy34.jpg",
+          desc: "Boethius’ meditation on fate, free will, and happiness." },
+
+        { title: "The Wisdom of Insecurity", price: 349, image: "images/adults-philosophy35.jpg",
+          desc: "Alan Watts’ reflections on living freely without fear." },
+
+        { title: "On the Genealogy of Morality", price: 349, image: "images/adults-philosophy36.jpg",
+          desc: "Nietzsche’s critique of moral values and their origins." },
+
+        { title: "The Upward Spiral", price: 399, image: "images/adults-philosophy37.jpg",
+          desc: "Alex Korb’s neuroscience-based guide to happiness and well-being." },
+
+        { title: "No Self, No Problem", price: 349, image: "images/adults-philosophy38.jpg",
+          desc: "Chris Niebauer explains the illusion of self from a Buddhist perspective." },
+
+        { title: "A History of Western Philosophy", price: 499, image: "images/adults-philosophy39.jpg",
+          desc: "Bertrand Russell’s classic survey of Western thought." },
+
+        { title: "The Untethered Soul", price: 399, image: "images/adults-philosophy40.jpg",
+          desc: "Michael A. Singer’s spiritual exploration of inner freedom." }
+      ],
+      
+
+        "Science & Technology": [
+
+          
+      { title: "A Brief History of Time", price: 499, image: "images/adults-scitech1.jpg",
+        desc: "Stephen Hawking explains the nature of the universe, black holes, and the concept of time." },
+
+      { title: "The Selfish Gene", price: 449, image: "images/adults-scitech2.jpg",
+        desc: "Richard Dawkins’ revolutionary perspective on evolution and natural selection." },
+
+      { title: "Cosmos", price: 599, image: "images/adults-scitech3.jpg",
+        desc: "Carl Sagan explores the wonders of the universe and humanity’s place within it." },
+
+      { title: "Sapiens: A Brief History of Humankind", price: 499, image: "images/adults-scitech4.jpg",
+        desc: "Yuval Noah Harari’s sweeping history of human evolution and impact on the world." },
+
+      { title: "Homo Deus: A Brief History of Tomorrow", price: 549, image: "images/adults-scitech5.jpg",
+        desc: "Explores the future of humanity with advances in AI, biotechnology, and data science." },
+
+      { title: "Astrophysics for People in a Hurry", price: 399, image: "images/adults-scitech6.jpg",
+        desc: "Neil deGrasse Tyson makes complex astrophysics simple and engaging." },
+
+      { title: "The Gene: An Intimate History", price: 599, image: "images/adults-scitech7.jpg",
+        desc: "Siddhartha Mukherjee traces the story of the human gene and genetic science." },
+
+      { title: "The Emperor of All Maladies", price: 649, image: "images/adults-scitech8.jpg",
+        desc: "Pulitzer Prize-winning biography of cancer and the ongoing fight to cure it." },
+
+      { title: "Thinking, Fast and Slow", price: 499, image: "images/adults-scitech9.jpg",
+        desc: "Daniel Kahneman reveals the two systems of thinking that shape human decision-making." },
+
+      { title: "Why We Sleep", price: 449, image: "images/adults-scitech10.jpg",
+        desc: "Matthew Walker explains the importance of sleep and how it impacts health and learning." },
+
+      { title: "Silent Spring", price: 399, image: "images/adults-scitech11.jpg",
+        desc: "Rachel Carson’s groundbreaking book that sparked the environmental movement." },
+
+      { title: "Guns, Germs, and Steel", price: 549, image: "images/adults-scitech12.jpg",
+        desc: "Jared Diamond explores why some civilizations thrived while others collapsed." },
+
+      { title: "The Order of Time", price: 499, image: "images/adults-scitech13.jpg",
+        desc: "Physicist Carlo Rovelli explores the mysteries and nature of time." },
+
+      { title: "Brief Answers to the Big Questions", price: 499, image: "images/adults-scitech14.jpg",
+        desc: "Stephen Hawking tackles the universe’s greatest mysteries in simple language." },
+
+      { title: "The Immortal Life of Henrietta Lacks", price: 449, image: "images/adults-scitech15.jpg",
+        desc: "The story of HeLa cells and how they transformed modern medical science." },
+
+      { title: "The Innovators", price: 599, image: "images/adults-scitech16.jpg",
+        desc: "Walter Isaacson chronicles the pioneers who created the digital revolution." },
+
+      { title: "The Future of Humanity", price: 599, image: "images/adults-scitech17.jpg",
+        desc: "Michio Kaku explores space colonization, immortality, and the destiny of humanity." },
+
+      { title: "The Code Breaker", price: 649, image: "images/adults-scitech18.jpg",
+        desc: "Walter Isaacson tells the story of CRISPR and genetic editing pioneer Jennifer Doudna." },
+
+      { title: "Deep Work", price: 399, image: "images/adults-scitech19.jpg",
+        desc: "Cal Newport explores the science of focus and productivity in a distracted world." },
+
+      { title: "The Body: A Guide for Occupants", price: 599, image: "images/adults-scitech20.jpg",
+        desc: "Bill Bryson takes readers on a fascinating journey inside the human body." },
+
+      { title: "The Structure of Scientific Revolutions", price: 449, image: "images/adults-scitech21.jpg",
+        desc: "Thomas Kuhn introduces the idea of paradigm shifts in scientific progress." },
+
+      { title: "Behave", price: 649, image: "images/adults-scitech22.jpg",
+        desc: "Robert Sapolsky explores human behavior from biology to culture." },
+
+      { title: "The Blind Watchmaker", price: 449, image: "images/adults-scitech23.jpg",
+        desc: "Richard Dawkins explains evolution and natural selection in depth." },
+
+      { title: "The Fabric of the Cosmos", price: 599, image: "images/adults-scitech24.jpg",
+        desc: "Brian Greene explores space, time, and the nature of reality." },
+
+      { title: "Life 3.0", price: 499, image: "images/adults-scitech25.jpg",
+        desc: "Max Tegmark examines artificial intelligence and its potential futures." },
+
+      { title: "The Singularity is Near", price: 599, image: "images/adults-scitech26.jpg",
+        desc: "Ray Kurzweil predicts the future of AI, human enhancement, and technology." },
+
+      { title: "Chaos: Making a New Science", price: 449, image: "images/adults-scitech27.jpg",
+        desc: "James Gleick explores chaos theory and its impact on modern science." },
+
+      { title: "The Man Who Knew Infinity", price: 499, image: "images/adults-scitech28.jpg",
+        desc: "Biography of genius mathematician Srinivasa Ramanujan." },
+
+      { title: "The Disappearing Spoon", price: 399, image: "images/adults-scitech29.jpg",
+        desc: "Sam Kean shares fascinating stories about the elements of the periodic table." },
+
+      { title: "Black Holes and Time Warps", price: 599, image: "images/adults-scitech30.jpg",
+        desc: "Kip Thorne’s exploration of black holes and relativity." },
+
+      { title: "Physics of the Impossible", price: 499, image: "images/adults-scitech31.jpg",
+        desc: "Michio Kaku explores the science behind sci-fi ideas." },
+
+      { title: "The Hidden Life of Trees", price: 399, image: "images/adults-scitech32.jpg",
+        desc: "Peter Wohlleben explores the secret world of trees and forests." },
+
+      { title: "Genome", price: 499, image: "images/adults-scitech33.jpg",
+        desc: "Matt Ridley tells the story of the 23 human chromosomes." },
+
+      { title: "The Demon-Haunted World", price: 449, image: "images/adults-scitech34.jpg",
+        desc: "Carl Sagan defends science against pseudoscience and superstition." },
+
+      { title: "Origin of Species", price: 399, image: "images/adults-scitech35.jpg",
+        desc: "Charles Darwin’s landmark work on evolution and natural selection." },
+
+      { title: "The Universe in a Nutshell", price: 499, image: "images/adults-scitech36.jpg",
+        desc: "Stephen Hawking’s illustrated guide to cosmology." },
+
+      { title: "Until the End of Time", price: 599, image: "images/adults-scitech37.jpg",
+        desc: "Brian Greene reflects on the universe, life, and meaning." },
+
+      { title: "Entangled Life", price: 499, image: "images/adults-scitech38.jpg",
+        desc: "Merlin Sheldrake explores the hidden world of fungi." },
+
+      { title: "The Book of Why", price: 449, image: "images/adults-scitech39.jpg",
+        desc: "Judea Pearl explains the new science of cause and effect." },
+
+      { title: "The Future of Life", price: 499, image: "images/adults-scitech40.jpg",
+        desc: "E.O. Wilson’s passionate call to protect Earth’s biodiversity." }
+      ],
+
+        "Politics & Society": [
+
+          
+       { title: "The Communist Manifesto", price: 299, image: "images/adults-politics1.jpg",
+          desc: "Karl Marx and Friedrich Engels' influential political pamphlet on class struggle and capitalism." },
+        { title: "The Republic", price: 349, image: "images/adults-politics2.jpg",
+          desc: "Plato’s philosophical work discussing justice, governance, and the ideal state." },
+        { title: "Democracy in America", price: 449, image: "images/adults-politics3.jpg",
+          desc: "Alexis de Tocqueville’s classic analysis of American democracy and society." },
+        { title: "The Prince", price: 249, image: "images/adults-politics4.jpg",
+          desc: "Niccolò Machiavelli’s seminal work on power, leadership, and political strategy." },
+        { title: "The Road to Serfdom", price: 399, image: "images/adults-politics5.jpg",
+          desc: "Friedrich Hayek’s warning about government overreach and loss of individual freedom." },
+        { title: "Politics", price: 349, image: "images/adults-politics6.jpg",
+          desc: "Aristotle’s foundational text exploring governance, constitutions, and citizenship." },
+        { title: "The Social Contract", price: 299, image: "images/adults-politics7.jpg",
+          desc: "Jean-Jacques Rousseau’s influential book on democracy, freedom, and the will of the people." },
+        { title: "The Origins of Totalitarianism", price: 549, image: "images/adults-politics8.jpg",
+          desc: "Hannah Arendt’s exploration of totalitarian regimes, ideology, and power." },
+        { title: "Leviathan", price: 349, image: "images/adults-politics9.jpg",
+          desc: "Thomas Hobbes’ major work on political order, authority, and social contracts." },
+        { title: "On Liberty", price: 299, image: "images/adults-politics10.jpg",
+          desc: "John Stuart Mill’s classic defense of liberty, free speech, and individuality." },
+
+        { title: "The Federalist Papers", price: 399, image: "images/adults-politics11.jpg",
+          desc: "Essays by Hamilton, Madison, and Jay advocating for the U.S. Constitution." },
+        { title: "The End of History and the Last Man", price: 449, image: "images/adults-politics12.jpg",
+          desc: "Francis Fukuyama’s controversial thesis on liberal democracy as the endpoint of history." },
+        { title: "The Clash of Civilizations", price: 499, image: "images/adults-politics13.jpg",
+          desc: "Samuel Huntington’s influential work on global politics and cultural conflicts." },
+        { title: "Justice: What's the Right Thing to Do?", price: 399, image: "images/adults-politics14.jpg",
+          desc: "Michael Sandel’s engaging exploration of justice and political philosophy." },
+        { title: "The Spirit of Laws", price: 349, image: "images/adults-politics15.jpg",
+          desc: "Montesquieu’s influential treatise on law, government, and separation of powers." },
+        { title: "The Audacity of Hope", price: 399, image: "images/adults-politics16.jpg",
+          desc: "Barack Obama’s reflections on American politics and values." },
+        { title: "The Wretched of the Earth", price: 349, image: "images/adults-politics17.jpg",
+          desc: "Frantz Fanon’s revolutionary work on colonialism and liberation." },
+        { title: "The Politics of Truth", price: 299, image: "images/adults-politics18.jpg",
+          desc: "Writings of Michel Foucault on power, politics, and governance." },
+        { title: "The Great Transformation", price: 399, image: "images/adults-politics19.jpg",
+          desc: "Karl Polanyi’s analysis of market society and economic systems." },
+        { title: "The Age of Extremes", price: 449, image: "images/adults-politics20.jpg",
+          desc: "Eric Hobsbawm’s history of the 20th century’s political upheavals." },
+
+        { title: "The Origins of Political Order", price: 499, image: "images/adults-politics21.jpg",
+          desc: "Francis Fukuyama’s study of political institutions and development." },
+        { title: "Rules for Radicals", price: 249, image: "images/adults-politics22.jpg",
+          desc: "Saul Alinsky’s manual for grassroots political activism." },
+        { title: "Politics Among Nations", price: 549, image: "images/adults-politics23.jpg",
+          desc: "Hans Morgenthau’s classic text on international relations and power politics." },
+        { title: "The Origins of Political Order", price: 499, image: "images/adults-politics24.jpg",
+          desc: "Francis Fukuyama’s examination of political evolution from prehuman times to the French Revolution." },
+        { title: "The Righteous Mind", price: 349, image: "images/adults-politics25.jpg",
+          desc: "Jonathan Haidt’s study of morality and its impact on politics." },
+        { title: "Who Rules the World?", price: 399, image: "images/adults-politics26.jpg",
+          desc: "Noam Chomsky’s critique of American foreign policy and global power." },
+        { title: "The Shock Doctrine", price: 449, image: "images/adults-politics27.jpg",
+          desc: "Naomi Klein’s exploration of disaster capitalism and neoliberal policies." },
+        { title: "The Globalization Paradox", price: 349, image: "images/adults-politics28.jpg",
+          desc: "Dani Rodrik’s analysis of globalization, democracy, and national sovereignty." },
+        { title: "The Road to Unfreedom", price: 399, image: "images/adults-politics29.jpg",
+          desc: "Timothy Snyder’s warning about authoritarianism and modern politics." },
+        { title: "Why Nations Fail", price: 499, image: "images/adults-politics30.jpg",
+          desc: "Acemoglu and Robinson’s study of political institutions and prosperity." },
+
+        { title: "The Idea of Justice", price: 399, image: "images/adults-politics31.jpg",
+          desc: "Amartya Sen’s exploration of justice, fairness, and equality." },
+        { title: "The Post-American World", price: 349, image: "images/adults-politics32.jpg",
+          desc: "Fareed Zakaria’s analysis of shifting global power dynamics." },
+        { title: "The New Jim Crow", price: 349, image: "images/adults-politics33.jpg",
+          desc: "Michelle Alexander’s work on mass incarceration and racial justice in America." },
+        { title: "The Populist Explosion", price: 299, image: "images/adults-politics34.jpg",
+          desc: "John Judis’ overview of the rise of populism in global politics." },
+        { title: "Fascism: A Warning", price: 399, image: "images/adults-politics35.jpg",
+          desc: "Madeleine Albright’s insights into the dangers of fascist ideologies." },
+        { title: "The Great Democracy", price: 349, image: "images/adults-politics36.jpg",
+          desc: "Ganesh Sitaraman’s ideas on building a stronger democracy." },
+        { title: "On Tyranny", price: 249, image: "images/adults-politics37.jpg",
+          desc: "Timothy Snyder’s 20 lessons from the 20th century for resisting tyranny." },
+        { title: "The Doomsday Machine", price: 449, image: "images/adults-politics38.jpg",
+          desc: "Daniel Ellsberg’s revelations on nuclear weapons and U.S. military policy." },
+        { title: "The Future of Freedom", price: 349, image: "images/adults-politics39.jpg",
+          desc: "Fareed Zakaria’s analysis of democracy, liberty, and modern challenges." },
+        { title: "Capitalism and Freedom", price: 349, image: "images/adults-politics40.jpg",
+          desc: "Milton Friedman’s defense of free-market capitalism and limited government." }
+      ]
+      }
+
+    };
+  let selectedBook = null;
+  let cart = [];
+  
+
+  // Add book to cart
+  function addToCart(book) {
+    let existing = cart.find(item => item.title === book.title);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ ...book, qty: 1 });
+    }
+    alert(`${book.title} added to your cart!`);
+  }
+
+  // Open Cart Screen
+  function showCart() {
+    hideAllScreens();
+    document.getElementById("cart-screen").style.display = "block";
+    renderCart();
+  }
+
+  // Render Cart Items
+  function renderCart() {
+    let cartItemsDiv = document.getElementById("cart-items");
+    cartItemsDiv.innerHTML = "";
+
+    let subtotal = 0;
+
+    cart.forEach((item, index) => {
+      subtotal += item.price * item.qty;
+
+      let cartItem = document.createElement("div");
+      cartItem.className = "cart-item";
+
+      cartItem.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <div class="cart-item-details">
+          <h4>${item.title}</h4>
+          <p>${item.desc}</p>
+          <p>Price: ₹${item.price}</p>
+          <label>Qty: 
+            <input type="number" min="1" value="${item.qty}" class="cart-qty"
+              onchange="updateQty(${index}, this.value)">
+          </label>
+        </div>
+      `;
+
+      cartItemsDiv.appendChild(cartItem);
+    });
+
+    document.getElementById("cart-subtotal").innerText = subtotal;
+    document.getElementById("cart-delivery").innerText = cart.length > 0 ? 50 : 0;
+    document.getElementById("cart-total").innerText = subtotal + (cart.length > 0 ? 50 : 0);
+  }
+
+  // Update quantity
+  function updateQty(index, newQty) {
+    cart[index].qty = parseInt(newQty);
+    renderCart();
+  }
+
+  // Checkout
+  function checkout() {
+    alert("✅ Order placed successfully!");
+    cart = [];
+    showCart();
+  }
+
+  // Back button
+  function goBackFromCart() {
+    hideAllScreens();
+    document.getElementById("book-screen").style.display = "block";
+  }
+
+
+/* ---------- VIEW SWITCH ---------- */
+  function setDisplay(screen){
+  const screens = [
+    'home-screen', 'book-screen', 'topics-screen',
+    'books-list-screen', 'book-detail-screen',
+    'plans-screen', 'contact-screen',
+    'box-screen' // ✅ Add this line
+  ];
+
+    screens.forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.style.display = 'none';
+    });
+
+    switch(screen) {
+      case 'home':
+        document.getElementById('home-screen').style.display = 'block'; break;
+      case 'book':
+        document.getElementById('book-screen').style.display = 'block'; break;
+      case 'topics':
+        document.getElementById('topics-screen').style.display = 'block'; break;
+      case 'booksList':
+        document.getElementById('books-list-screen').style.display = 'block'; break;
+    }
+  }
+
+
+/* ---------- NAVIGATION ---------- */
+function showHome(){ setDisplay('home'); }
+function showBooks(){ setDisplay('book'); }
+  function showPlans(){
+    setDisplay('');
+    document.getElementById('plans-screen').style.display = 'block';
+  }
+
+  function showContact(){
+    setDisplay('');
+    document.getElementById('contact-screen').style.display = 'block';
+  }
+
+
+function showTopics(cat){
+  currentCategory = cat; currentTopic = '';
+  const wrap = document.getElementById('topics-container');
+  wrap.innerHTML = '';
+  topicsData[cat].forEach(t=>{
+    const btn = document.createElement('button');
+    btn.className='topic-btn'; btn.textContent=t;
+    btn.onclick = ()=>showBooksList(t);
+    wrap.appendChild(btn);
+  });
+  setDisplay('topics');
+}
+
+  function showBooksList(topic) {
+    currentTopic = topic;
+    setDisplay('booksList');
+
+    const listWrap = document.getElementById('books-list');
+    const heading = document.getElementById('list-heading');
+    heading.textContent = topic;
+
+    listWrap.innerHTML = '';
+
+    const books = booksData[currentCategory][topic];
+    if (!books || books.length === 0) {
+      listWrap.innerHTML = '<p>No books found for this topic.</p>';
+      return;
+    }
+
+    books.forEach(b => {
+      const book = withImg(b);
+
+      const card = document.createElement('div');
+      card.className = 'book-card';
+      card.onclick = () => showBookDetail(book);
+
+      const img = document.createElement('img');
+      img.src = book.image;
+
+      const info = document.createElement('div');
+      info.className = 'book-info';
+
+      const title = document.createElement('h4');
+      title.textContent = book.title;
+
+      const price = document.createElement('div');
+      price.className = 'small-price';
+      price.textContent = `₹${book.price}`;
+
+      info.appendChild(title);
+      info.appendChild(price);
+
+      card.appendChild(img);
+      card.appendChild(info);
+
+      listWrap.appendChild(card);
+    });
+  }
+
+
+
+/* ---------- BOOK LIST ---------- */
+function createCard(b){
+  const priceLine = b.price!==null ? `₹${b.price}` : 'Price N/A';
+  const card=document.createElement('div');
+  card.className='book-card';
+  card.onclick=()=>showBookDetail(b);
+  card.innerHTML=
+    `<img src="${b.image}" alt="${b.title}">
+     <div class="book-info">
+       <h4>${b.title}</h4>
+       <span class="small-price">${priceLine}</span>
+     </div>`;
+  return card;
+}
+
+function renderBooks(customArr){
+  const list = document.getElementById('books-list');
+  list.innerHTML='';
+  const books = customArr || (booksData[currentCategory]||{})[currentTopic]||[];
+  if(!books.length){
+    list.innerHTML='<p>No books available for this topic yet.</p>';
+    return;
+  }
+  books.forEach(b=> list.appendChild(createCard(b)) );
+}
+
+/* ---------- SEARCH ---------- */
+function handleSearch(e){
+  const term = e.target.value.trim().toLowerCase();
+  if(term.length < 2){ // reset to previous view if search box cleared or too short
+    if(currentCategory && currentTopic) {
+      showBooksList(currentTopic);
+    } else {
+      setDisplay('home');
+    }
+    return;
+  }
+  const results = [];
+  Object.values(booksData).forEach(catObj=>{
+    Object.values(catObj).forEach(topicArr=>{
+      topicArr.forEach(b=>{
+        if(b.title.toLowerCase().includes(term)){
+          results.push(b);
+        }
+      });
+    });
+  });
+  currentCategory = '';
+  currentTopic    = '';
+  document.getElementById('list-heading').textContent = `Search Results`;
+  document.getElementById('list-back-btn').onclick = ()=>{
+      document.getElementById('search-input').value='';
+      setDisplay('home');
+  };
+  renderBooks(results);
+  setDisplay('booksList');
+}
+
+/* ---------- DETAIL VIEW ---------- */
+  function showBookDetail(book){
+    selectedBook = book;
+    document.getElementById('books-list-screen').style.display='none';
+    const detail=document.getElementById('book-detail-screen'); detail.style.display='block';
+
+    const priceHTML = book.price !== null
+          ? `<p class="price-tag">₹${book.price}.00</p>`
+          : `<p class="price-tag" style="color:#555;font-size:1.1rem;">Price not specified</p>`;
+
+    document.getElementById('book-detail').innerHTML =
+    `<div class="book-detail-wrapper">
+      <img src="${book.image}" alt="${book.title}">
+      <div class="book-detail-info">
+        <h3>${book.title}</h3>
+        ${priceHTML}
+        <p>${book.desc || 'Description coming soon…'}</p>
+        
+        <button class="action-btn" onclick='addToBoxFromDetail()'>Add to Box</button>
+        
+        <button class="action-btn">Buy Now</button>
+      </div>
+      
+    </div>`;
+  }
+
+  function backToList(){
+    document.getElementById('book-detail-screen').style.display='none';
+    document.getElementById('books-list-screen').style.display='block';
+  }
+
+
+/* ---------- INIT ---------- */
+</script>
+    <!-- 📌 Add this just before </body> -->
+    <!-- CONTACT FORM SCRIPT -->
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbyM3PPXqJXu92WWZoc0YlDIygWM9She1tyMPES28IkXE9uyPzHArkbmcliDxLt-EreM/exec';
+      const form = document.getElementById('contact-form');
+      const responseMsg = document.getElementById('response-msg');
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then(response => {
+            responseMsg.innerHTML = "✅ Message sent successfully!";
+            form.reset();
+            setTimeout(() => responseMsg.innerHTML = '', 4000);
+          })
+          .catch(error => {
+            responseMsg.innerHTML = "❌ Failed to send. Please try again!";
+            console.error('Error!', error.message);
+          });
+      });
+    </script>
+    <footer style="background:#4b0082; color:#fff; padding:1rem; text-align:center;">
+      <p>© 2025 StoryGems. All rights reserved.</p>
+      <p>
+        <a href="https://www.instagram.com/story_gems_official?igsh=MThtdmVobW1sZHlpaA==" 
+           target="_blank" 
+           style="color:#ffe700; text-decoration:none; font-weight:bold;">
+           Contact us on Instagram
+        </a>
+      </p>
+    </footer>
+
+    <!-- CART SCREEN -->
+    <div id="cart-screen" class="screen" style="display:none;">
+      <h2>🛒 Your Cart</h2>
+      <div id="cart-items"></div>
+
+      <div class="cart-summary">
+        <p>Subtotal: ₹<span id="cart-subtotal">0</span></p>
+        <p>Delivery Charges: ₹<span id="cart-delivery">50</span></p>
+        <h3>Total: ₹<span id="cart-total">0</span></h3>
+        <button onclick="checkout()" class="buy-btn">Proceed to Buy</button>
+      </div>
+      <button onclick="goBackFromCart()" class="back-btn">⬅ Back</button>
+    </div>
+<style>
+  /* ---- CART STYLING ---- */
+  #cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .cart-item img {
+    width: 100px;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .cart-item-details {
+    flex: 1;
+  }
+
+  .cart-item-details h4 {
+    margin: 0 0 5px;
+    font-weight: bold;
+  }
+
+  .cart-item-details p {
+    margin: 3px 0;
+    font-size: 14px;
+    color: #444;
+  }
+
+  .cart-qty {
+    width: 50px;
+    padding: 5px;
+    margin-top: 5px;
+  }
+
+  .cart-summary {
+    border-top: 2px solid #ddd;
+    padding-top: 15px;
+    font-size: 16px;
+  }
+
+  .cart-summary h3 {
+    margin-top: 10px;
+    color: #222;
+  }
+  
+  .buy-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: purple;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+</style>
+
 </body>
-</html> 
+</html>
