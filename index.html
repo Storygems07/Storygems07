@@ -848,39 +848,29 @@ section{padding:4rem 2rem;text-align:center;}
       }
     </style>
 
-   <!-- Kids -->
-  <div class="age-card">
-    <h3>Kids</h3>
-    <p>Fun stories, magical adventures, colourful tales for young explorers! 🌟</p>
-    <button onclick="showTopics('kids')">Explore</button>
-  </div>
+<!-- AGE GROUP CARDS -->
+<div class="age-group-container">
 
-  <!-- Teens -->
-  <div class="age-card">
-    <h3>Teens</h3>
-    <p>Fantasy, mystery, thrilling journeys crafted for teenage imaginations ⚡</p>
-    <button onclick="showTopics('teens')">Explore</button>
-  </div>
-
-  <!-- Adults -->
-  <div class="age-card">
-    <h3>Adults</h3>
-    <p>Mature novels, mythology, self-help & timeless literature for adults 📖</p>
-    <button onclick="showTopics('adults')">Explore</button>
-  </div>
-
-  </div>
-
-  <button class="back-btn" onclick="showHome()" 
-          style="margin-top:70px; padding:14px 36px; border:none; border-radius:12px; 
-                 background:linear-gradient(90deg,#a170ff,#6c47d9);
-                 color:white; font-weight:700; font-size:1rem; cursor:pointer;
-                 box-shadow:0 8px 20px rgba(106,17,203,0.3); transition:0.3s;">
-    ⬅ Back to Home
-  </button>
-
+ <div class="age-card">
+  <h3>Kids</h3>
+  <p>Fun stories, magical adventures, colourful tales for young explorers! 🌟</p>
+  <button onclick="showTopics('kids')">Explore</button>
 </div>
 
+<div class="age-card">
+  <h3>Teens</h3>
+  <p>Fantasy, mystery, thrilling journeys crafted for teenage imaginations ⚡</p>
+  <button onclick="showTopics('teens')">Explore</button>
+</div>
+
+<div class="age-card">
+  <h3>Adults</h3>
+  <p>Mature novels, mythology, self-help & timeless literature for adults 📖</p>
+  <button onclick="showTopics('adults')">Explore</button>
+</div>
+
+</div>
+  
 
 <!-- BOOK DETAIL -->
 <div id="book-detail-screen" style="display:none;padding:4rem 2rem;background:#fff;">
@@ -3036,18 +3026,34 @@ function showBooks(){ setDisplay('book'); }
   }
 
 
-function showTopics(cat){
-  currentCategory = cat; currentTopic = '';
+function showTopics(cat) {
+  if (!topicsData || !topicsData[cat]) {
+    alert("No topics found for this category!");
+    return;
+  }
+
+  currentCategory = cat;
+  currentTopic = '';
+  
   const wrap = document.getElementById('topics-container');
+  if (!wrap) {
+    alert("Topics container not found!");
+    return;
+  }
+
   wrap.innerHTML = '';
-  topicsData[cat].forEach(t=>{
+
+  topicsData[cat].forEach(topic => {
     const btn = document.createElement('button');
-    btn.className='topic-btn'; btn.textContent=t;
-    btn.onclick = ()=>showBooksList(t);
+    btn.className = 'topic-btn';
+    btn.textContent = topic;
+    btn.onclick = () => showBooksList(topic);
     wrap.appendChild(btn);
   });
+
   setDisplay('topics');
 }
+
 
   function showBooksList(topic) {
     currentTopic = topic;
