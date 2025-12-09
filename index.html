@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>StoryGems — Monthly Book Surprise</title>
@@ -12,16 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-  <title>StoryGems - Monthly Book Surprise!</title>
   <style>
-    
-    /* ========== FULL PAGE BACKGROUND ========== */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #ffffff, #f9f9ff); /* clean and clear */
-      color: #333;
     /* ====== Reset & Base ====== */
     :root{
       --purple-600:#6c5ce7;
@@ -34,19 +22,6 @@
       --shadow: 0 10px 30px rgba(45, 35, 90, 0.12);
       --max-width:1180px;
     }
-
-    /* ========== BOOK LIST GRID ========== */
-    #books-list {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr); /* Exactly 4 books per row */
-      gap: 50px;
-      padding: 3rem 4rem;
-      margin: 0 auto; /* Center horizontally */
-      justify-items: center;
-      background: rgba(255, 255, 255, 0.85); /* light background with slight transparency */
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      max-width: 1150px; /* Optional: control grid width */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -63,19 +38,6 @@
       padding-bottom:60px;
     }
 
-    /* ========== BOOK CARD ========== */
-    .book-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 1rem;
-      width: 160px;
-      text-align: center;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      transition: transform 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     /* ====== Header ====== */
     header{
       position:sticky; top:0; z-index:1200;
@@ -84,10 +46,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
       box-shadow: 0 6px 18px rgba(35,20,90,0.05);
     }
-
-    .book-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 16px rgba(0, 0, 0, 0.15);
     .header-wrap{
       max-width:var(--max-width);
       margin:0 auto;
@@ -97,27 +55,9 @@
       padding:14px 20px;
       justify-content:space-between;
     }
-
-    /* ========== BOOK IMAGE ========== */
-    .book-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 10px;
     .brand {
       display:flex; gap:14px; align-items:center;
     }
-
-    /* ========== TITLE & PRICE ========== */
-    .book-info h4 {
-      font-size: 0.95rem;
-      margin: 0.5rem 0 0.3rem;
-      color: #2c2c2c;
-      font-weight: 500;
-      line-height: 1.3;
-      word-break: break-word;
-      max-height: 2.8em;
-      overflow: hidden;
     .logo {
       width:48px;height:48px;border-radius:10px;
       display:grid;place-items:center;color:white;
@@ -125,11 +65,6 @@
       background: linear-gradient(135deg,var(--purple-600),#3f2fb2);
       box-shadow: 0 6px 18px rgba(108,92,231,0.18);
     }
-
-    .small-price {
-      font-size: 0.88rem;
-      color: #d32f2f;
-      font-weight: bold;
     .brand h1{margin:0;font-size:1.25rem;color:#fff;letter-spacing:0.2px}
     nav{display:flex;gap:12px;align-items:center}
     nav a{
@@ -137,14 +72,6 @@
       text-decoration:none;font-weight:600;font-size:0.98rem;padding:8px 12px;border-radius:8px;
       transition:all .22s;opacity:0.95;
     }
-    /* ========== BOOK DETAIL WRAPPER ========== */
-    #book-detail-screen {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 3rem 1rem;
-      background: linear-gradient(to bottom right, #ffffff, #f4f4fc);
-      min-height: 100vh;
     nav a:hover{transform:translateY(-3px); background:rgba(255,255,255,0.06)}
     .search-bar{margin-left:14px}
     .search-bar input{
@@ -153,21 +80,6 @@
       font-weight:500;
       box-shadow: inset 0 -1px 0 rgba(0,0,0,0.12);
     }
-
-    /* ========== BACK BUTTON ========== */
-    #back-button {
-      align-self: flex-start;
-      margin-left: 3rem;
-      margin-bottom: 1.5rem;
-      background: #5a48e6;
-      color: #fff;
-      padding: 8px 18px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-      transition: background 0.2s;
     .search-bar input::placeholder{color:rgba(255,255,255,0.9)}
     .header-actions{display:flex;gap:10px;align-items:center}
 
@@ -181,38 +93,17 @@
       box-shadow: var(--shadow);
       border: 1px solid rgba(108,92,231,0.06);
     }
-    #back-button:hover {
-      background: #4838c6;
     .hero-left{flex:1;min-width:260px}
     .eyebrow{
       display:inline-block;background:rgba(255,255,255,0.06);padding:6px 12px;border-radius:999px;
       font-weight:700;color:var(--purple-700);margin-bottom:14px;
       border:1px solid rgba(255,255,255,0.03);
     }
-
-    /* ========== BOOK DETAIL CARD ========== */
-    .book-detail-card {
-      display: flex;
-      flex-direction: row;
-      gap: 40px;
-      background: #fff;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-      max-width: 1000px;
-      width: 100%;
     .hero h2{
       margin:0 0 10px; font-size:2.35rem; line-height:1.05; color:#1b1336;
       font-weight:800;
       letter-spacing:-0.5px;
     }
-
-    /* ========== BOOK IMAGE ========== */
-    .book-detail-card img {
-      width: 240px;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     .hero p{margin:0 0 18px;color:#3f3b56;font-size:1.05rem; max-width:720px}
     .hero-cta{display:flex;gap:12px;align-items:center}
     .btn{
@@ -220,29 +111,14 @@
       background:linear-gradient(90deg,var(--purple-700),var(--accent)); color:#fff;
       box-shadow: 0 12px 30px rgba(66,47,177,0.12);transition:transform .18s ease, opacity .18s;
     }
-
-    /* ========== BOOK TEXT INFO ========== */
-    .book-detail-info {
-      flex: 1;
     .btn.secondary{
       background:transparent;color:var(--purple-700);border:2px solid rgba(108,92,231,0.12);
       box-shadow:none;font-weight:700;
     }
-
-    .book-detail-info h3 {
-      font-size: 1.3rem;
-      color: #222;
-      margin-bottom: 10px;
     .btn:hover{transform:translateY(-4px)}
     .hero-right{
       width:360px; display:flex;align-items:center;justify-content:center;position:relative;
     }
-
-    .book-detail-info .price {
-      font-size: 1.1rem;
-      color: #d32f2f;
-      font-weight: bold;
-      margin-bottom: 15px;
     .hero-card{
       width:320px;height:220px;border-radius:14px;background:linear-gradient(180deg,#fff, #fbfbff);
       box-shadow: 0 18px 40px rgba(68,46,140,0.08);
@@ -250,13 +126,6 @@
       transform: rotate(-6deg);
       border:1px solid rgba(108,92,231,0.05);
     }
-
-    .book-detail-info p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #444;
-      white-space: pre-wrap;
-      margin-bottom: 20px;
     .hero-card h4{margin:0;font-size:1rem;color:#2a1f5f}
     .hero-card p{margin:0;color:#5a5473;font-size:0.9rem}
     .glow{
@@ -265,10 +134,6 @@
       z-index:-1;
     }
 
-    /* ========== ACTION BUTTONS ========== */
-    .detail-buttons {
-      display: flex;
-      gap: 15px;
     /* ====== Content wrapper ====== */
     .container{max-width:var(--max-width);margin:0 auto;padding:26px 20px;}
 
@@ -282,16 +147,6 @@
       transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;
       display:flex;gap:12px;align-items:center;
     }
-
-    .detail-buttons button {
-      background: #ffcc00;
-      color: #000;
-      padding: 10px 18px;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
     .info-card:hover{transform:translateY(-10px); box-shadow: 0 20px 40px rgba(44,30,120,0.12)}
     .info-card img{width:72px;height:72px;object-fit:contain}
     .info-card h3{margin:0;font-size:1.05rem;color:#2b1e66}
@@ -354,8 +209,6 @@
       padding:12px;border-radius:8px;border:1px solid rgba(16,10,60,0.06);font-size:1rem
     }
 
-    .detail-buttons button:hover {
-      background: #f7b500;
     /* ====== Cart sidebar (simple) ====== */
     .cart-drawer{
       position:fixed;right:18px;bottom:18px;background:linear-gradient(180deg,#fff, #fbfbff);
@@ -390,95 +243,7 @@
       .hero{padding:20px}
     }
 
-/* ============ GLOBAL STYLES ============ */
-body{
-  font-family:'Segoe UI',sans-serif;margin:0;padding:0;
-  background:#f4f4f9;color:#333;line-height:1.6;
-}
-header{
-  background:#6c5ce7;padding:1rem 3rem;position:sticky;top:0;z-index:1000;
-  box-shadow:0 4px 8px rgba(0,0,0,.1);
-}
-.header-content{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;}
-header h1{color:#fff;font-size:2rem;margin:0;}
-nav a{margin:0 15px;color:#fff;text-decoration:none;font-weight:bold;font-size:1.1rem;position:relative;cursor:pointer;}
-nav a:hover{color:#ffeaa7;}
-nav a::after{content:'';position:absolute;bottom:-5px;left:0;width:100%;height:2px;background:#ffeaa7;transform:scaleX(0);transition:transform .3s;transform-origin:bottom right;}
-nav a:hover::after{transform:scaleX(1);transform-origin:bottom left;}
-
-/* ============ SEARCH BAR ============ */
-.search-bar input{
-  padding:.55rem 1.1rem;border-radius:25px;border:1px solid #ddd;font-size:1rem;
-  min-width:200px;outline:none;
-}
-.search-bar input:focus{box-shadow:0 0 0 2px rgba(255,234,167,.8);}
-@media(max-width:600px){ .search-bar input{width:140px;font-size:.85rem;} }
-
-/* ============ HERO ============ */
-.hero{
-  text-align:center;padding:6rem 2rem;color:#fff;
-  background-image:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1950&q=80');
-  background-size:cover;background-position:center;background-attachment:fixed;
-}
-@media(max-width:768px){.hero{padding:4rem 1.5rem;background-attachment:scroll;}}
-.hero h2{font-size:3rem;margin-bottom:1rem;}
-.hero p{font-size:1.2rem;margin-bottom:2rem;}
-.btn{background:#6c5ce7;color:#fff;padding:.8rem 1.5rem;border:none;border-radius:25px;font-size:1rem;cursor:pointer;text-decoration:none;}
-.btn:hover{background:#ffeaa7;color:#6c5ce7;}
-
-section{padding:4rem 2rem;text-align:center;}
-
-/* ============ PLANS & CONTACT ============ */
-.plans,.contact{background:#dff9fb;border-radius:15px;padding:2rem;}
-.plan-option{background:#fff;margin:1rem auto;max-width:400px;padding:1.5rem;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);}
-.plan-option:hover{transform:translateY(-5px);transition:.3s;}
-.contact form{max-width:500px;margin:0 auto;}
-.contact input,.contact textarea{width:100%;padding:.8rem;margin:.5rem 0;border-radius:10px;border:1px solid #ccc;}
-.contact button{background:#6c5ce7;color:#fff;padding:.8rem 1.5rem;border:none;border-radius:25px;font-size:1rem;cursor:pointer;}
-.contact button:hover{background:#ffeaa7;}
-
-/* ============ CATEGORY & TOPIC ============ */
-.book-screen,.topics-screen,.books-list-screen{display:none;padding:4rem 2rem;background:#fff;text-align:center;}
-.category{background:#fff;margin:1rem auto;padding:2rem;max-width:600px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);cursor:pointer;text-align:left;}
-.category:hover{transform:scale(1.05);transition:.3s;}
-.topic-btn{display:inline-block;margin:.7rem 1rem;padding:1rem 1.5rem;background:#6c5ce7;color:#fff;border-radius:25px;font-size:1.2rem;cursor:pointer;}
-.topic-btn:hover{background:#ffeaa7;color:#6c5ce7;}
-
-/* ============ AMAZON‑STYLE BOOK LIST ============ */
-.book-list{
-  display:flex;flex-direction:column;gap:22px;max-width:900px;margin:0 auto;
-  padding:0;list-style: none;
-}
-.book-card{
-  display:flex;gap:18px;background:#fff;border:1px solid #d8d8d8;border-radius:4px;
-  padding:16px;box-shadow:0 2px 6px rgba(0,0,0,.06);cursor:pointer;
-}
-.book-card img{width:90px;height:135px;object-fit:cover;border:1px solid #ccc;}
-.book-info{display:flex;flex-direction:column;justify-content:center;}
-.book-info h4{font-size:1rem;font-weight:600;margin:0;color:#111;}
-.book-info .small-price{margin-top:4px;font-size:.95rem;font-weight:600;color:#b12704;}
-
-.back-btn{margin-top:2rem;display:inline-block;background:#6c5ce7;color:#fff;padding:.7rem 1.5rem;border-radius:25px;text-decoration:none;cursor:pointer;}
-.back-btn:hover{background:#ffeaa7;color:#6c5ce7;}
-
-/* ============ DETAIL VIEW ============ */
-.book-detail-wrapper{
-  display:flex;gap:30px;flex-wrap:wrap;border:1px solid #d8d8d8;
-  padding:20px;border-radius:6px;box-shadow:0 3px 8px rgba(0,0,0,.08);
-  max-width:1000px;margin-inline:auto;
-}
-.book-detail-wrapper img{width:180px;height:270px;object-fit:cover;border:1px solid #ccc;}
-.book-detail-info h3{margin:0 0 10px;font-size:1.3rem;}
-.book-detail-info p{margin:6px 0;}
-.price-tag{font-size:1.4rem;font-weight:700;color:#b12704;margin:10px 0;}
-.action-btn{
-  background:#ffd814;color:#111;padding:.7rem 1.5rem;border:none;border-radius:8px;
-  font-weight:600;cursor:pointer;margin-right:10px;
-}
-.action-btn:hover{background:#f7ca00;}
   </style>
-  </head>
-  <body>
 </head>
 <body>
 
@@ -493,17 +258,6 @@ section{padding:4rem 2rem;text-align:center;}
         </div>
       </div>
 
-    <header>
-      <div class="header-content">
-        <h1>StoryGems</h1>
-        <nav>
-          <a href="#" onclick="event.preventDefault(); showHome()">Home</a>
-          <a href="#" onclick="event.preventDefault(); showBooks()">Books</a>
-          <a href="#" onclick="event.preventDefault(); showPlans()">Plans</a>
-          <a href="#" onclick="event.preventDefault(); showContact()">Contact</a>
-          <a href="#" onclick="event.preventDefault(); showBox()">Your Cart 🛒</a>
-        </nav>
-        
       <nav>
         <a href="#" onclick="event.preventDefault(); showHome()">Home</a>
         <a href="#" onclick="event.preventDefault(); showBooks()">Books</a>
@@ -514,27 +268,10 @@ section{padding:4rem 2rem;text-align:center;}
 
       <div class="header-actions">
         <div class="search-bar">
-          <input type="search" id="search-input" placeholder="Search books…" oninput="handleSearch(event)" />
           <input id="search-input" type="search" placeholder="Search books…" oninput="handleSearch(event)">
         </div>
         <button class="btn secondary" onclick="showBooks()">Explore</button>
       </div>
-    </header>
-    <!-- HOME SCREEN -->
-    <div id="home-screen">
-      <section class="hero">
-        <h2>Your Monthly Book Adventure Awaits!
-        Orders will be taken soon! Please stay tuned.</h2>
-        <p>Get a new book, a bookmark, a mug, and a surprise gift delivered to your door every month!</p>
-      </section>
-
-      <section class="info-section" style="display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2rem;">
-
-        <!-- About Us -->
-        <div class="info-card" style="flex:1 1 250px;max-width:320px;background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,.1);padding:1rem;cursor:pointer;" onclick="toggleAbout()">
-          <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="About Us" style="width:100px;margin:0 auto;display:block;">
-          <h3 style="margin-top:1rem;">About Us</h3>
-          <p>Click here to know who we are, what we offer, and how your child can benefit!</p>
     </div>
   </header>
 
@@ -551,11 +288,6 @@ section{padding:4rem 2rem;text-align:center;}
         </div>
       </div>
 
-        <!-- Current Offers -->
-        <div class="info-card" style="flex:1 1 250px;max-width:320px;background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,.1);padding:1rem;cursor:pointer;" onclick="showBooks()">
-          <img src="https://cdn-icons-png.flaticon.com/512/3771/3771417.png" alt="Offers" style="width:100px;margin:0 auto;display:block;">
-          <h3 style="margin-top:1rem;">Current Offers</h3>
-          <p>Special deals and limited edition gift boxes for all age groups. Explore now!</p>
       <div class="hero-right">
         <div class="hero-card">
           <h4>Premium Curation</h4>
@@ -565,12 +297,6 @@ section{padding:4rem 2rem;text-align:center;}
             <div class="small muted">Ships India-wide</div>
           </div>
         </div>
-
-        <!-- Limited Time Deals -->
-        <div class="info-card" style="flex:1 1 250px;max-width:320px;background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,.1);padding:1rem;cursor:pointer;" onclick="showBooks()">
-          <img src="https://cdn-icons-png.flaticon.com/512/595/595067.png" alt="Deals" style="width:100px;margin:0 auto;display:block;">
-          <h3 style="margin-top:1rem;">Limited Time Deals</h3>
-          <p>Grab surprise bundles, free gifts, and discounts before time runs out!</p>
         <div class="glow" aria-hidden="true"></div>
       </div>
     </section>
@@ -585,7 +311,6 @@ section{padding:4rem 2rem;text-align:center;}
         </div>
       </div>
 
-      </section>
       <div class="info-card" onclick="showBooks()">
         <img src="https://cdn-icons-png.flaticon.com/512/3771/3771417.png" alt="">
         <div>
@@ -594,12 +319,6 @@ section{padding:4rem 2rem;text-align:center;}
         </div>
       </div>
 
-      <!-- About Us Popup Box -->
-      <div id="about-box" style="display:none;max-width:500px;margin:2rem auto;background:#fff;padding:1.5rem;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:left;">
-        <h3>About StoryGems 💎</h3>
-        <p>StoryGems is India’s most loved monthly book subscription box for kids, teens, and families. Every month, we surprise our readers with handpicked books, bookmarks, personalized mugs, and mystery goodies!</p>
-        <p>Our goal? To build curiosity and imagination in every home — one magical book at a time.</p>
-        <button onclick="document.getElementById('about-box').style.display='none'" class="back-btn">Close</button>
       <div class="info-card" onclick="showBooks()">
         <img src="https://cdn-icons-png.flaticon.com/512/595/595067.png" alt="">
         <div>
@@ -608,8 +327,6 @@ section{padding:4rem 2rem;text-align:center;}
         </div>
       </div>
     </div>
-
-
 
     <!-- ====== ABOUT BOX ====== -->
     <div id="about-box" role="dialog" aria-label="About StoryGems">
@@ -743,7 +460,7 @@ section{padding:4rem 2rem;text-align:center;}
     }
     </style>
 
-
+    
     <!-- CONTACT PAGE -->
     <div id="contact-screen" style="display:none; padding: 2rem;">
 
@@ -894,7 +611,7 @@ section{padding:4rem 2rem;text-align:center;}
       }
     </style>
 
-
+    
     <!-- CATEGORY PAGE (Beautiful Age Group Selection) -->
     <div id="book-screen" class="book-screen" style="text-align:center; padding:80px; background: linear-gradient(135deg, #6a11cb, #2575fc); color:white; min-height:100vh;">
 
@@ -1149,7 +866,7 @@ section{padding:4rem 2rem;text-align:center;}
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       }
 
-
+      
     </style>
 
 <!-- BOOK DETAIL -->
@@ -1157,7 +874,7 @@ section{padding:4rem 2rem;text-align:center;}
   <button class="back-btn" onclick="backToList()">← Back to List</button>
   <div id="book-detail" style="margin-top:2rem;"></div>
 </div>
-
+    
     <!-- CART SCREEN -->
     <div id="cart-screen" style="display:none; padding:4rem 2rem; background:#fff;">
       <h2>📦 Your Book Box</h2>
@@ -1168,7 +885,7 @@ section{padding:4rem 2rem;text-align:center;}
     </div>
 
 <script>
-
+  
 /* ---------- DATA ---------- */
 let currentCategory='', currentTopic='';
 
@@ -1201,127 +918,127 @@ const topicsData = {
 /* ---------- Book arrays ---------- */
 const mythBooks = [
 
-
+  
   { title: "Krishna: The Cowherd God Hardcover", price: 499, 
    image: "images/1.jpg",
    desc: "The naughtiest kid ever—Krishna who, despite his mischiefs is loved and worshipped by all. A divine child in human form, he is one of the ten incarnations of Lord Vishnu. Besides restoring dharma, he fights demons, tends to cows, is friends with the shepherds, plays flute, and does whatnot. Krishna—The Cowherd God is a beautifully illustrated book to introduce your little ones to the mesmerizing stories of Krishna. Rich in wisdom and knowledge from the Indian mythology, this book is a must-have in your child’s library.A timeless treasury of stories for children!Vibrant and captivating illustrations expand imagination Introduces kids to epic tales and culture of India Simple language makes the stories easy to understand Encourages kids to read Builds a robust vocabulary" },
     { title: "365 Tales of Ganesh", price: 559, image: "images/3.1.jpg",
  desc: "Description coming soon..." },
-
+  
 
     { title: "365 Tales of Hanuman", price: 699, image: "images/4.jpg", 
      desc: "Description coming soon..." },
 
-
+  
     { title: "365 Krishna Stories: Lord Krishna’s Miracles, Wisdom & Devotion", price: 699, image: "images/5.jpg", 
      desc: "Description coming soon..." },
 
-
+  
     { title: "My First Mythology Tale (Illustrated) (Set of 5 Books)", price: 399, image: "images/6.jpg",
      desc: "Description coming soon..." },
 
-
+  
     { title: "108 Indian Mythology Stories (Illustrated)", price: 399, image: "images/7.jpg", 
      desc: "Description coming soon..." },
 
-
+  
     { title: "Story Book: Krishna The Adorable God (Large Print)", price: 499, image: "images/8.jpg", 
      desc: "Description coming soon..." },
 
-
+  
     { title: "My First Shaped Board Book: Goddess Durga", price: 399, image: "images/9.jpg",
      desc: "Description coming soon..." },
 
-
+  
     { title: "My First Shaped Board Book: Lord Ganesha", price: 399, image: "images/9.jpg",
      desc: "Description coming soon..." },
 
-
+  
     { title: "Mythology Books for Kids (Set of 10 Books)", price: 399, image: "images/10.jpg", 
      desc: "Description coming soon..." },
 
-
+  
     { title: "Tales from Indian Mythology [Collection of 10 Books]", price: 619, image: "images/11.jpg" ,
      desc: "Description coming soon..." },
 
-
+  
     { title: "365 Stories from the Vedas The Upanishads and the Puranas", price: 650, image: "images/2.jpg", 
      desc: "Description coming soon..." },
 
-
+  
     { title: "My First Shaped Board Book: Kali", price: 399, image: "images/12.jpg", desc: "Description coming soon..." },
 
-
+  
     { title: "My First Shaped Board Book: Saraswati", price: 399, image: "images/13.jpg",
       desc: "Description coming soon..." },
 
-
+  
     { title: "My First Shaped Board Book: Lord Shiva", price: 399, image: "images/14.jpg", 
      desc: "Description coming soon..." },
 
-
+  
     { title: "My First Shaped Board Book: Lord Hanuman", price: 399, image: "images/15.jpg",
      desc: "Description coming soon..." },
 
-
+  
     { title: "My First Shaped Board Book: Ram", price: 399, image: "images/16.jpg",    desc: "Description coming soon..." },
 
-
+  
     { title: "My First Library of Hindu Gods and Goddesses (Boxed Set)", price: 629, image: "images/17.jpg",
   desc: "Description coming soon..." }, 
 
-
+  
     { title: "Shlokas and Mantras For Kids (Padded Board)", price: 399, image: "images/18.jpg",
      desc: "Description coming soon..." },
 
-
+  
     { title: "Shlokas and Mantras - Activity Book", price: 399, image: "images/19.jpg", 
      desc: "Description coming soon..." },
 
-
+  
     { title: "Shlokas & Mantras for Kids (AWEJOY)", price: 499, image: "images/20.jpg" ,
      desc: "Description coming soon..." },
 
-
+  
     { title: "108 Festival Stories for Kids (Illustrated)", price: 399, image: "images/21.jpg",
      desc: "Description coming soon..." },
 
-
+  
     { title: "Mahabharata: Stories of Valor and Virtue", price: 499, image: "images/22.jpg", 
      desc: "Description coming soon..." },
 
-
+  
     { title: "108 Krishna Stories for Children (Illustrated)", price: 449, image: "images/23.jpg", 
      desc: "Description coming soon..." },
 
-
+  
     { title: "My First Shaped Board Book: Sai Baba", price: 399, image: "images/24.jpg",
      desc: "Description coming soon..." },
 
-
+  
     { title: "My First Shaped Board Book: Buddha", price: 399, image: "images/25.jpg",
      desc: "Description coming soon..." },
 
-
+  
     { title: "Shlokas and Mantras for kids | Padded Board + Sticker Activity Book", price: 499, image: "images/26.jpg" , 
      desc: "Description coming soon..." },
 
-
+  
     { title: "Illustrated Bhagavad Gita for Children", price: 899, image: "images/27.jpg" , 
      desc: "Description coming soon..." },
 
-
+  
     { title: "Little Krishna – Illustrated Untold Stories from Childhood", price: 559, image: "images/28.jpg",
      desc: "Description coming soon..." },
 
-
+  
     { title: "Ganesha: The Elephant Headed God", price: 499, image: "images/29.jpg", desc: "Description coming soon..." },
 
-
+  
     { title: "Nava Durga: The Nine Forms Of The Goddess", price: 499, image: "images/30.jpg",
      desc: "Description coming soon..." },
 
-
+  
     { title: "Shiva: The Three‑Eyed God", price: 519, image: "images/31.jpg", 
      desc: "Description coming soon..." },
   ];
@@ -1340,245 +1057,245 @@ function withImg(obj){
         {title:"101 Tales The Great Panchatantra Collection",price:519, image: "images/Panchatantra 2.1.jpg",
 desc: "Description coming soon..."},
 
-
+                   
        {title:"Pandit Vishnu Sharma's Panchatantra",price:999, image: "images/Panchatantra 2.2.jpg",
  desc: "Description coming soon..."},
 
-
+                   
         {title:"Animals Tales From Panchtantra",price:499, image: "images/Panchatantra 2.3.jpg",
  desc: "Description coming soon..."},
 
-
+                   
        {title:"Panchatantra Most Loved Tales",price:599, image: "images/Panchatantra 2.4.jpg",
  desc: "Description coming soon..."},
 
-
+          
         {title:"101 Panchatantra Stories",price:499, image: "images/Panchatantra 2.5.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
         {title:"Illustrated 5 Minutes Read Aloud Panchatantra Stories",price:499, image: "images/Panchatantra 2.6.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
         {title:"Panchatantra Treasury Tales",price:449, image: "images/Panchatantra 2.7.jpg",
                  desc: "Description coming soon..."},
  ],
-
+                 
       "Hitopadesh & Jataka Tales": [
-
+        
        {title:"Jataka Panchatantra And Hitopadesha Collection", price:1999, image: "Hitopadesh & Jataka Tales Books/Jataka Panchatantra And Hitopadesha Collection 1.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
         {title:"The Illustrated Jataka Tales", price:499 , image: "Hitopadesh & Jataka Tales Books/The Illustrated Jataka Tales 1.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
        {title:"151 Jataka Tales", price:450, image: "Hitopadesh & Jataka Tales Books/151 Jataka Tales 1.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
     {title:"Jataka Tales (Set of 3 Books with 51 Moral Stories)", price:520, image: "Hitopadesh & Jataka Tales Books/Jataka Tales (Set of 3 Books with 51 Moral Stories) 1.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
        {title:"The Jataka Tales", price:599, image: "Hitopadesh & Jataka Tales Books/The Jataka Tales 1.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
       {title:"The Complete Hitopadesh Omnibus (38 in 1)", price:599, image: "Hitopadesh & Jataka Tales Books/The Complete Hitopadesh Omnibus (38 in 1) 1.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
       ],
 
       "Arabian Nights & Islamic Tales": [
        {title:"Story Book - Short Stories from Islam", price:400, image: "images/Arabian Nights & Islamic Tales/Arabian Nights & Islamic Tales 1.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
         {title:"My First Book About Prophet Muhammad", price:1199, image: "images/Arabian Nights & Islamic Tales/My First Book About Prophet Muhammad 1.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
      {title:"The Prophet of Mankind – Life of Prophet Muhammad (SAW)", price:599, image: "images/Arabian Nights & Islamic Tales/he Prophet of Mankind – Life of Prophet Muhammad (SAW).jpg",
                  desc: "Description coming soon..."},
 
-
+                   
         {title:"Learning 40 Hadiths and 56 Inspired Stories for Kids", price:550, image: "images/Arabian Nights & Islamic Tales/Learning 40 Hadiths and 56 Inspired Stories for Kids 1.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
         {title:"Amazing Muslims Who Changed the World", price:1119, image: "images/Arabian Nights & Islamic Tales/Amazing Muslims Who Changed the World.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
         {title:"The Proudest Blue", price:799, image: "images/Arabian Nights & Islamic Tales/The Proudest Blue.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
         {title:"Best Quran Stories - Set of 5 Board Books", price:1449, image: "images/Arabian Nights & Islamic Tales/Best Quran Stories - Set of 5 Board Books.jpg",
                 desc: "Description coming soon..."},
 
-
+                
         {title:"The Great Four Rashidun Caliphs of Islam", price:1900, image: "images/Arabian Nights & Islamic Tales/The Great Four Rashidun Caliphs of Islam.jpg",
           desc: "Description coming soon..."},
 
-
+                 
       {title:"The Arabian Nights: Tales of Thousand Nights and a Night (Vol.1)", price:699, image: "images/Arabian Nights & Islamic Tales/The Arabian Nights Tales of Thousand Nights and a Night (Vol.1).jpg",
                  desc: "Description coming soon..."},
 
-
+                   
     {title:"The Arabian Nights: Illustrated Book For Children", price:599, image: "images/Arabian Nights & Islamic Tales/The Arabian Nights Illustrated Book For Children.jpg",
                  desc: "Description coming soon..."},
 
-
+                   
        {title:"Tales From The Arabian Nights (Unabridged Classics)", price:499, image: "images/Arabian Nights & Islamic Tales/Tales From The Arabian Nights (Unabridged Classics).jpg",
          desc: "Description coming soon..."},
 
-
+        
         {title:"Arabian Nights (Deluxe Hardbound Edition)", price:699, image: "images/Arabian Nights & Islamic Tales/Arabian Nights (Deluxe Hardbound Edition).jpg",
           desc: "Description coming soon..."},
 
-
-
+        
+      
         {title:"Usborne Illustrated Arabian Nights Paperback ", price:1399, image: "images/Arabian Nights & Islamic Tales/Illustrated Arabian Nights (Illustrated Story Collections).jpg",
           desc: "Description coming soon..."},
-
-
+        
+        
         {title:"The Arabian Nights Children's Collection (Easy Classics): 10 Book Box Set", price:600, image: "images/Arabian Nights & Islamic Tales/The Arabian Nights Children's Collection (Easy Classics) 10 Book Box Set.jpg",
           desc: "Description coming soon..."},
-
-
+        
+       
         {title:"Moonlight Magic of Arabian Nights for Children", price:1120, image: "images/Arabian Nights & Islamic Tales/Moonlight Magic of Arabian Nights for Children.jpg",
           desc: "Description coming soon..."},
-
-
+        
+       
         {title:"Arabian Nights for Children ", price:599, image: "images/Arabian Nights & Islamic Tales/Arabian Nights for Children.jpg", desc: "Description coming soon..."},
       ],
 
       "Animal Stories": [
-
+        
         {title:"108 Short Stories for Kids", price:459, image: "Animal Stories/108 Short Stories for Kids 1.jpg",
          desc: "Description coming soon..."},
-
+        
         {title:"101 Animal Stories", price:499, image: "Animal Stories/101 Animal Stories 1.jpg",
          desc: "Description coming soon..."},
-
-
+        
+        
       {title:"Usborne Illustrated Animal Stories", price:650, image: "Animal Stories/Usborne Illustrated Animal Stories 1.jpg",
        desc: "Description coming soon..."},
 
-
+        
       {title:"101 Animal Stories (GO WOO)", price:499, image: "Animal Stories/101 Animal Stories (GO WOO) 1.jpg",
        desc: "Description coming soon..."},
 
-
+        
         {title:"My First Board Book Animals (Set of 5)", price:699, image: "Animal Stories/My First Board Book Animals (Set of 5) 1.jpg",
          desc: "Description coming soon..."},
-
-
+        
+        
        {title:"Animal Stories for Children - Premium", price:599, image: "Animal Stories/Animal Stories for Children - Premium 1.jpg",
         desc:"Description coming soon..."},
 
-
+        
       {title:"Moral Story Book - Illustrated Bedtime", price:450, image: "Animal Stories/Moral Story Book - Illustrated Bedtime 1.jpg",
         desc:"Description coming soon..."},
 
-
+        
         {title:"PW Moral Story Books (Set of 10)", price:499, image: "Animal Stories/PW Moral Story Books (Set of 10) 1.jpg",
           desc:"Description coming soon..."},
 
-
+        
        {title:"My First Shaped Board Book: Lion", price:499, image: "Animal Stories/My First Shaped Board Book Lion 1.jpg",
          desc:"Description coming soon..."},
 
-
+        
        {title:"My First Shaped Board Book: Elephant", price:499, image: "Animal Stories/My First Shaped Board Book Elephant 1.jpg",
          desc:"Description coming soon..."},
 
-
+        
         {title:"My First Shaped Board Book: Monkey", price:499, image: "Animal Stories/My First Shaped Board Book Monkey 1.jpg",
           desc:"Description coming soon..."},
-
+        
       ]
     },
 
     teens: {
-
+      
       "Fantasy & Adventure": [
       /* ---------- SEQUENCE BOOKS (20) ---------- */
-
+        
       /* Percy Jackson (5) */
-
+        
       { title: "Percy Jackson: The Lightning Thief", price: 399, image: "images/teens/Percy Jackson The Lightning Thief 1.jpg",
         desc: "Percy discovers he is a demigod and begins his adventures tied to Greek mythology." },
       { title: "Percy Jackson: Sea of Monsters", price: 399, image: "images/teens/Percy Jackson Sea of Monsters 2.jpg",
         desc: "Percy embarks on a quest to retrieve the Golden Fleece to save Camp Half-Blood." },
 
-
+        
       { title: "Percy Jackson: The Titan’s Curse", price: 429, image: "images/teens/Percy Jackson The Titan’s Curse 3.jpg",
         desc: "Percy faces new dangers as the prophecy of the child of the Big Three looms closer." },
 
-
+        
       { title: "Percy Jackson: The Battle of the Labyrinth", price: 449, image: "images/teens/Percy Jackson The Battle of the Labyrinth 4.jpg",
         desc: "Percy and friends journey through Daedalus’s maze to stop Kronos’s rising army." },
 
-
+        
       { title: "Percy Jackson: The Last Olympian", price: 479, image: "images/teens/Percy Jackson The Last Olympian 4.jpg",
         desc: "The epic finale as Percy leads the final stand to protect Olympus from Kronos." },
 
       /* Harry Potter (7) */
-
+        
       { title: "Harry Potter : The Complete Collection (Set of 7 Books) ", price: 3229, image: "images/teens/Harry Potter The Complete Collection (Set of 7 Books) 1.jpg",
         desc: "." },
 
-
+        
       { title: "Harry Potter and the Chamber of Secrets Children's Hardcover ", price: 499, image: "images/teens/Harry Potter and the Chamber of Secrets Children's Hardcover 1.jpg",
         desc: "Harry returns to Hogwarts and uncovers the secret of the Chamber of Secrets." },
 
-
+        
       { title: "Harry Potter and the Prisoner of Azkaban", price: 529, image: "images/teens/Harry Potter and the Prisoner of Azkaban.jpg",
         desc: "A mysterious prisoner escapes Azkaban and Harry learns shocking truths about his past." },
 
-
+        
       { title: "Harry Potter and the Goblet of Fire", price: 549, image: "images/teens/Harry Potter and the Goblet of Fire.jpg",
         desc: "Harry is unexpectedly entered into the dangerous Triwizard Tournament." },
 
-
+        
       { title: "Harry Potter and the Order of the Phoenix", price: 559, image: "images/teens/Harry Potter and the Order of the Phoenix.jpg",
         desc: "Harry forms Dumbledore’s Army as Voldemort’s return threatens the wizarding world." },
 
-
+        
       { title: "Harry Potter and the Half-Blood Prince", price: 579, image: "images/teens/Harry Potter and the Half-Blood Prince.jpg",
         desc: "Harry discovers Voldemort’s dark past and the secret of Horcruxes." },
 
-
+        
       { title: "Harry Potter and the Deathly Hallows", price: 599, image: "images/teens/Harry Potter and the Deathly Hallows.jpg",
         desc: "Harry, Ron, and Hermione go on a dangerous mission to destroy Voldemort’s Horcruxes." },
 
       /* Lord of the Rings Trilogy (3) */
-
+        
       { title: "The Hobbit & The Lord of the Rings Boxed Set Paperback ", price: 549, image: "images/teens/The Hobbit & The Lord of the Rings Boxed Set Paperback.jpg",
         desc: "Frodo begins his quest to destroy the One Ring, aided by the Fellowship." },
 
-
+        
       { title: "The Two Towers", price: 559, image: "images/teens/The Two Towers.jpg",
         desc: "The Fellowship is divided as battles erupt and Frodo moves closer to Mordor." },
 
-
+        
       { title: "The Return of the King", price: 579, image: "images/teens/The Return of the King.jpg",
         desc: "The final battle for Middle-earth takes place as Frodo struggles to destroy the Ring." },
-
+        
 
       /* Narnia (3) */
 
-
+        
       { title: "The Lion, the Witch and the Wardrobe", price: 379, image: "images/teens/The Lion, the Witch and the Wardrobe.jpg",
         desc: "Four siblings step into a magical wardrobe and discover the enchanted land of Narnia." },
 
-
+        
       { title: "Prince Caspian", price: 389, image: "images/teens/Prince Caspian.jpg",
         desc: "The Pevensie children return to Narnia to help Prince Caspian reclaim his throne." },
       { title: "The Voyage of the Dawn Treader", price: 399, image: "images/teens/The Voyage of the Dawn Treader.jpg",
@@ -1586,243 +1303,243 @@ desc: "Description coming soon..."},
 
         /* ---------- NON-SEQUENCE STANDALONE / MIX (24) ---------- */
 
-
+        
           { title: "The Hobbit", price: 459, image: "images/teens/The Hobbit.jpg",
             desc: "Bilbo Baggins embarks on a grand adventure with dwarves and a dragon." },
 
-
+        
           { title: "Eragon", price: 459, image: "images/teens/Eragon.jpg",
             desc: "A young farm boy discovers a dragon egg, sparking a destiny of magic and rebellion." },
 
-
+        
           { title: "Howl’s Moving Castle", price: 379, image: "images/teens/Howl’s Moving Castle.jpg",
             desc: "A young girl cursed into an old woman’s body meets a powerful wizard in a moving castle." },
 
-
+        
           { title: "The Girl Who Drank the Moon", price: 399, image: "images/teens/The Girl Who Drank the Moon.jpg",
             desc: "A magical girl raised by a witch must unlock her destiny." },
 
-
+        
           { title: "Stardust", price: 429, image: "images/teens/Stardust.jpg",
             desc: "A young man ventures into a magical realm to retrieve a fallen star." },
 
-
+        
           { title: "The Neverending Story", price: 449, image: "images/teens/The Neverending Story.jpg",
             desc: "A boy discovers a magical book that pulls him into the land of Fantastica." },
 
-
+        
           { title: "City of Bones (Mortal Instruments)", price: 469, image: "images/teens/City of Bones (Mortal Instruments).jpg",
             desc: "Clary Fray discovers she belongs to a secret world of Shadowhunters." },
 
 
-
+        
           { title: "The Shadow and Bone Trilogy Boxed Set: Shadow and Bone, Siege and Storm, Ruin and Rising Paperback", price: 459, image: "images/teens/Shadow and Bone.jpg",
             desc: "A girl discovers her hidden power that could save her war-torn world." },
 
-
+        
           { title: "SIX OF CROWS: CROOKED KINGDOM(COLLECTOR'S EDITION)", price: 469, image: "images/teens/SIX OF CROWS CROOKED KINGDOM(COLLECTOR'S EDITION).jpg",
             desc: "Six dangerous outcasts attempt a nearly impossible heist." },
 
-
+        
           { title: "Caraval", price: 439, image: "images/teens/Caraval.jpg",
             desc: "A magical competition blurs the line between illusion and reality." },
 
-
+        
           { title: "Simon & Schuster Legendborn Paperback ", price: 449, image: "images/teens/Simon & Schuster Legendborn Paperback.jpg",
             desc: "A teen discovers a secret society descended from King Arthur’s knights." },
 
-
+        
           { title: "An Ember In The Ashes - Ember Quartet (1) Paperback ", price: 459, image: "images/teens/An Ember in the Ashes.jpg",
             desc: "A slave girl and a soldier fight against a brutal empire." },
 
-
+        
           { title: "Children of Blood and Bone", price: 479, image: "images/teens/Children of Blood and Bone.jpg",
             desc: "Zélie fights to restore magic to her people in a world of oppression." },
 
-
+        
           { title: "Seraphina", price: 429, image: "images/teens/Seraphina.jpg",
             desc: "In a land where dragons and humans coexist, a girl hides a dangerous secret." },
           { title: "The Priory of the Orange Tree", price: 599, image: "images/teens/The Priory of the Orange Tree.jpg",
             desc: "A queen, a dragon rider, and a mage must unite to stop an ancient evil." },
 
-
+        
           { title: "The Graveyard Book", price: 389, image: "images/teens/The Graveyard Book.jpg",
             desc: "A boy raised by ghosts in a graveyard grows up among the supernatural." },
 
-
+        
           { title: "Coraline", price: 349, image: "images/teens/Coraline.jpg",
             desc: "A girl discovers a dark parallel world behind a hidden door." },
 
-
+        
           { title: "The Night Circus", price: 479, image: "images/teens/The Night Circus.jpg",
             desc: "Two magicians’ apprentices battle in a mysterious traveling circus." },
 
-
+        
           { title: "The House in the Cerulean Sea", price: 459, image: "images/teens/The House in the Cerulean Sea.jpg",
             desc: "A caseworker meets magical children who change his life forever." },
 
-
+        
           { title: "A Wizard of Earthsea (A Puffin Book) Paperback", price: 389, image: "images/teens/A Wizard of Earthsea.jpg",
             desc: "A young wizard struggles with his own dark mistakes." },
 
-
+        
           { title: "The Dark is Rising", price: 399, image: "images/teens/The Dark is Rising.jpg",
             desc: "A boy learns he is an immortal destined to fight the Dark." },
 
-
+        
           { title: "Inkheart", price: 399, image: "images/teens/Inkheart.jpg",
             desc: "A girl discovers her father can bring book characters to life." },
 
-
+        
           { title: "The School for Good and Evil", price: 389, image: "images/teens/The School for Good and Evil.jpg",
             desc: "Best friends are taken to a school where heroes and villains are trained." },
 
-
+        
           { title: "Nevermoor: The Trials of Morrigan Crow", price: 379, image: "images/teens/Nevermoor The Trials of Morrigan Crow.jpg",
             desc: "A cursed girl is whisked away to a magical society where she must prove her worth." },
 
-
+        
           { title: "The Silver Chair (Narnia standalone)", price: 399, image: "images/teens/The Silver Chair (Narnia standalone).jpg",
             desc: "Eustace and Jill return to Narnia to rescue Prince Rilian." },
 
-
+        
           { title: "The Golden Compass", price: 429, image: "images/teens/The Golden Compass.jpg",
             desc: "Lyra Belacqua embarks on a dangerous journey through parallel worlds." }
 ],
 
         "Mystery & Thriller": [
-
+          
           /* ---- Series / Sequels (30) ---- */
-
+          
           { title: "Nancy Drew: The Secret of the Old Clock (Vol. 1)", price: 299, image: "images/teens-mystery1.jpg", desc: "Nancy Drew’s very first case where she uncovers a hidden will." },
-
+          
           { title: "Nancy Drew: The Hidden Staircase (Vol. 2)", price: 299, image: "images/teens-mystery2.jpg", desc: "Nancy solves the eerie mystery of a haunted mansion." },
 
-
+          
           { title: "Nancy Drew: The Bungalow Mystery (Vol. 3)", price: 299, image: "images/teens-mystery3.jpg", desc: "Nancy’s vacation turns into a thrilling investigation." },
 
-
+          
           { title: "Nancy Drew: The Mystery at Lilac Inn (Vol. 4)", price: 299, image: "images/teens-mystery4.jpg", desc: "Nancy faces impersonation and burglary at Lilac Inn." },
 
-
+          
           { title: "Hardy Boys: The Tower Treasure (Vol. 1)", price: 299, image: "images/teens-mystery5.jpg", desc: "Frank and Joe Hardy search for stolen valuables." },
 
-
+          
           { title: "Hardy Boys: The House on the Cliff (Vol. 2)", price: 299, image: "images/teens-mystery6.jpg", desc: "The Hardy brothers uncover smuggling operations." },
 
-
+          
           { title: "Hardy Boys: The Secret of the Old Mill (Vol. 3)", price: 299, image: "images/teens-mystery7.jpg", desc: "A counterfeit money scheme puts the brothers in danger." },
 
-
+          
           { title: "Hardy Boys: The Missing Chums (Vol. 4)", price: 299, image: "images/teens-mystery8.jpg", desc: "Frank and Joe investigate their missing friends." },
 
-
+          
           { title: "A Good Girl’s Guide to Murder (Book 1)", price: 399, image: "images/teens-mystery9.jpg", desc: "Pip investigates a supposedly solved murder in her town." },
 
-
+          
           { title: "Good Girl, Bad Blood (Book 2)", price: 399, image: "images/teens-mystery10.jpg", desc: "Pip is pulled back into detective work when a boy goes missing." },
 
-
+          
           { title: "As Good As Dead (Book 3)", price: 399, image: "images/teens-mystery11.jpg", desc: "Pip’s final case becomes more personal and dangerous than ever." },
 
-
+          
           { title: "Truly Devious (Book 1)", price: 399, image: "images/teens-mystery15.jpg", desc: "Stevie Bell joins a school with a deadly unsolved case." },
 
-
+          
           { title: "The Vanishing Stair (Book 2)", price: 399, image: "images/teens-mystery16.jpg", desc: "Stevie continues her hunt for the Ellingham murderer." },
 
-
+          
           { title: "The Hand on the Wall (Book 3)", price: 399, image: "images/teens-mystery17.jpg", desc: "The mystery of Truly Devious comes to a shocking end." },
 
-
+          
           { title: "The Box in the Woods (Book 4)", price: 399, image: "images/teens-mystery18.jpg", desc: "Stevie investigates a summer camp murder case." },
 
-
+          
           { title: "One of Us Is Lying (Book 1)", price: 399, image: "images/teens-mystery19.jpg", desc: "Five students walk into detention, only four walk out alive." },
 
-
+          
           { title: "One of Us Is Next (Book 2)", price: 399, image: "images/teens-mystery20.jpg", desc: "A new game of truth or dare ends in tragedy." },
 
-
+          
           { title: "The Cousins Karen M. McManus (The Cousins, Two Can Keep a Secret, You will be the Death of Me) ", price: 399, image: "images/teens-mystery21.jpg", desc: "Family secrets unravel in this suspenseful mystery." },
 
-
+          
           { title: "Pretty Little Liars (Book 1)", price: 399, image: "images/teens-mystery22.jpg", desc: "Four girls are haunted by secrets after a friend’s disappearance." },
 
-
+          
           { title: "Flawless (PLL Book 2)", price: 399, image: "images/teens-mystery23.jpg", desc: "The lies get deeper and deadlier." },
 
-
+          
           { title: "Perfect (PLL Book 3)", price: 399, image: "images/teens-mystery24.jpg", desc: ",BHV The girls face blackmail, betrayal, and deadly games." },
 
-
+          
           { title: "Unbelievable (PLL Book 4)", price: 399, image: "images/teens-mystery25.jpg", desc: "The shocking truth about ‘A’ is revealed." },
 
-
+          
           { title: "Murder Most Unladylike (Book 1)", price: 349, image: "images/teens-mystery26.jpg", desc: "Daisy and Hazel investigate a murder at their boarding school." },
 
-
+          
           { title: "Arsenic for Tea (Book 2)", price: 349, image: "images/teens-mystery27.jpg", desc: "A country house party turns deadly." },
 
-
+          
           { title: "First Class Murder (Book 3)", price: 349, image: "images/teens-mystery28.jpg", desc: "Murder strikes on a train journey." },
 
-
+          
           { title: "Jolly Foul Play (Book 4)", price: 349, image: "images/teens-mystery29.jpg", desc: "The girls solve a case involving a cruel prank gone wrong." },
 
-
+          
           { title: "Mistletoe and Murder (Book 5)", price: 349, image: "images/teens-mystery30.jpg", desc: "Christmas at Cambridge turns sinister." },
-
+          
 
           /* ---- Standalone (14) ---- */
           { title: "We Were Liars", price: 399, image: "images/teens-mystery31.jpg", desc: "A wealthy family’s summer secrets unravel in tragedy." },
 
-
+          
           { title: "Thirteen Reasons Why", price: 399, image: "images/teens-mystery32.jpg", desc: "A girl leaves behind tapes explaining her suicide." },
 
-
+          
           { title: "One of Us Is Back", price: 399, image: "images/teens-mystery33.jpg", desc: "The Bayview crew faces their darkest secrets yet." },
 
-
+          
           { title: "A Study in Charlotte", price: 399, image: "images/teens-mystery34.jpg", desc: "Descendants of Holmes and Watson team up at school." },
 
-
+          
           { title: "Death Cloud (Young Sherlock Holmes)", price: 349, image: "images/teens-mystery35.jpg", desc: "A teenage Sherlock Holmes faces his first big case." },
 
-
+          
           { title: "The Girl in the Locked Room", price: 299, image: "images/teens-mystery36.jpg", desc: "A haunting ghost story mixed with mystery." },
 
-
+          
           { title: "Dead Girls Can’t Tell Secrets", price: 399, image: "images/teens-mystery37.jpg", desc: "A girl investigates her sister’s suspicious accident." },
 
-
+          
           { title: "The Twin", price: 399, image: "images/teens-mystery38.jpg", desc: "A girl’s twin moves in after their mother’s death, but things feel off." },
 
-
+          
           { title: "You’ll Be the Death of Me", price: 399, image: "images/teens-mystery39.jpg", desc: "Three students skip school and witness a murder." },
 
-
+          
           { title: "Two Can Keep a Secret", price: 399, image: "images/teens-mystery40.jpg", desc: "In a town full of secrets, someone always ends up dead." },
 
-
+          
           { title: "The Inheritance Games", price: 399, image: "images/teens-mystery41.jpg", desc: "A girl inherits a billionaire’s fortune and a deadly puzzle." },
 
-
+          
           { title: "The Final Gambit", price: 399, image: "images/teens-mystery42.jpg", desc: "The shocking conclusion to the inheritance puzzle." },
 
-
+          
           { title: "The Agathas", price: 399, image: "images/teens-mystery43.jpg", desc: "Two unlikely friends solve a classmate’s disappearance." },
 
-
+          
           { title: "Nothing More to Tell", price: 399, image: "images/teens-mystery44.jpg", desc: "A girl investigates the murder of her teacher." }
-
+          
         ],
 
         "Romance": [
           { title: "To All the Boys I’ve Loved Before", price: 450, image: "images/teens-romance1.jpg",
             desc: "A sweet high-school romance about Lara Jean’s secret letters getting unexpectedly revealed." },
 
-
+          
           { title: "Five Feet Apart", price: 499, image: "images/teens-romance2.jpg",
             desc: "A heart-touching story about love, distance, and hope." }
         ],
@@ -2315,14 +2032,14 @@ desc: "Description coming soon..."},
           { title: "Life Without Limits", price: 399, image: "images/teens-self40.jpg",
             desc: "Nick Vujicic’s inspiring story of living without arms and legs." }
         ],
-
+      
 
         "Manga": [
 
           { title: "Naruto Vol. 1", price: 399, image: "images/manga1.jpg",
             desc: "The story of Naruto Uzumaki, a ninja with dreams of becoming the strongest Hokage." },
 
-
+          
           { title: "Death Note Vol. 1", price: 399, image: "images/manga2.jpg",
             desc: "Light Yagami discovers a notebook with deadly powers, sparking a battle of wits with the mysterious detective L." }
         ],
@@ -2444,9 +2161,9 @@ desc: "Description coming soon..."},
       { title: "Calvin and Hobbes: The Essential", price: 349, image: "images/comic-calvinhobbes.jpg",
         desc: "A hilarious and heartwarming comic strip collection about Calvin and his tiger Hobbes." }
       ]
-
+      
       },
-
+    
     adults: {
         "Literary Fiction": [
 
@@ -2634,7 +2351,7 @@ desc: "Description coming soon..."},
 
         "Business & Economics": [
 
-
+          
           { title: "Rich Dad Poor Dad", price: 299, image: "images/business-richdad.jpg",
             desc: "Robert Kiyosaki contrasts the money lessons from his rich dad and poor dad, changing how people view wealth." },
 
@@ -2754,12 +2471,12 @@ desc: "Description coming soon..."},
 
           { title: "The Millionaire Next Door", price: 349, image: "images/business-millionaire.jpg",
             desc: "Thomas Stanley and William Danko reveal the habits of wealthy Americans." }
-
+          
         ],
 
         "Health & Wellness": [
 
-
+          
           { title: "The Power of Now", price: 399, image: "images/health-now.jpg",
             desc: "Eckhart Tolle’s guide to spiritual enlightenment and mental well-being." },
           { title: "Atomic Habits", price: 499, image: "images/health-habits.jpg",
@@ -2847,12 +2564,12 @@ desc: "Description coming soon..."},
             desc: "Jessamyn Stanley inspires with accessible yoga for all bodies." },
           { title: "Light on Yoga", price: 499, image: "images/health-lightyoga.jpg",
             desc: "B.K.S. Iyengar’s classic on yoga postures, breathing, and philosophy." }
-
+          
         ],
 
         "Philosophy & Spirituality": [
 
-
+          
       { title: "Meditations", price: 349, image: "images/adults-philosophy1.jpg",
           desc: "Marcus Aurelius’ timeless reflections on Stoic philosophy and self-mastery." },
 
@@ -2973,11 +2690,11 @@ desc: "Description coming soon..."},
         { title: "The Untethered Soul", price: 399, image: "images/adults-philosophy40.jpg",
           desc: "Michael A. Singer’s spiritual exploration of inner freedom." }
       ],
-
+      
 
         "Science & Technology": [
 
-
+          
       { title: "A Brief History of Time", price: 499, image: "images/adults-scitech1.jpg",
         desc: "Stephen Hawking explains the nature of the universe, black holes, and the concept of time." },
 
@@ -3101,7 +2818,7 @@ desc: "Description coming soon..."},
 
         "Politics & Society": [
 
-
+          
        { title: "The Communist Manifesto", price: 299, image: "images/adults-politics1.jpg",
           desc: "Karl Marx and Friedrich Engels' influential political pamphlet on class struggle and capitalism." },
         { title: "The Republic", price: 349, image: "images/adults-politics2.jpg",
@@ -3191,7 +2908,7 @@ desc: "Description coming soon..."},
     };
   let selectedBook = null;
   let cart = [];
-
+  
 
   // Add book to cart
   function addToCart(book) {
@@ -3560,7 +3277,7 @@ function handleSearch(e){
     margin-top: 10px;
     color: #222;
   }
-
+  
   .buy-btn {
     display: block;
     width: 100%;
