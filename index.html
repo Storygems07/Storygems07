@@ -851,26 +851,33 @@ section{padding:4rem 2rem;text-align:center;}
 <!-- AGE GROUP CARDS -->
 <div class="age-group-container">
 
- <div class="age-card">
-  <h3>Kids</h3>
-  <p>Fun stories, magical adventures, colourful tales for young explorers! 🌟</p>
-  <button onclick="showTopics('kids')">Explore</button>
+  <div class="age-card">
+    <h3>Kids</h3>
+    <p>Fun stories, magical adventures, colourful tales for young explorers! 🌟</p>
+    <button onclick="showTopics('kids')">Explore</button>
+  </div>
+
+  <div class="age-card">
+    <h3>Teens</h3>
+    <p>Fantasy, mystery, thrilling journeys crafted for teenage imaginations ⚡</p>
+    <button onclick="showTopics('teens')">Explore</button>
+  </div>
+
+  <div class="age-card">
+    <h3>Adults</h3>
+    <p>Mature novels, mythology, self-help & timeless literature for adults 📖</p>
+    <button onclick="showTopics('adults')">Explore</button>
+  </div>
+
 </div>
 
-<div class="age-card">
-  <h3>Teens</h3>
-  <p>Fantasy, mystery, thrilling journeys crafted for teenage imaginations ⚡</p>
-  <button onclick="showTopics('teens')">Explore</button>
+<!-- TOPICS SCREEN — move OUTSIDE age-group-container -->
+<div id="topics-screen" class="screen" style="display:none;">
+  <h2>Select a Topic</h2>
+  <div id="topics-container"></div>
+  <button onclick="setDisplay('book')">⬅ Back</button>
 </div>
 
-<div class="age-card">
-  <h3>Adults</h3>
-  <p>Mature novels, mythology, self-help & timeless literature for adults 📖</p>
-  <button onclick="showTopics('adults')">Explore</button>
-</div>
-
-</div>
-  
 
 <!-- BOOK DETAIL -->
 <div id="book-detail-screen" style="display:none;padding:4rem 2rem;background:#fff;">
