@@ -769,166 +769,136 @@ section{padding:4rem 2rem;text-align:center;}
     </style>
 
     
-    <!-- CATEGORY PAGE (Beautiful Age Group Selection) -->
-    <div id="book-screen" class="book-screen" style="text-align:center; padding:80px; background: linear-gradient(135deg, #6a11cb, #2575fc); color:white; min-height:100vh;">
+  <!-- CATEGORY PAGE (Beautiful Age Group Selection - UPGRADED) -->
+<div id="book-screen" class="book-screen" 
+     style="display:none; text-align:center; padding:90px 30px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc); 
+            color:white; min-height:100vh;">
 
-      <h2 style="font-size:3rem; margin-bottom:60px; font-weight:800; letter-spacing:1px;">✨ Choose Your Age Group ✨</h2>
+  <h2 style="font-size:3.5rem; margin-bottom:70px; font-weight:900;
+             letter-spacing:2px; text-shadow:0 4px 20px rgba(0,0,0,0.35);">
+    ✨ Choose Your Age Group ✨
+  </h2>
 
-      <div style="display:flex; justify-content:center; gap:50px; flex-wrap:wrap;">
+  <div style="display:flex; justify-content:center; gap:60px; flex-wrap:wrap;">
 
-        <!-- Kids -->
-        <div class="category" onclick="showTopics('kids')" 
-             style="background:white; color:#6a11cb; padding:50px 40px; border-radius:25px; width:300px; text-align:center; 
-                    box-shadow:0 15px 35px rgba(0,0,0,0.25); transition:all 0.3s ease; cursor:pointer; border:4px solid transparent;">
-          <h3 style="margin-bottom:20px; font-size:1.8rem; font-weight:700;">Kids</h3>
-          <p style="font-size:16px; color:#444; line-height:1.6;">Fun stories and magical adventures<br>for young readers! 🌟</p>
-          <button style="margin-top:30px; padding:14px 28px; border:none; border-radius:12px; font-size:1rem; font-weight:bold;
-                         background:linear-gradient(90deg,#6a11cb,#2575fc); color:white; cursor:pointer; box-shadow:0 6px 18px rgba(106,17,203,0.4);">
-            Explore
-          </button>
-        </div>
-
-        <!-- Teens -->
-        <div class="category" onclick="showTopics('teens')" 
-             style="background:white; color:#6a11cb; padding:50px 40px; border-radius:25px; width:300px; text-align:center; 
-                    box-shadow:0 15px 35px rgba(0,0,0,0.25); transition:all 0.3s ease; cursor:pointer; border:4px solid transparent;">
-          <h3 style="margin-bottom:20px; font-size:1.8rem; font-weight:700;">Teens</h3>
-          <p style="font-size:16px; color:#444; line-height:1.6;">Fantasy, mystery, and thrilling<br>journeys for teenagers ⚡</p>
-          <button style="margin-top:30px; padding:14px 28px; border:none; border-radius:12px; font-size:1rem; font-weight:bold;
-                         background:linear-gradient(90deg,#6a11cb,#2575fc); color:white; cursor:pointer; box-shadow:0 6px 18px rgba(106,17,203,0.4);">
-            Explore
-          </button>
-        </div>
-
-        <!-- Adults -->
-        <div class="category" onclick="showTopics('adults')" 
-             style="background:white; color:#6a11cb; padding:50px 40px; border-radius:25px; width:300px; text-align:center; 
-                    box-shadow:0 15px 35px rgba(0,0,0,0.25); transition:all 0.3s ease; cursor:pointer; border:4px solid transparent;">
-          <h3 style="margin-bottom:20px; font-size:1.8rem; font-weight:700;">Adults</h3>
-          <p style="font-size:16px; color:#444; line-height:1.6;">Engaging novels, self-help, and<br>mature reads for adults 📖</p>
-          <button style="margin-top:30px; padding:14px 28px; border:none; border-radius:12px; font-size:1rem; font-weight:bold;
-                         background:linear-gradient(90deg,#6a11cb,#2575fc); color:white; cursor:pointer; box-shadow:0 6px 18px rgba(106,17,203,0.4);">
-            Explore
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Back Button -->
-      <button class="back-btn" onclick="showHome()" 
-              style="margin-top:70px; padding:14px 36px; border:none; border-radius:12px; background:white; 
-                     color:#6a11cb; font-weight:700; font-size:1rem; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,0.25); transition:0.3s;">
-        ⬅ Back to Home
-      </button>
-
-    </div>
-
-    <!-- Hover Effect Styling -->
+    <!-- CARD TEMPLATE (Kids / Teens / Adults) -->
     <style>
-      .category:hover {
-        transform: translateY(-12px) scale(1.05);
-        box-shadow: 0 20px 45px rgba(0,0,0,0.35);
-        border:4px solid #ffd700; /* golden glow */
+      .age-card {
+        background:white;
+        color:#6a11cb;
+        width:310px;
+        padding:55px 40px;
+        border-radius:28px;
+        text-align:center;
+        cursor:pointer;
+        border:4px solid transparent;
+
+        /* PREMIUM SHADOW */
+        box-shadow: 0 18px 40px rgba(0,0,0,0.28), 
+                    0 8px 20px rgba(106,17,203,0.35) inset;
+
+        transition: all 0.35s ease;
+        position:relative;
+        overflow:hidden;
       }
-      .back-btn:hover {
+
+      /* Floating Glow Ring */
+      .age-card::before {
+        content:"";
+        position:absolute;
+        width:220px;
+        height:220px;
+        border-radius:50%;
+        background:rgba(106,17,203,0.2);
+        top:-70px;
+        right:-70px;
+        filter:blur(45px);
+        transition:0.4s ease;
+      }
+
+      /* Hover Effects */
+      .age-card:hover {
+        transform:translateY(-16px) scale(1.07);
+        border-color:#ffd700;
+        box-shadow: 0 28px 70px rgba(0,0,0,0.35),
+                    0 12px 28px rgba(106,17,203,0.55) inset;
+      }
+
+      .age-card:hover::before {
+        width:280px;
+        height:280px;
+        filter:blur(60px);
+        background:rgba(255,215,0,0.35);
+      }
+
+      .age-card h3 {
+        font-size:2rem;
+        margin-bottom:18px;
+        font-weight:800;
+        color:#6a11cb;
+      }
+
+      .age-card p {
+        font-size:16px;
+        color:#444;
+        line-height:1.6;
+        margin-bottom:25px;
+      }
+
+      .age-card button {
+        padding:14px 32px;
+        border:none;
+        border-radius:12px;
+        font-size:1rem;
+        font-weight:bold;
         background:linear-gradient(90deg,#6a11cb,#2575fc);
         color:white;
+        cursor:pointer;
+        box-shadow:0 6px 18px rgba(106,17,203,0.4);
+        transition:0.3s;
+      }
+
+      .age-card button:hover {
+        transform:scale(1.08);
+        box-shadow:0 10px 30px rgba(106,17,203,0.55);
       }
     </style>
 
-<!-- TOPICS -->
-<div id="topics-screen" class="topics-screen" style="display:none;">
 
-  <h2>Select a Topic</h2>
-  <div id="topics-container"></div>
-  <button class="back-btn" onclick="showBooks()">Back to Categories</button>
+    <!-- Kids -->
+    <div class="age-card" onclick="showTopics('kids')">
+      <h3>Kids</h3>
+      <p>Fun stories and magical adventures<br>for young readers! 🌟</p>
+      <button>Explore</button>
+    </div>
+
+    <!-- Teens -->
+    <div class="age-card" onclick="showTopics('teens')">
+      <h3>Teens</h3>
+      <p>Fantasy, mystery, and thrilling<br>journeys for teenagers ⚡</p>
+      <button>Explore</button>
+    </div>
+
+    <!-- Adults -->
+    <div class="age-card" onclick="showTopics('adults')">
+      <h3>Adults</h3>
+      <p>Engaging novels, life lessons,<br>and powerful reads 📖</p>
+      <button>Explore</button>
+    </div>
+
+  </div>
+
+  <!-- Back Button -->
+  <button class="back-btn" onclick="showHome()" 
+          style="margin-top:80px; padding:14px 36px; border:none;
+                 border-radius:12px; background:white; color:#6a11cb;
+                 font-weight:700; font-size:1rem; cursor:pointer;
+                 box-shadow:0 8px 20px rgba(0,0,0,0.25); transition:0.3s;">
+    ⬅ Back to Home
+  </button>
+
 </div>
-  <style>
-    .topics-screen {
-      padding: 60px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #8360c3, #2ebf91);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .topics-screen h2 {
-      font-size: 3rem;
-      margin-bottom: 40px;
-      color: #fff;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
-
-    /* Topic Card */
-    .topic-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(14px);
-      padding: 28px;
-      border-radius: 22px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid transparent;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      margin: 15px;
-      color: #fff;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      transition: all 0.35s ease;
-      text-transform: capitalize;
-    }
-
-    /* Gradient text per topic */
-    .topic-card:nth-child(1) { /* Epics */
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      border-color: #ff9a9e;
-    }
-    .topic-card:nth-child(2) { /* Panchatantra */
-      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      border-color: #a1c4fd;
-    }
-    .topic-card:nth-child(3) { /* Hitopadesh */
-      background: linear-gradient(135deg, #f6d365, #fda085);
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      border-color: #f6d365;
-    }
-    .topic-card:nth-child(4) { /* Arabian Nights */
-      background: linear-gradient(135deg, #84fab0, #8fd3f4);
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      border-color: #84fab0;
-    }
-    .topic-card:nth-child(5) { /* Animal Stories */
-      background: linear-gradient(135deg, #fccb90, #d57eeb);
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      border-color: #d57eeb;
-    }
-
-    /* Hover Effect */
-    .topic-card:hover {
-      transform: translateY(-10px) scale(1.07);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-      border-color: #fff;
-    }
-
-      </style>
 
 <!-- BOOKS LIST -->
 <div id="books-list-screen" class="books-list-screen">
