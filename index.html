@@ -7,30 +7,27 @@
 
   <title>StoryGems - Monthly Book Surprise!</title>
   <style>
-    /* ========== FULL PAGE BACKGROUND ========== */
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #ffffff, #f9f9ff); /* clean and clear */
+      background: linear-gradient(to bottom right, #ffffff, #f9f9ff); 
       color: #333;
     }
 
-    /* ========== BOOK LIST GRID ========== */
     #books-list {
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* Exactly 4 books per row */
+      grid-template-columns: repeat(4, 1fr); 
       gap: 50px;
       padding: 3rem 4rem;
-      margin: 0 auto; /* Center horizontally */
+      margin: 0 auto; 
       justify-items: center;
-      background: rgba(255, 255, 255, 0.85); /* light background with slight transparency */
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      max-width: 1150px; /* Optional: control grid width */
+      max-width: 1150px; 
     }
 
-    /* ========== BOOK CARD ========== */
     .book-card {
       background: #fff;
       border-radius: 12px;
@@ -50,7 +47,6 @@
       box-shadow: 0 10px 16px rgba(0, 0, 0, 0.15);
     }
 
-    /* ========== BOOK IMAGE ========== */
     .book-card img {
       width: 100%;
       height: auto;
@@ -58,7 +54,6 @@
       margin-bottom: 10px;
     }
 
-    /* ========== TITLE & PRICE ========== */
     .book-info h4 {
       font-size: 0.95rem;
       margin: 0.5rem 0 0.3rem;
@@ -75,7 +70,6 @@
       color: #d32f2f;
       font-weight: bold;
     }
-    /* ========== BOOK DETAIL WRAPPER ========== */
     #book-detail-screen {
       display: flex;
       flex-direction: column;
@@ -85,7 +79,6 @@
       min-height: 100vh;
     }
 
-    /* ========== BACK BUTTON ========== */
     #back-button {
       align-self: flex-start;
       margin-left: 3rem;
@@ -104,7 +97,6 @@
       background: #4838c6;
     }
 
-    /* ========== BOOK DETAIL CARD ========== */
     .book-detail-card {
       display: flex;
       flex-direction: row;
@@ -117,7 +109,6 @@
       width: 100%;
     }
 
-    /* ========== BOOK IMAGE ========== */
     .book-detail-card img {
       width: 240px;
       height: auto;
@@ -125,7 +116,6 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     }
 
-    /* ========== BOOK TEXT INFO ========== */
     .book-detail-info {
       flex: 1;
     }
@@ -151,7 +141,7 @@
       margin-bottom: 20px;
     }
 
-    /* ========== ACTION BUTTONS ========== */
+
     .detail-buttons {
       display: flex;
       gap: 15px;
@@ -172,7 +162,6 @@
       background: #f7b500;
     }
 
-/* ============ GLOBAL STYLES ============ */
 body{
   font-family:'Segoe UI',sans-serif;margin:0;padding:0;
   background:#f4f4f9;color:#333;line-height:1.6;
@@ -188,7 +177,6 @@ nav a:hover{color:#ffeaa7;}
 nav a::after{content:'';position:absolute;bottom:-5px;left:0;width:100%;height:2px;background:#ffeaa7;transform:scaleX(0);transition:transform .3s;transform-origin:bottom right;}
 nav a:hover::after{transform:scaleX(1);transform-origin:bottom left;}
 
-/* ============ SEARCH BAR ============ */
 .search-bar input{
   padding:.55rem 1.1rem;border-radius:25px;border:1px solid #ddd;font-size:1rem;
   min-width:200px;outline:none;
@@ -196,7 +184,7 @@ nav a:hover::after{transform:scaleX(1);transform-origin:bottom left;}
 .search-bar input:focus{box-shadow:0 0 0 2px rgba(255,234,167,.8);}
 @media(max-width:600px){ .search-bar input{width:140px;font-size:.85rem;} }
 
-/* ============ HERO ============ */
+
 .hero{
   text-align:center;padding:6rem 2rem;color:#fff;
   background-image:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1950&q=80');
@@ -210,7 +198,6 @@ nav a:hover::after{transform:scaleX(1);transform-origin:bottom left;}
 
 section{padding:4rem 2rem;text-align:center;}
 
-/* ============ PLANS & CONTACT ============ */
 .plans,.contact{background:#dff9fb;border-radius:15px;padding:2rem;}
 .plan-option{background:#fff;margin:1rem auto;max-width:400px;padding:1.5rem;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);}
 .plan-option:hover{transform:translateY(-5px);transition:.3s;}
@@ -219,14 +206,14 @@ section{padding:4rem 2rem;text-align:center;}
 .contact button{background:#6c5ce7;color:#fff;padding:.8rem 1.5rem;border:none;border-radius:25px;font-size:1rem;cursor:pointer;}
 .contact button:hover{background:#ffeaa7;}
 
-/* ============ CATEGORY & TOPIC ============ */
+
 .book-screen,.topics-screen,.books-list-screen{display:none;padding:4rem 2rem;background:#fff;text-align:center;}
 .category{background:#fff;margin:1rem auto;padding:2rem;max-width:600px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);cursor:pointer;text-align:left;}
 .category:hover{transform:scale(1.05);transition:.3s;}
 .topic-btn{display:inline-block;margin:.7rem 1rem;padding:1rem 1.5rem;background:#6c5ce7;color:#fff;border-radius:25px;font-size:1.2rem;cursor:pointer;}
 .topic-btn:hover{background:#ffeaa7;color:#6c5ce7;}
 
-/* ============ AMAZON‑STYLE BOOK LIST ============ */
+
 .book-list{
   display:flex;flex-direction:column;gap:22px;max-width:900px;margin:0 auto;
   padding:0;list-style: none;
@@ -243,7 +230,7 @@ section{padding:4rem 2rem;text-align:center;}
 .back-btn{margin-top:2rem;display:inline-block;background:#6c5ce7;color:#fff;padding:.7rem 1.5rem;border-radius:25px;text-decoration:none;cursor:pointer;}
 .back-btn:hover{background:#ffeaa7;color:#6c5ce7;}
 
-/* ============ DETAIL VIEW ============ */
+
 .book-detail-wrapper{
   display:flex;gap:30px;flex-wrap:wrap;border:1px solid #d8d8d8;
   padding:20px;border-radius:6px;box-shadow:0 3px 8px rgba(0,0,0,.08);
@@ -279,46 +266,209 @@ section{padding:4rem 2rem;text-align:center;}
         </div>
       </div>
     </header>
-    <!-- HOME SCREEN -->
-    <div id="home-screen">
-      <section class="hero">
-        <h2>Your Monthly Book Adventure Awaits!</h2>
-        <p>Get a new book, a bookmark, a mug, and a surprise gift delivered to your door every month!</p>
-      </section>
 
-      <section class="info-section" style="display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2rem;">
+<div id="home-screen" style="display:block;">
+  
+  <style>
+    :root{
+      --gold: #D4AF37;
+      --gold-soft: #f4df9e;
+      --muted: #6b6b72;
+      --card-shadow: 0 8px 28px rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
 
-        <!-- About Us -->
-        <div class="info-card" style="flex:1 1 250px;max-width:320px;background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,.1);padding:1rem;cursor:pointer;" onclick="toggleAbout()">
-          <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="About Us" style="width:100px;margin:0 auto;display:block;">
-          <h3 style="margin-top:1rem;">About Us</h3>
-          <p>Click here to know who we are, what we offer, and how your child can benefit!</p>
+
+    #home-container{
+      max-width:1180px;
+      margin:0 auto;
+      padding:40px 24px;
+    }
+
+    .hero-premium{
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:32px;
+      align-items:center;
+      margin-top:40px;
+    }
+
+    .hero-box{
+      background:rgba(255,255,255,0.6);
+      backdrop-filter:blur(12px);
+      padding:28px;
+      border-radius:var(--radius);
+      box-shadow:var(--card-shadow);
+    }
+
+    .hero-box h1{
+      font-size:clamp(28px,4vw,44px);
+      margin-bottom:12px;
+      font-weight:800;
+      color:#111;
+    }
+
+    .hero-box p{
+      color:var(--muted);
+      font-size:1rem;
+      margin-bottom:20px;
+    }
+
+    .gold-btn{
+      background:linear-gradient(90deg,var(--gold),var(--gold-soft));
+      padding:12px 22px;
+      border-radius:12px;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      box-shadow:0 8px 18px rgba(212,175,55,0.28);
+      color:#111;
+    }
+
+    .outline-btn{
+      padding:12px 22px;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,0.15);
+      background:white;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+
+    .hero-visual{
+      height:420px;
+      border-radius:18px;
+      background: linear-gradient(160deg, rgba(230,222,255,0.9), rgba(245,242,255,0.7));
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 18px 44px rgba(99,67,171,0.12);
+    }
+
+    .hero-light{
+      position:absolute;
+      width:280px;
+      height:280px;
+      top:-80px;
+      right:-80px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(212,175,55,0.9), rgba(212,175,55,0.1) 60%, transparent 80%);
+      filter:blur(18px);
+    }
+
+    .mock-card{
+      background:white;
+      padding:20px;
+      border-radius:12px;
+      width:300px;
+      box-shadow:var(--card-shadow);
+    }
+
+    .mock-card h3{
+      margin-bottom:6px;
+      font-size:1.2rem;
+      font-weight:700;
+    }
+
+    .mock-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .feature-grid{
+      margin-top:40px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .feature-card{
+      background:white;
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:var(--card-shadow);
+      display:flex;
+      gap:14px;
+    }
+
+    .feature-icon{
+      width:52px;
+      height:52px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--gold), var(--gold-soft));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      color:#111;
+      font-size:20px;
+    }
+
+    @media(max-width:980px){
+      .hero-premium{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+
+  <div id="home-container">
+
+
+    <section class="hero-premium">
+
+      <div class="hero-box">
+        <h1>Golden Stories, Soft Magic — Your Monthly Book Box Awaits.</h1>
+        <p>StoryGems brings a premium reading experience with hand-picked books, beautiful packaging, and magical surprises every month.</p>
+
+        <div style="display:flex;gap:12px;">
+          <button class="gold-btn" onclick="showBooks()">Explore Books</button>
+          <button class="outline-btn" onclick="showPlans()">View Plans</button>
         </div>
-
-        <!-- Current Offers -->
-        <div class="info-card" style="flex:1 1 250px;max-width:320px;background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,.1);padding:1rem;cursor:pointer;" onclick="showBooks()">
-          <img src="https://cdn-icons-png.flaticon.com/512/3771/3771417.png" alt="Offers" style="width:100px;margin:0 auto;display:block;">
-          <h3 style="margin-top:1rem;">Current Offers</h3>
-          <p>Special deals and limited edition gift boxes for all age groups. Explore now!</p>
-        </div>
-
-        <!-- Limited Time Deals -->
-        <div class="info-card" style="flex:1 1 250px;max-width:320px;background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,.1);padding:1rem;cursor:pointer;" onclick="showBooks()">
-          <img src="https://cdn-icons-png.flaticon.com/512/595/595067.png" alt="Deals" style="width:100px;margin:0 auto;display:block;">
-          <h3 style="margin-top:1rem;">Limited Time Deals</h3>
-          <p>Grab surprise bundles, free gifts, and discounts before time runs out!</p>
-        </div>
-
-      </section>
-
-      <!-- About Us Popup Box -->
-      <div id="about-box" style="display:none;max-width:500px;margin:2rem auto;background:#fff;padding:1.5rem;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:left;">
-        <h3>About StoryGems 💎</h3>
-        <p>StoryGems is India’s most loved monthly book subscription box for kids, teens, and families. Every month, we surprise our readers with handpicked books, bookmarks, personalized mugs, and mystery goodies!</p>
-        <p>Our goal? To build curiosity and imagination in every home — one magical book at a time.</p>
-        <button onclick="document.getElementById('about-box').style.display='none'" class="back-btn">Close</button>
       </div>
-    </div>
+
+      <div class="hero-visual">
+        <div class="hero-light"></div>
+        <div class="mock-card">
+          <h3>Featured Story</h3>
+          <p>A curated book waiting to reach your doorstep.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">A</div>
+        <div>
+          <strong>Premium Finish</strong>
+          <p class="muted">Gold highlights and soft gradients for elegant UI.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">B</div>
+        <div>
+          <strong>Curated Books</strong>
+          <p class="muted">Each book is hand-selected for quality.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">C</div>
+        <div>
+          <strong>Collectible Goodies</strong>
+          <p class="muted">Bookmarks, mugs, stickers, and more.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</div>
+
+
 
 
 
