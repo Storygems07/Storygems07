@@ -267,208 +267,233 @@ section{padding:4rem 2rem;text-align:center;}
       </div>
     </header>
 
-<div id="home-screen" style="display:block;">
+  <div id="home-screen" style="display:block;">
+    
+    <style>
+      :root{
+        --gold: #D4AF37;
+        --gold-soft: #f4df9e;
+        --muted: #6b6b72;
+        --card-shadow: 0 8px 28px rgba(0,0,0,0.08);
+        --radius: 16px;
+      }
   
+  
+      #home-container{
+        max-width:1180px;
+        margin:0 auto;
+        padding:40px 24px;
+      }
+  
+      .hero-premium{
+        display:grid;
+        grid-template-columns:1fr 420px;
+        gap:32px;
+        align-items:center;
+        margin-top:40px;
+      }
+  
+      .hero-box{
+        background:rgba(255,255,255,0.6);
+        backdrop-filter:blur(12px);
+        padding:28px;
+        border-radius:var(--radius);
+        box-shadow:var(--card-shadow);
+      }
+  
+      .hero-box h1{
+        font-size:clamp(28px,4vw,44px);
+        margin-bottom:12px;
+        font-weight:800;
+        color:#111;
+      }
+  
+      .hero-box p{
+        color:var(--muted);
+        font-size:1rem;
+        margin-bottom:20px;
+      }
+  
+      .gold-btn{
+        background:linear-gradient(90deg,var(--gold),var(--gold-soft));
+        padding:12px 22px;
+        border-radius:12px;
+        font-weight:700;
+        border:none;
+        cursor:pointer;
+        box-shadow:0 8px 18px rgba(212,175,55,0.28);
+        color:#111;
+      }
+  
+      .outline-btn{
+        padding:12px 22px;
+        border-radius:12px;
+        border:1px solid rgba(0,0,0,0.15);
+        background:white;
+        font-weight:700;
+        cursor:pointer;
+      }
+  
+  
+      .hero-visual{
+        height:420px;
+        border-radius:18px;
+        background: linear-gradient(160deg, rgba(230,222,255,0.9), rgba(245,242,255,0.7));
+        position:relative;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        box-shadow:0 18px 44px rgba(99,67,171,0.12);
+      }
+  
+      .hero-light{
+        position:absolute;
+        width:280px;
+        height:280px;
+        top:-80px;
+        right:-80px;
+        border-radius:50%;
+        background:radial-gradient(circle, rgba(212,175,55,0.9), rgba(212,175,55,0.1) 60%, transparent 80%);
+        filter:blur(18px);
+      }
+  
+      .mock-card{
+        background:white;
+        padding:20px;
+        border-radius:12px;
+        width:300px;
+        box-shadow:var(--card-shadow);
+      }
+  
+      .mock-card h3{
+        margin-bottom:6px;
+        font-size:1.2rem;
+        font-weight:700;
+      }
+  
+      .mock-card p{
+        margin:0;
+        color:var(--muted);
+        font-size:0.95rem;
+      }
+  
+      .feature-grid{
+        margin-top:40px;
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:20px;
+      }
+  
+      .feature-card{
+        background:white;
+        border-radius:var(--radius);
+        padding:20px;
+        box-shadow:var(--card-shadow);
+        display:flex;
+        gap:14px;
+      }
+  
+      .feature-icon{
+        width:52px;
+        height:52px;
+        border-radius:12px;
+        background:linear-gradient(135deg, var(--gold), var(--gold-soft));
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:800;
+        color:#111;
+        font-size:20px;
+      }
+  
+      @media(max-width:980px){
+        .hero-premium{
+          grid-template-columns:1fr;
+        }
+      }
+    </style>
+  
+    <div id="home-container">
+
+<section class="hero-premium" style="grid-template-columns:1fr; text-align:center;">
+
   <style>
-    :root{
-      --gold: #D4AF37;
-      --gold-soft: #f4df9e;
-      --muted: #6b6b72;
-      --card-shadow: 0 8px 28px rgba(0,0,0,0.08);
-      --radius: 16px;
-    }
-
-
-    #home-container{
-      max-width:1180px;
-      margin:0 auto;
-      padding:40px 24px;
-    }
-
-    .hero-premium{
-      display:grid;
-      grid-template-columns:1fr 420px;
-      gap:32px;
-      align-items:center;
-      margin-top:40px;
-    }
-
-    .hero-box{
+    .hero-centered-box{
       background:rgba(255,255,255,0.6);
       backdrop-filter:blur(12px);
-      padding:28px;
-      border-radius:var(--radius);
-      box-shadow:var(--card-shadow);
+      padding:32px;
+      border-radius:16px;
+      box-shadow:0 8px 28px rgba(0,0,0,0.08);
+      max-width:900px;
+      margin:0 auto;
     }
-
-    .hero-box h1{
-      font-size:clamp(28px,4vw,44px);
-      margin-bottom:12px;
+    .hero-centered-box h1{
+      font-size:clamp(28px,4vw,46px);
       font-weight:800;
+      margin-bottom:14px;
       color:#111;
     }
-
-    .hero-box p{
-      color:var(--muted);
-      font-size:1rem;
-      margin-bottom:20px;
+    .hero-centered-box p{
+      font-size:1.15rem;
+      color:#6b6b72;
+      margin-bottom:26px;
     }
-
-    .gold-btn{
-      background:linear-gradient(90deg,var(--gold),var(--gold-soft));
-      padding:12px 22px;
-      border-radius:12px;
-      font-weight:700;
-      border:none;
-      cursor:pointer;
-      box-shadow:0 8px 18px rgba(212,175,55,0.28);
-      color:#111;
-    }
-
-    .outline-btn{
-      padding:12px 22px;
-      border-radius:12px;
-      border:1px solid rgba(0,0,0,0.15);
-      background:white;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-
-    .hero-visual{
-      height:420px;
-      border-radius:18px;
-      background: linear-gradient(160deg, rgba(230,222,255,0.9), rgba(245,242,255,0.7));
-      position:relative;
+    .hero-btn-row{
       display:flex;
-      align-items:center;
+      gap:16px;
       justify-content:center;
-      box-shadow:0 18px 44px rgba(99,67,171,0.12);
-    }
-
-    .hero-light{
-      position:absolute;
-      width:280px;
-      height:280px;
-      top:-80px;
-      right:-80px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(212,175,55,0.9), rgba(212,175,55,0.1) 60%, transparent 80%);
-      filter:blur(18px);
-    }
-
-    .mock-card{
-      background:white;
-      padding:20px;
-      border-radius:12px;
-      width:300px;
-      box-shadow:var(--card-shadow);
-    }
-
-    .mock-card h3{
-      margin-bottom:6px;
-      font-size:1.2rem;
-      font-weight:700;
-    }
-
-    .mock-card p{
-      margin:0;
-      color:var(--muted);
-      font-size:0.95rem;
-    }
-
-    .feature-grid{
-      margin-top:40px;
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:20px;
-    }
-
-    .feature-card{
-      background:white;
-      border-radius:var(--radius);
-      padding:20px;
-      box-shadow:var(--card-shadow);
-      display:flex;
-      gap:14px;
-    }
-
-    .feature-icon{
-      width:52px;
-      height:52px;
-      border-radius:12px;
-      background:linear-gradient(135deg, var(--gold), var(--gold-soft));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:800;
-      color:#111;
-      font-size:20px;
-    }
-
-    @media(max-width:980px){
-      .hero-premium{
-        grid-template-columns:1fr;
-      }
+      margin-top:10px;
     }
   </style>
 
-  <div id="home-container">
+  <div class="hero-centered-box">
+    <h1>Golden Stories, Soft Magic — Your Monthly Book Box Awaits.</h1>
 
+    <p>
+      StoryGems brings a premium reading experience with hand-picked books,  
+      golden accents and magical surprises every month.
+    </p>
 
-    <section class="hero-premium">
-
-      <div class="hero-box">
-        <h1>Golden Stories, Soft Magic — Your Monthly Book Box Awaits.</h1>
-        <p>StoryGems brings a premium reading experience with hand-picked books, beautiful packaging, and magical surprises every month.</p>
-
-        <div style="display:flex;gap:12px;">
-          <button class="gold-btn" onclick="showBooks()">Explore Books</button>
-          <button class="outline-btn" onclick="showPlans()">View Plans</button>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="hero-light"></div>
-        <div class="mock-card">
-          <h3>Featured Story</h3>
-          <p>A curated book waiting to reach your doorstep.</p>
-        </div>
-      </div>
-
-    </section>
-
-    <section class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-icon">A</div>
-        <div>
-          <strong>Premium Finish</strong>
-          <p class="muted">Gold highlights and soft gradients for elegant UI.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">B</div>
-        <div>
-          <strong>Curated Books</strong>
-          <p class="muted">Each book is hand-selected for quality.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">C</div>
-        <div>
-          <strong>Collectible Goodies</strong>
-          <p class="muted">Bookmarks, mugs, stickers, and more.</p>
-        </div>
-      </div>
-    </section>
-
+    <div class="hero-btn-row">
+      <button class="gold-btn" onclick="showBooks()">Explore Books</button>
+      <button class="outline-btn" onclick="showPlans()">View Plans</button>
+    </div>
   </div>
 
-</div>
+</section>
 
-
+  
+      <section class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">A</div>
+          <div>
+            <strong>Premium Finish</strong>
+            <p class="muted">Gold highlights and soft gradients for elegant UI.</p>
+          </div>
+        </div>
+  
+        <div class="feature-card">
+          <div class="feature-icon">B</div>
+          <div>
+            <strong>Curated Books</strong>
+            <p class="muted">Each book is hand-selected for quality.</p>
+          </div>
+        </div>
+  
+        <div class="feature-card">
+          <div class="feature-icon">C</div>
+          <div>
+            <strong>Collectible Goodies</strong>
+            <p class="muted">Bookmarks, mugs, stickers, and more.</p>
+          </div>
+        </div>
+      </section>
+  
+    </div>
+  
+  </div>
+  
+  
 
 
 
