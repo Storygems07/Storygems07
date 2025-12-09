@@ -769,233 +769,118 @@ section{padding:4rem 2rem;text-align:center;}
     </style>
 
     
-  <!-- CATEGORY PAGE (Beautiful Age Group Selection - UPGRADED) -->
-<div id="book-screen" class="book-screen" 
-     style="display:none; text-align:center; padding:90px 30px;
-            background: linear-gradient(135deg, #6a11cb, #2575fc); 
-            color:white; min-height:100vh;">
+ <!-- AGE GROUP — PREMIUM GLASS STYLE -->
+<div id="book-screen" class="book-screen"
+     style="text-align:center; padding:80px; 
+     background: linear-gradient(135deg, #ebe6ff, #ffffff, #f9f3ff);
+     color:#111; min-height:100vh;">
 
-  <h2 style="font-size:3.5rem; margin-bottom:70px; font-weight:900;
-             letter-spacing:2px; text-shadow:0 4px 20px rgba(0,0,0,0.35);">
+  <h2 style="
+      font-size:3rem; 
+      margin-bottom:60px; 
+      font-weight:900; 
+      letter-spacing:1px;
+      background:linear-gradient(90deg,#a170ff,#6c47d9);
+      -webkit-background-clip:text;
+      color:transparent;">
     ✨ Choose Your Age Group ✨
   </h2>
 
-  <div style="display:flex; justify-content:center; gap:60px; flex-wrap:wrap;">
+  <div style="display:flex; justify-content:center; gap:50px; flex-wrap:wrap;">
 
-    <!-- CARD TEMPLATE (Kids / Teens / Adults) -->
+    <!-- CARD TEMPLATE -->
     <style>
       .age-card {
-        background:white;
-        color:#6a11cb;
-        width:310px;
-        padding:55px 40px;
-        border-radius:28px;
-        text-align:center;
-        cursor:pointer;
-        border:4px solid transparent;
-
-        /* PREMIUM SHADOW */
-        box-shadow: 0 18px 40px rgba(0,0,0,0.28), 
-                    0 8px 20px rgba(106,17,203,0.35) inset;
-
+        width: 300px;
+        padding: 40px 34px;
+        border-radius: 22px;
+        backdrop-filter: blur(14px);
+        background: rgba(255, 255, 255, 0.55);
+        box-shadow: 
+          0 12px 30px rgba(0,0,0,0.12),
+          inset 0 0 0 1.5px rgba(255,255,255,0.4);
+        border: 2px solid rgba(212,175,55,0.45); /* gold */
+        cursor: pointer;
         transition: all 0.35s ease;
-        position:relative;
-        overflow:hidden;
+        text-align:center;
       }
 
-      /* Floating Glow Ring */
-      .age-card::before {
-        content:"";
-        position:absolute;
-        width:220px;
-        height:220px;
-        border-radius:50%;
-        background:rgba(106,17,203,0.2);
-        top:-70px;
-        right:-70px;
-        filter:blur(45px);
-        transition:0.4s ease;
-      }
-
-      /* Hover Effects */
       .age-card:hover {
-        transform:translateY(-16px) scale(1.07);
-        border-color:#ffd700;
-        box-shadow: 0 28px 70px rgba(0,0,0,0.35),
-                    0 12px 28px rgba(106,17,203,0.55) inset;
-      }
-
-      .age-card:hover::before {
-        width:280px;
-        height:280px;
-        filter:blur(60px);
-        background:rgba(255,215,0,0.35);
+        transform: translateY(-14px) scale(1.05);
+        box-shadow:
+          0 24px 45px rgba(0,0,0,0.25),
+          0 0 25px rgba(212,175,55,0.5); /* gold glow */
+        border-color: #D4AF37;
       }
 
       .age-card h3 {
-        font-size:2rem;
-        margin-bottom:18px;
-        font-weight:800;
-        color:#6a11cb;
+        font-size: 1.9rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+        background:linear-gradient(90deg,#a170ff,#6c47d9);
+        -webkit-background-clip:text;
+        color:transparent;
       }
 
       .age-card p {
-        font-size:16px;
-        color:#444;
-        line-height:1.6;
-        margin-bottom:25px;
+        font-size: 1rem;
+        color: #444;
+        line-height: 1.6;
+        margin-bottom: 26px;
       }
 
       .age-card button {
-        padding:14px 32px;
-        border:none;
-        border-radius:12px;
-        font-size:1rem;
-        font-weight:bold;
-        background:linear-gradient(90deg,#6a11cb,#2575fc);
-        color:white;
-        cursor:pointer;
-        box-shadow:0 6px 18px rgba(106,17,203,0.4);
-        transition:0.3s;
+        margin-top: 10px;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        background: linear-gradient(90deg,#D4AF37,#f4df9e);
+        color: #111;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(212,175,55,0.45);
+        transition: 0.3s;
       }
 
       .age-card button:hover {
-        transform:scale(1.08);
-        box-shadow:0 10px 30px rgba(106,17,203,0.55);
+        transform: scale(1.08);
       }
     </style>
-
 
     <!-- Kids -->
     <div class="age-card" onclick="showTopics('kids')">
       <h3>Kids</h3>
-      <p>Fun stories and magical adventures<br>for young readers! 🌟</p>
+      <p>Fun stories, magical adventures, colourful tales for young explorers! 🌟</p>
       <button>Explore</button>
     </div>
 
     <!-- Teens -->
     <div class="age-card" onclick="showTopics('teens')">
       <h3>Teens</h3>
-      <p>Fantasy, mystery, and thrilling<br>journeys for teenagers ⚡</p>
+      <p>Fantasy, mystery, thrilling journeys crafted for teenage imaginations ⚡</p>
       <button>Explore</button>
     </div>
 
     <!-- Adults -->
     <div class="age-card" onclick="showTopics('adults')">
       <h3>Adults</h3>
-      <p>Engaging novels, life lessons,<br>and powerful reads 📖</p>
+      <p>Mature novels, mythology, self-help & timeless literature for adults 📖</p>
       <button>Explore</button>
     </div>
 
   </div>
 
-  <!-- Back Button -->
   <button class="back-btn" onclick="showHome()" 
-          style="margin-top:80px; padding:14px 36px; border:none;
-                 border-radius:12px; background:white; color:#6a11cb;
-                 font-weight:700; font-size:1rem; cursor:pointer;
-                 box-shadow:0 8px 20px rgba(0,0,0,0.25); transition:0.3s;">
+          style="margin-top:70px; padding:14px 36px; border:none; border-radius:12px; 
+                 background:linear-gradient(90deg,#a170ff,#6c47d9);
+                 color:white; font-weight:700; font-size:1rem; cursor:pointer;
+                 box-shadow:0 8px 20px rgba(106,17,203,0.3); transition:0.3s;">
     ⬅ Back to Home
   </button>
 
 </div>
 
-<!-- BOOKS LIST -->
-<div id="books-list-screen" class="books-list-screen">
-  <h2 id="list-heading">Books List</h2>
-  <!-- Search results will also render here -->
-  <div class="book-list" id="books-list"></div>
-  <button class="back-btn" id="list-back-btn" onclick="showTopics(currentCategory)">Back</button>
-</div>
-    <style>
-      /* ---------- BOOKS LIST SCREEN (SUPER NICE) ---------- */
-      .books-list-screen {
-        padding: 60px 20px;
-        text-align: center;
-        background: linear-gradient(135deg, #00c6ff, #0072ff);
-        min-height: 100vh;
-      }
-
-      /* Heading */
-      .books-list-screen h2 {
-        font-size: 2.8rem;
-        margin-bottom: 50px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        color: #fff; /* 👈 White color */
-        text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      }
-
-      /* Book list grid */
-      .book-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 35px;
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      /* Book card */
-      .book-list .book-card {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(12px);
-        border-radius: 18px;
-        padding: 20px;
-        text-align: center;
-        transition: all 0.35s ease;
-        cursor: pointer;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-        position: relative;
-        overflow: hidden;
-      }
-
-      /* Book cover */
-      .book-list .book-card img {
-        width: 100%;
-        max-height: 260px;
-        object-fit: contain;
-        border-radius: 12px;
-        margin-bottom: 15px;
-        transition: transform 0.3s ease;
-      }
-
-      /* Hover effects */
-      .book-list .book-card:hover {
-        transform: translateY(-12px) scale(1.05);
-        box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-      }
-      .book-list .book-card:hover img {
-        transform: scale(1.1);
-      }
-
-      /* Book title */
-      .book-list .book-card h3 {
-        font-size: 1.2rem;
-        color: #fff;
-        font-weight: 600;
-        margin-bottom: 10px;
-        line-height: 1.4;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      }
-
-      /* Price tag */
-      .book-list .book-card .price {
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #ffe259;
-        background: rgba(0,0,0,0.5);
-        padding: 6px 14px;
-        border-radius: 12px;
-        display: inline-block;
-        margin-top: 8px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      }
-
-      
-    </style>
 
 <!-- BOOK DETAIL -->
 <div id="book-detail-screen" style="display:none;padding:4rem 2rem;background:#fff;">
