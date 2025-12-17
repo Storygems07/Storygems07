@@ -908,6 +908,73 @@ section{padding:4rem 2rem;text-align:center;}
       gap:30px;">
   </div>
 
+
+  <!-- BOOKS LIST SCREEN -->
+<div id="books-list-screen" style="display:none; padding:4rem 2rem; background:linear-gradient(135deg,#ebe6ff,#ffffff,#f9f3ff);">
+
+  <h2 class="page-title">📚 Books</h2>
+
+  <div id="books-list" class="books-grid"></div>
+
+  <button class="back-btn" onclick="setDisplay('topics')">⬅ Back</button>
+</div>
+<style>
+  .page-title{
+  text-align:center;
+  font-size:2.6rem;
+  font-weight:900;
+  margin-bottom:40px;
+  background:linear-gradient(90deg,#a170ff,#6c47d9);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.books-grid{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:32px;
+}
+
+.book-card{
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(14px);
+  border-radius:20px;
+  padding:18px;
+  cursor:pointer;
+  border:1.5px solid rgba(212,175,55,.4);
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+  transition:.35s;
+}
+
+.book-card:hover{
+  transform:translateY(-12px) scale(1.05);
+  box-shadow:0 30px 55px rgba(0,0,0,.28);
+  border-color:#D4AF37;
+}
+
+.book-card img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+.book-info{text-align:center;margin-top:14px;}
+
+.book-info h4{font-size:1.05rem;font-weight:800;margin:6px 0;}
+
+.small-price{
+  font-weight:900;
+  background:linear-gradient(90deg,#D4AF37,#f4df9e);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+</style>
+  
+
+
   <button onclick="setDisplay('book')" style="
       margin-top:50px;
       padding:14px 25px;
